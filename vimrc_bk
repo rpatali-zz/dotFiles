@@ -1,0 +1,90 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+"""""bash like auto-completion
+set wildmode=longest,list,full
+set wildmenu
+
+set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
+let g:Powerline_symbols = 'fancy'
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'BusyBee'
+
+filetype plugin indent on     " required
+
+" syntax highlighting
+syntax on
+
+" allow mouse control
+set mouse=a
+set t_Co=256
+
+" matches previous indent level,
+" intelligently guesses indent (code level)
+set autoindent
+set smartindent
+
+" interpret tab as an ``indent'' command instead of an insert-a-tab command
+set softtabstop=3
+" set the mod-N indentation used when you hit the tab key 
+set shiftwidth=3
+" cause the TAB file-character to be displayed as mod-N (emacs = tab-width)
+set tabstop=3 ts=3
+" cause TAB characters to not be used in the file (indent-tabs-mode)
+set expandtab
+
+" allowing backspace to work after indent -> see :help i_backspacing
+set backspace=indent,eol,start
+
+" removes annoying beeps when bad command
+" instead flashes screen
+" first one helps with entering
+autocmd VimEnter * set vb t_vb=
+set vb t_vb=
+
+" shows status of cursor position
+set ruler
+
+" sets search highlighting
+" also...incremental search!
+set hls
+set incsearch
+
+" colors for &hlsearch
+hi Search ctermfg=white ctermbg=lightblue
+
+set nowrap
+
+" hides buffers instead of closing them
+set hidden
+
+" ignorecase when searching
+set ignorecase
+
+colorscheme BusyBee
+""""""""""""""""""""""NERDTree"""""""""""""
+" nerd tree will break because of missing arrow keys with out this
+" let g:NERDTreeDirArrows=0
+
+" Opens nerdtree if no file is specified for vim
+autocmd vimenter * if !argc() | NERDTree | endif
+
+" NERDTree Ctrl-n for nerdtree
+nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+
+" change nerdtree directory to directory containing current file Ctr-d goto dir
+nnoremap <silent> <C-d> :NERDTree %:h<CR>
+
+" ignore files
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+" close vim if only window open is nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
