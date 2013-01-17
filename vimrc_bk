@@ -1,10 +1,6 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-"""""bash like auto-completion
-set wildmode=longest,list,full
-set wildmenu
-
 set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
 let g:Powerline_symbols = 'fancy'
 
