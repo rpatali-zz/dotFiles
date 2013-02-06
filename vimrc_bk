@@ -1,29 +1,73 @@
+""""""""""""""""System""""""""""""""""""""
+let hostname = substitute(system('hostname'), '\n', '', '')
+let vimHome="/ext/home/rohit.patali/.vim"
+let tmpDir="/usr/local/Code/.tmpvim"
+
+
+""""""Vundle INITIALIZATION"""""""""""""""""
 set nocompatible               " be iMproved
 filetype off                   " required!
-
-set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
-let g:Powerline_symbols = 'fancy'
+set t_Co=256
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+
+" add local, non git, changes.
+exec 'set rtp+='.vimHome."/local_config/after"
+
+filetype plugin indent on     " required!
+
+" syntax highlighting
+syntax on		    
 
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
 Bundle 'BusyBee'
+Bundle 'ervandew/supertab'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rosenfeld/conque-term'
+Bundle 'wincent/Command-T'
 
-filetype plugin indent on     " required
+" Powerline get powerline from git------------------
+set noshowmode
+set laststatus=2
+python from powerline.bindings.vim import source_plugin; source_plugin()
+let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
+" ----------------------------
 
-" syntax highlighting
-syntax on
+"Necessary to show unicode glyphs
+set encoding=utf-8 " Necessary to show unicode glyphs
 
-" allow mouse control
+"Setup backup location and enable
+let &backupdir=tmpDir . "/backup"
+let &directory=tmpDir . "/swap"
+let &undodir=tmpDir. "/undo"
+set backup
+set undolevels=1000
+set undoreload=1000
+
+"When in unclosed parens, ie args, have them line up.
+"help cinoptions-values
+set cino+=(0
+
+" spell checking
+set spell spelllang=en_us
+set nospell
+
+"wildmode enables better file viewing when opeing new files, like bash
+set wildmenu
+set wildmode=longest,list:longest
+set wildignore+=*.swp,*.pyc,*.class,*.idea*
+
+"allow mouse control
 set mouse=a
-set t_Co=256
 
-" matches previous indent level,
-" intelligently guesses indent (code level)
+"matches previous indent level,
+"intelligently guesses indent (code level)
 set autoindent
 set smartindent
 
@@ -36,41 +80,57 @@ set tabstop=3 ts=3
 " cause TAB characters to not be used in the file (indent-tabs-mode)
 set expandtab
 
-" allowing backspace to work after indent -> see :help i_backspacing
+"allowing backspace to work after indent -> see :help i_backspacing
 set backspace=indent,eol,start
 
-" removes annoying beeps when bad command
-" instead flashes screen
-" first one helps with entering
+"removes annoying beeps when bad command
+"instead flashes screen
+"first one helps with entering
 autocmd VimEnter * set vb t_vb=
 set vb t_vb=
 
-" shows status of cursor position
+"shows status of cursor position
 set ruler
 
-" sets search highlighting
-" also...incremental search!
+"sets search highlighting
+"also...incremental search!
 set hls
 set incsearch
 
-" colors for &hlsearch
+"colors for &hlsearch
 hi Search ctermfg=white ctermbg=lightblue
 
 set nowrap
 
-" hides buffers instead of closing them
+"hides buffers instead of closing them
 set hidden
 
-" ignorecase when searching
+"ignorecase when searching
 set ignorecase
 
+"case only important if use caps
+set smartcase 
+
+"insert mode completion, only show menu
+set completeopt=menu
+
 colorscheme BusyBee
-""""""""""""""""""""""NERDTree"""""""""""""
+
+"specialized leader key
+let mapleader=";"
+
+"caps to escape
+map! <leader><leader> <Esc>
+map <leader><leader> <Esc>
+"map! <C-j> <Esc>
+"map <C-j> <Esc>
+
+""""""""""""""""""""""""""""""NERDTree""""""""""""""""""""""""""""""
 " nerd tree will break because of missing arrow keys with out this
 " let g:NERDTreeDirArrows=0
 
 " Opens nerdtree if no file is specified for vim
-autocmd vimenter * if !argc() | NERDTree | endif
+" autocmd vimenter * if !argc() | NERDTree | endif
 
 " NERDTree Ctrl-n for nerdtree
 nnoremap <silent> <C-n> :NERDTreeToggle<CR>
@@ -84,3 +144,56 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 " close vim if only window open is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" show hidden files
+" let NERDTreeShowHidden=1
+
+
+"""""""""""""""""""""""""""SUPERTAB""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "context"
+
+"""""""""""""""""""""""""""Eclim""""""""""""""""""""""""""""""""""""
+" eclim settings
+" if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
+if 1
+" disable eclim taglist
+    let g:EclimTaglistEnabled=0
+
+" nnoremap <silent><buffer><Space> :JavaSearchContext<cr>
+endif
+
+" ImportMissing
+nmap <silent><leader>m :JavaImportMissing<CR>
+
+"""""""""""""""""""""""""""Syntastic"""""""""""""""""""""""""""""
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['python', 'javascript'],
+                           \ 'passive_filetypes': ['java'] }
+
+" E221 - multiple spaces before operator.  Nice to lineup =.
+" E241 - multiple spaces after :.  Nice to lineup dicts. 
+" E272 - multiple spaces before keyword.  Nice to lineup import.
+" W404 - import *, unable to detected undefined names.
+" W801 - redefinition of unused import, try/except import fails.
+let g:syntastic_python_checker_args = "--ignore=E221,E241,E272,W404,W801"
+
+"""""""""""""""""""""""""""gradle"""""""""""""""""""""""""""""
+
+au BufNewFile,BufRead *.gradle set filetype=groovy
+
+
+"""""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
+
+"change to next and previous buffers
+noremap <silent> <C-h> :bp<CR>
+noremap <silent> <C-l> :bn<CR>
+
+"Yank till end of line
+"D deletes till end, C changes till end, Y should yank till end
+"By default it yanks whole line
+nnoremap Y y$
+
+"Trick if forgot to sudo
+cmap w!! %!sudo tee > /dev/null %
+
+"removes highlighting from search after space
+noremap <silent> <Space> :noh<Bar>echo<CR>
