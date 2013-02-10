@@ -1,7 +1,7 @@
 """"""""""""""""System""""""""""""""""""""
 let hostname = substitute(system('hostname'), '\n', '', '')
-let vimHome="/ext/home/rohit.patali/.vim"
-let tmpDir="/usr/local/Code/.tmpvim"
+let vimHome="/home/patali/.vim"
+let tmpDir="/home/patali/.tmpvim"
 
 
 """"""Vundle INITIALIZATION"""""""""""""""""
