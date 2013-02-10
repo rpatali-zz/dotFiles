@@ -121,6 +121,9 @@ colorscheme BusyBee
 "specialized leader key
 let mapleader=";"
 
+" use ';' instead of ':' for command mode
+noremap ; :
+
 "caps to escape
 map! <leader><leader> <Esc>
 map <leader><leader> <Esc>
@@ -184,6 +187,8 @@ au BufNewFile,BufRead *.gradle set filetype=groovy
 
 
 """""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
+" use ';' instead of ':' for command mode
+noremap ; :
 
 " change to next and previous buffers
 noremap <silent> <C-h> :bp<CR>
