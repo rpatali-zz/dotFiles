@@ -31,6 +31,8 @@ Bundle 'ervandew/supertab'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rosenfeld/conque-term'
 Bundle 'wincent/Command-T'
+Bundle 'msanders/snipmate.vim'
+
 
 " Powerline get powerline from git------------------
 set noshowmode
@@ -183,17 +185,29 @@ au BufNewFile,BufRead *.gradle set filetype=groovy
 
 """""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
 
-"change to next and previous buffers
+" change to next and previous buffers
 noremap <silent> <C-h> :bp<CR>
 noremap <silent> <C-l> :bn<CR>
 
-"Yank till end of line
-"D deletes till end, C changes till end, Y should yank till end
-"By default it yanks whole line
+" Yank till end of line
+" D deletes till end, C changes till end, Y should yank till end
+" By default it yanks whole line
 nnoremap Y y$
 
-"Trick if forgot to sudo
+" Trick if forgot to sudo
 cmap w!! %!sudo tee > /dev/null %
 
-"removes highlighting from search after space
+" removes highlighting from search after space
 noremap <silent> <Space> :noh<Bar>echo<CR>
+
+" force myself yo use hjkl
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
