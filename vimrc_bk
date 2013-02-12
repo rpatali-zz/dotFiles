@@ -1,7 +1,7 @@
 """"""""""""""""System""""""""""""""""""""
 let hostname = substitute(system('hostname'), '\n', '', '')
 let vimHome="/home/patali/.vim"
-let tmpDir="/home/patali/.tmpvim"
+let tmpDir="/usr/local/Code/.tmpvim"
 
 
 """"""Vundle INITIALIZATION"""""""""""""""""
@@ -179,7 +179,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " E272 - multiple spaces before keyword.  Nice to lineup import.
 " W404 - import *, unable to detected undefined names.
 " W801 - redefinition of unused import, try/except import fails.
-let g:syntastic_python_checker_args = "--ignore=E221,E241,E272,W404,W801"
+let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
 
 """""""""""""""""""""""""""gradle"""""""""""""""""""""""""""""
 
@@ -212,7 +212,7 @@ map <left> <nop>
 map <right> <nop>
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+"map <C-h> <C-w>h
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-l> <C-w>l
