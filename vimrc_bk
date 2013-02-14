@@ -164,6 +164,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""SUPERTAB""""""""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
 
+
+" with completions not autofinishing first match
+set completeopt=longest,menu,preview
+
 """""""""""""""""""""""""""Syntastic"""""""""""""""""""""""""""""
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['python', 'javascript'],
