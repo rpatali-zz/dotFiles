@@ -43,6 +43,9 @@ Bundle 'sorin-ionescu/python.vim'
 Bundle 'vim-scripts/cscope.vim'
 " tagbar requires exuberant-ctags pkg
 Bundle 'majutsushi/tagbar'
+" ack requires Ack-grep pkg
+Bundle 'mileszs/ack.vim'
+Bundle 'tpope/vim-markdown'
 
 " Powerline get powerline from git------------------
 set noshowmode
