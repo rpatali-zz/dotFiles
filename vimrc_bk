@@ -39,10 +39,10 @@ Bundle 'rosenfeld/conque-term'
 Bundle 'wincent/Command-T'
 Bundle 'msanders/snipmate.vim'
 Bundle 'sorin-ionescu/python.vim'
-Bundle 'vim-scripts/cscope.vim'
-Bundle 'majutsushi/tagbar'
-" tagbar requires exuberant-ctags pkg
 " cscope requires cscope pkg
+Bundle 'vim-scripts/cscope.vim'
+" tagbar requires exuberant-ctags pkg
+Bundle 'majutsushi/tagbar'
 
 " Powerline get powerline from git------------------
 set noshowmode
@@ -163,7 +163,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 """""""""""""""""""""""""""SUPERTAB""""""""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
-
 
 " with completions not autofinishing first match
 set completeopt=longest,menu,preview
