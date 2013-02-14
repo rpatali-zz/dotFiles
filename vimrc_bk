@@ -32,6 +32,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rosenfeld/conque-term'
 Bundle 'wincent/Command-T'
 Bundle 'msanders/snipmate.vim'
+Bundle 'sorin-ionescu/python.vim'
 
 
 " Powerline get powerline from git------------------
