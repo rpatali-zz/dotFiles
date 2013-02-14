@@ -1,6 +1,6 @@
 """"""""""""""""System""""""""""""""""""""
 let hostname = substitute(system('hostname'), '\n', '', '')
-let vimHome="/home/patali/.vim"
+let vimHome="/ext/home/rohit.patali/.vim"
 let tmpDir="/usr/local/Code/.tmpvim"
 
 
@@ -127,8 +127,6 @@ noremap ; :
 "caps to escape
 map! <leader><leader> <Esc>
 map <leader><leader> <Esc>
-"map! <C-j> <Esc>
-"map <C-j> <Esc>
 
 """"""""""""""""""""""""""""""NERDTree""""""""""""""""""""""""""""""
 " nerd tree will break because of missing arrow keys with out this
@@ -155,19 +153,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 """""""""""""""""""""""""""SUPERTAB""""""""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
-
-"""""""""""""""""""""""""""Eclim""""""""""""""""""""""""""""""""""""
-" eclim settings
-" if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
-if 1
-" disable eclim taglist
-    let g:EclimTaglistEnabled=0
-
-" nnoremap <silent><buffer><Space> :JavaSearchContext<cr>
-endif
-
-" ImportMissing
-nmap <silent><leader>m :JavaImportMissing<CR>
 
 """""""""""""""""""""""""""Syntastic"""""""""""""""""""""""""""""
 let g:syntastic_mode_map = { 'mode': 'active',
@@ -210,9 +195,3 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-
-" Easy window navigation
-"map <C-h> <C-w>h
-"map <C-j> <C-w>j
-"map <C-k> <C-w>k
-"map <C-l> <C-w>l
