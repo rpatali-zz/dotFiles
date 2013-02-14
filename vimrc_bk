@@ -40,7 +40,9 @@ Bundle 'wincent/Command-T'
 Bundle 'msanders/snipmate.vim'
 Bundle 'sorin-ionescu/python.vim'
 Bundle 'vim-scripts/cscope.vim'
-
+Bundle 'majutsushi/tagbar'
+" tagbar requires exuberant-ctags pkg
+" cscope requires cscope pkg
 
 " Powerline get powerline from git------------------
 set noshowmode
@@ -178,8 +180,12 @@ let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
 
 au BufNewFile,BufRead *.gradle set filetype=groovy
 
+"""""""""""""""""""""""""""TAGBAR"""""""""""""""""""""""""""""
+let g:tagbar_autofocus=1
 
 """""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
+nnoremap <leader><CR> :TagbarToggle<CR>
+
 " use ';' instead of ':' for command mode
 noremap ; :
 
