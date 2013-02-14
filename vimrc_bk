@@ -39,6 +39,7 @@ Bundle 'rosenfeld/conque-term'
 Bundle 'wincent/Command-T'
 Bundle 'msanders/snipmate.vim'
 Bundle 'sorin-ionescu/python.vim'
+Bundle 'vim-scripts/cscope.vim'
 
 
 " Powerline get powerline from git------------------
