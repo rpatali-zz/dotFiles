@@ -1,8 +1,14 @@
 """"""""""""""""System""""""""""""""""""""
 let hostname = substitute(system('hostname'), '\n', '', '')
-let vimHome="/ext/home/rohit.patali/.vim"
-let tmpDir="/usr/local/Code/.tmpvim"
-
+if hostname == "rohitp"
+   " ll ubuntu
+   let vimHome="/ext/home/rohit.patali/.vim"
+   let tmpDir="/usr/local/Code/.tmpvim"
+elseif hostname == "kryptonite"
+   " home vbox
+   let vimHome="/home/patali/.vim"
+   let tmpDir="/home/patali/.tmpvim"
+endif
 
 """"""Vundle INITIALIZATION"""""""""""""""""
 set nocompatible               " be iMproved
