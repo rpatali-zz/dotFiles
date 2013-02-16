@@ -189,6 +189,31 @@ au BufNewFile,BufRead *.gradle set filetype=groovy
 """""""""""""""""""""""""""TAGBAR"""""""""""""""""""""""""""""
 let g:tagbar_autofocus=1
 
+"""""""""""""""""""""""""""ECLIM""""""""""""""""""""""""""""""
+" disable logging import when log is typed
+let g:EclimLoggingDisabled=1
+
+" sort imports together when first two pacakges match
+let g:EclimJavaImportPackageSeparationLevel=2
+
+"eclim settings
+"if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
+if 1
+"disable eclim taglist
+    let g:EclimTaglistEnabled=0
+
+"nnoremap <silent><buffer><Space> :JavaSearchContext<cr>
+endif
+
+"ImportMissing
+nmap <silent><leader>m :JavaImportMissing<CR>
+
+"import sort
+nmap <silent><leader>s :JavaImportSort<CR>
+
+"JavaCorrect
+nmap <silent><leader><leader>c :JavaCorrect<CR>
+
 """""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
 nnoremap <leader><CR> :TagbarToggle<CR>
 
