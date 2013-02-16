@@ -1,4 +1,4 @@
-""""""""""""""""System""""""""""""""""""""
+"""""""""""""""System""""""""""""""""""""
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "rohitp"
    " ll ubuntu
@@ -190,6 +190,13 @@ au BufNewFile,BufRead *.gradle set filetype=groovy
 let g:tagbar_autofocus=1
 
 """""""""""""""""""""""""""ECLIM""""""""""""""""""""""""""""""
+" keep local history
+let g:EclimProjectKeepLocalHistory=1
+
+nnoremap <silent> <leader>h :JavaHierarchy<CR>
+nnoremap <silent> <leader>d :JavaDocPreview<CR>
+
+
 " disable logging import when log is typed
 let g:EclimLoggingDisabled=1
 
