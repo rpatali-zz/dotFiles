@@ -212,17 +212,18 @@ if 1
 "nnoremap <silent><buffer><Space> :JavaSearchContext<cr>
 endif
 
-"ImportMissing
-nmap <silent><leader>m :JavaImportMissing<CR>
+nmap <silent> <leader>m :JavaImport<CR>
 
-"import sort
-nmap <silent><leader>s :JavaImportSort<CR>
+nmap <silent> <leader>o :JavaImportOrganize<CR>
 
-"JavaCorrect
-nmap <silent><leader><leader>c :JavaCorrect<CR>
+nmap <silent> <leader>c :JavaCorrect<CR>
+
+nmap <silent> <leader>s :JavaSearch<CR>
+
+nmap <silent> <leader> <leader>c :JavaSearchContext<CR>
 
 """""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
-nnoremap <leader><CR> :TagbarToggle<CR>
+nnoremap <leader> <CR> :TagbarToggle<CR>
 
 " use ';' instead of ':' for command mode
 noremap ; :
