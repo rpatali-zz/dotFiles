@@ -33,7 +33,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'BusyBee'
-Bundle 'dandorman/vim-colors'
 Bundle 'ervandew/supertab'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rosenfeld/conque-term'
@@ -130,8 +129,7 @@ set smartcase
 "insert mode completion, only show menu
 set completeopt=menu
 
-"colorscheme BusyBee
-colorscheme grb256
+colorscheme BusyBee
 
 "specialized leader key
 let mapleader=";"
