@@ -160,6 +160,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""SUPERTAB""""""""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
 
+" close the scratch window on code completion popup close
+let g:SuperTabClosePreviewOnPopupClose = 1
+
 " with completions not autofinishing first match
 set completeopt=longest,menu,preview
 
