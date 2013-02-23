@@ -46,6 +46,7 @@ Bundle 'majutsushi/tagbar'
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
+Bundle 'sjl/gundo.vim'
 
 " Powerline get powerline from git------------------
 set noshowmode
@@ -129,6 +130,9 @@ set smartcase
 "insert mode completion, only show menu
 set completeopt=menu
 
+" auto reload files that are changed outside of vim
+set autoread
+
 colorscheme BusyBee
 
 "specialized leader key
@@ -206,6 +210,12 @@ if 1
 
 endif
 
+"""""""""""""""""""""""""""GUNDO"""""""""""""""""""""""""""
+let g:gundo_width = 60
+let g:gundo_preview_height = 30
+let g:gundo_right = 1
+let g:gundo_close_on_revert = 1
+
 """""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
 nnoremap <leader> <CR> :TagbarToggle<CR>
 
@@ -254,3 +264,6 @@ nmap <silent> <leader>c :JavaCorrect<CR>
 nmap <silent> <leader>s :JavaSearch<CR>
 
 nmap <silent> <leader>p :ProjectProblems<CR>
+
+""""""""""""""gundo mapping
+nnoremap <leader> <leader>h :GundoToggle<CR>
