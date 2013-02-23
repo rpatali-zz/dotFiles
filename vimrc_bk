@@ -1,4 +1,4 @@
-"""""""""""""""System""""""""""""""""""""
+""""""""""""""System resource loc"""""""""""""""""
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "rohitp"
    " ll ubuntu
@@ -10,24 +10,83 @@ elseif hostname == "kryptonite"
    let tmpDir="/home/patali/.tmpvim"
 endif
 
-""""""Vundle INITIALIZATION"""""""""""""""""
-set nocompatible               " be iMproved
-filetype off                   " required!
+""""""""""""""System Settings"""""""""""""""""""""
+set nocompatible                                 " be iMproved
+
+filetype off                                     " required!
+filetype plugin indent on                        " required!
+syntax on                                        " syntax highlighting
+
 set t_Co=256
+set encoding=utf-8                               " Necessary to show unicode glyphs
+set mouse=a                                      " allow mouse control
+
+" Setup backup location and enable
+let &backupdir=tmpDir . "/backup"
+let &directory=tmpDir . "/swap"
+let &undodir=tmpDir. "/undo"
+
+set backup
+set undolevels=1000
+set undoreload=1000
+
+" When in unclosed parens, ie args, have them line up.
+set cino+=(0                                     " help cinoptions-values
+
+" wildmode enables better file viewing when opeing new files, like bash
+set wildmenu
+set wildmode=longest,list:longest
+set wildignore+=*.swp,*.pyc,*.class,*.idea*
+
+set autoindent                                   " matches previous indent level,
+set smartindent                                  " intelligently guesses indent (code level)
+
+set ignorecase                                   " ignorecase when searching
+set smartcase                                    " case only important if use caps
+
+set softtabstop=3                                " interpret tab as an indent command instead of an insert-a-tab command
+set shiftwidth=3                                 " set the mod-N indentation used when you hit the tab key
+set tabstop=3 ts=3                               " cause the TAB file-character to be displayed as mod-N (emacs = tab-width)
+set expandtab                                    " cause TAB characters to not be used in the file (indent-tabs-mode)
+
+set backspace=indent,eol,start                   "allowing backspace to work after indent -> see :help i_backspacing
+
+autocmd VimEnter * set vb t_vb=                  "removes annoying beeps when bad command
+set vb t_vb=
+
+set hls                                          " sets search highlighting
+set incsearch                                    " also...incremental search!
+hi Search ctermfg=white                          " colors for &hlsearch
+hi Search ctermbg=lightblue
+
+set nowrap
+set ruler                                        " shows status of cursor position
+set hidden                                       " hides buffers instead of closing them
+
+set autoread                                     " auto reload files that are changed outside of vim
+set completeopt=menu                             " insert mode completion, only show menu
+
+set noshowmode                                   " required by powerline
+set laststatus=2                                 " required by powerline
+
+""""""""""""""STRIP TRAILING WHITESPACE"""""""""""
+function! StripWhitespace()
+   let save_cursor = getpos(".")
+   let old_query = getreg('/')
+   :%s/\s\+$//e
+   call setpos('.', save_cursor)
+   call setreg('/', old_query)
+endfunction
+
+"""""""""""""""PLUGINS""""""""""""""""""""""""""""
+" add local, non git, changes.
+exec 'set rtp+='.vimHome."/local_config/after"
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" add local, non git, changes.
-exec 'set rtp+='.vimHome."/local_config/after"
-
-filetype plugin indent on     " required!
-
-" syntax highlighting
-syntax on		    
-
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
@@ -48,186 +107,89 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'sjl/gundo.vim'
 
-" Powerline get powerline from git------------------
-set noshowmode
-set laststatus=2
+""""""""""""""POWERLINE(get from git)""""""""""""
 python from powerline.bindings.vim import source_plugin; source_plugin()
 let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
-" ----------------------------
 
-"Necessary to show unicode glyphs
-set encoding=utf-8 " Necessary to show unicode glyphs
-
-"Setup backup location and enable
-let &backupdir=tmpDir . "/backup"
-let &directory=tmpDir . "/swap"
-let &undodir=tmpDir. "/undo"
-set backup
-set undolevels=1000
-set undoreload=1000
-
-"When in unclosed parens, ie args, have them line up.
-"help cinoptions-values
-set cino+=(0
-
-" spell checking
-set spell spelllang=en_us
-set nospell
-
-"wildmode enables better file viewing when opeing new files, like bash
-set wildmenu
-set wildmode=longest,list:longest
-set wildignore+=*.swp,*.pyc,*.class,*.idea*
-
-"allow mouse control
-set mouse=a
-
-"matches previous indent level,
-"intelligently guesses indent (code level)
-set autoindent
-set smartindent
-
-" interpret tab as an ``indent'' command instead of an insert-a-tab command
-set softtabstop=3
-" set the mod-N indentation used when you hit the tab key 
-set shiftwidth=3
-" cause the TAB file-character to be displayed as mod-N (emacs = tab-width)
-set tabstop=3 ts=3
-" cause TAB characters to not be used in the file (indent-tabs-mode)
-set expandtab
-
-"allowing backspace to work after indent -> see :help i_backspacing
-set backspace=indent,eol,start
-
-"removes annoying beeps when bad command
-"instead flashes screen
-"first one helps with entering
-autocmd VimEnter * set vb t_vb=
-set vb t_vb=
-
-"shows status of cursor position
-set ruler
-
-"sets search highlighting
-"also...incremental search!
-set hls
-set incsearch
-
-"colors for &hlsearch
-hi Search ctermfg=white ctermbg=lightblue
-
-set nowrap
-
-"hides buffers instead of closing them
-set hidden
-
-"ignorecase when searching
-set ignorecase
-
-"case only important if use caps
-set smartcase 
-
-"insert mode completion, only show menu
-set completeopt=menu
-
-" auto reload files that are changed outside of vim
-set autoread
-
+""""""""""""""COLOR""""""""""""""""""""""""""""""
 colorscheme BusyBee
 
-"specialized leader key
-let mapleader=";"
+""""""""""""""NERDTree"""""""""""""""""""""""""""
+" let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
 
-" use ';' instead of ':' for command mode
-noremap ; :
+"autocmd vimenter * if !argc()|NERDTree|endif    " Opens nerdtree if no file is specified for vim
 
-"caps to escape
-map! <leader><leader> <Esc>
-map <leader><leader> <Esc>
-
-""""""""""""""""""""""""""""""NERDTree""""""""""""""""""""""""""""""
-" nerd tree will break because of missing arrow keys with out this
-" let g:NERDTreeDirArrows=0
-
-" Opens nerdtree if no file is specified for vim
-" autocmd vimenter * if !argc() | NERDTree | endif
-
-" ignore files
-let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\~$']             " ignore files
 
 " close vim if only window open is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" show hidden files
-" let NERDTreeShowHidden=1
+" let NERDTreeShowHidden=1                       " show hidden files
 
-"""""""""""""""""""""""""""SUPERTAB""""""""""""""""""""""""""""""""""""
+""""""""""""""SUPERTAB""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
 
-" close the scratch window on code completion popup close
-let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabClosePreviewOnPopupClose = 1       " close the scratch window on code completion popup close
 
-" with completions not autofinishing first match
-set completeopt=longest,menu,preview
+set completeopt=longest,menu,preview             " with completions not autofinishing first match
 
-"""""""""""""""""""""""""""Syntastic"""""""""""""""""""""""""""""
+""""""""""""""SYNTASTIC"""""""""""""""""""""""""""
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['python', 'javascript'],
                            \ 'passive_filetypes': ['java'] }
 
 " E221 - multiple spaces before operator.  Nice to lineup =.
-" E241 - multiple spaces after :.  Nice to lineup dicts. 
+" E241 - multiple spaces after :.  Nice to lineup dicts.
 " E272 - multiple spaces before keyword.  Nice to lineup import.
 " W404 - import *, unable to detected undefined names.
 " W801 - redefinition of unused import, try/except import fails.
 let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
 
-"""""""""""""""""""""""""""gradle"""""""""""""""""""""""""""""
-
+""""""""""""""GRADLE""""""""""""""""""""""""""""""
 au BufNewFile,BufRead *.gradle set filetype=groovy
 
-"""""""""""""""""""""""""""TAGBAR"""""""""""""""""""""""""""""
+""""""""""""""TAGBAR""""""""""""""""""""""""""""""
 let g:tagbar_autofocus=1
 
-"""""""""""""""""""""""""""ECLIM""""""""""""""""""""""""""""""
-" keep local history
-let g:EclimProjectKeepLocalHistory=1
+""""""""""""""ECLIM"""""""""""""""""""""""""""""""
+let g:EclimProjectKeepLocalHistory=1             " keep local history
 
-" disable logging import when log is typed
-let g:EclimLoggingDisabled=1
+let g:EclimLoggingDisabled=1                     " disable logging import when log is typed
 
-" sort imports together when first two pacakges match
-let g:EclimJavaImportPackageSeparationLevel=2
+let g:EclimJavaImportPackageSeparationLevel=2    " sort imports together when first two pacakges match
 
-" java search will open the file in the same window
-let g:EclimJavaSearchSingleResult='edit'
+let g:EclimJavaSearchSingleResult='edit'         " java search will open the file in the same window
 
-"eclim settings
 "if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
 if 1
-"disable eclim taglist
-    let g:EclimTaglistEnabled=0
-
+    let g:EclimTaglistEnabled=0                  " disable eclim taglist
 endif
 
-"""""""""""""""""""""""""""GUNDO"""""""""""""""""""""""""""
+""""""""""""""GUNDO""""""""""""""""""""""""""""""
 let g:gundo_width = 60
 let g:gundo_preview_height = 30
 let g:gundo_right = 1
 let g:gundo_close_on_revert = 1
 
-"""""""""""""""""""""""""""MAPPINGS"""""""""""""""""""""""""""
-nnoremap <leader> <CR> :TagbarToggle<CR>
+""""""""""""""MAPPINGS""""""""""""""""""""""""""""
+let mapleader=";"                                " specialized leader key
 
 " use ';' instead of ':' for command mode
 noremap ; :
 
-" change to next and previous buffers
+map! <leader><leader> <Esc>
+map <leader><leader> <Esc>
+
+nnoremap <leader><CR> :TagbarToggle<CR>
+
+" change to next buffer
 noremap <silent> <C-h> :bp<CR>
+" change to previou buffer
 noremap <silent> <C-l> :bn<CR>
 
-" Yank till end of line
-" D deletes till end, C changes till end, Y should yank till end
+" D deletes till end
+" C changes till end
+" Y should yank till end
 " By default it yanks whole line
 nnoremap Y y$
 
@@ -243,14 +205,17 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-""""""""""nerdtree mapping
+"-------------REMOVE TRAILING WHITE SPACES
+noremap <leader>ss :call StripWhitespace()<CR>
+
+"-------------NERDTree mapping
 " NERDTree Ctrl-n for nerdtree
 nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 
 " change nerdtree directory to directory containing current file Ctr-d goto dir
 nnoremap <silent> <C-d> :NERDTree %:h<CR>
 
-""""""""""eclim mapping
+"-------------ECLIM mapping
 nnoremap <silent> <leader>h :JavaHierarchy<CR>
 
 nnoremap <silent> <leader>d :JavaDocPreview<CR>
@@ -265,5 +230,5 @@ nmap <silent> <leader>s :JavaSearch<CR>
 
 nmap <silent> <leader>p :ProjectProblems<CR>
 
-""""""""""""""gundo mapping
-nnoremap <leader> <leader>h :GundoToggle<CR>
+"-------------GUNDO mapping
+nnoremap <leader>g :GundoToggle<CR>
