@@ -2,8 +2,8 @@
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "rohitp"
    " ll ubuntu
-   let vimHome="/ext/home/rohit.patali/.vim"
-   let tmpDir="/usr/local/Code/.tmpvim"
+   let vimHome="/usr/local/home/.vim"
+   let tmpDir="/usr/local/home/.tmpvim"
 elseif hostname == "kryptonite"
    " home vbox
    let vimHome="/home/patali/.vim"
@@ -192,6 +192,9 @@ noremap <silent> <C-l> :bn<CR>
 " Y should yank till end
 " By default it yanks whole line
 nnoremap Y y$
+
+" break line and move stuff on the right of cursor to next line
+:nnoremap <NL> i<CR><ESC>
 
 " Trick if forgot to sudo
 cmap w!! %!sudo tee > /dev/null %
