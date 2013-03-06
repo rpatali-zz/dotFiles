@@ -107,6 +107,8 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'sjl/gundo.vim'
 
+Bundle 'git://repo.or.cz/vcscommand'
+
 """"""""""""""POWERLINE(get from git)""""""""""""
 python from powerline.bindings.vim import source_plugin; source_plugin()
 let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
