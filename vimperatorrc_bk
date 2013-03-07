@@ -34,9 +34,6 @@ EOM
 set hls
 set incsearch
 
-"colors for &hlsearch
-hi Search ctermfg=white ctermbg=lightblue
-
 " For US keyboard
 noremap ; :
 
@@ -82,13 +79,9 @@ set hinttimeout=500
 set newtab=all
 set visualbell
 highlight Bell display:none
-set showtabline=1
-set wildoptions=auto
 let mapleader=','
 set! ui.key.generalAccessKey=0
 
 source! ~/.vimperatorrc.local
-
-echo 'Loading .vimperatorrc ... done.'
 
 " vim: set ft=vimperator:
