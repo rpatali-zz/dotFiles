@@ -100,6 +100,7 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'sorin-ionescu/python.vim'
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
+Bundle 'vim-scripts/scala.vim'
 " tagbar requires exuberant-ctags pkg
 Bundle 'majutsushi/tagbar'
 " ack requires Ack-grep pkg
