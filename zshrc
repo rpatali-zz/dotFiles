@@ -87,3 +87,9 @@ export PATH=$PATH:$GRADLE_HOME/bin
 
 #don't correct
 unsetopt correct_all
+
+
+
+# adding alias for | pv --timer
+# can be appended to any command to get a timer for that command
+alias -g PVT='| pv -t'
