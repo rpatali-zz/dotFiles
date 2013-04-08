@@ -100,12 +100,12 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'sorin-ionescu/python.vim'
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
-Bundle 'vim-scripts/scala.vim'
 " tagbar requires exuberant-ctags pkg
 Bundle 'majutsushi/tagbar'
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 
 Bundle 'git://repo.or.cz/vcscommand'
@@ -168,6 +168,9 @@ if 1
     let g:EclimTaglistEnabled=0                  " disable eclim taglist
 endif
 
+""""""""""""""Easy Motion""""""""""""""""""""""""
+"let g:EasyMotion_keys = '1234567890'
+
 """"""""""""""GUNDO""""""""""""""""""""""""""""""
 let g:gundo_width = 60
 let g:gundo_preview_height = 30
@@ -175,6 +178,13 @@ let g:gundo_right = 1
 let g:gundo_close_on_revert = 1
 
 """"""""""""""MAPPINGS""""""""""""""""""""""""""""
+function! Markdownify()
+" markdown current file to html
+    let l:urlSpacesRemoved = substitute(expand("%:p"), " ", "\\\\ ", "g")
+    execute '!markdown2html -i ' . l:urlSpacesRemoved . ' -g'
+endfunction
+
+
 let mapleader=";"                                " specialized leader key
 
 " use ';' instead of ':' for command mode
@@ -238,3 +248,6 @@ nmap <silent> <leader>p :ProjectProblems<CR>
 
 "-------------GUNDO mapping
 nnoremap <leader>g :GundoToggle<CR>
+
+"-------------Open file in current buffer in a split screen and scroll bind on
+noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=160<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
