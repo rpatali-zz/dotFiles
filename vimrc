@@ -107,6 +107,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
+Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -115,7 +116,11 @@ python from powerline.bindings.vim import source_plugin; source_plugin()
 let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
-colorscheme BusyBee
+"colorscheme BusyBee
+
+set background=dark                              " dark background for solarize
+let g:solarized_termcolors=256                   " required to make the background darker and colors prettier
+colorscheme solarized
 
 """"""""""""""NERDTree"""""""""""""""""""""""""""
 " let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
