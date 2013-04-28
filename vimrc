@@ -246,6 +246,7 @@ nmap <silent> <leader>s :JavaSearch<CR>
 
 nmap <silent> <leader>p :ProjectProblems<CR>
 
+" copy-paste between vim in different terminals copy - "+y, paste - "+gP
 "-------------GUNDO mapping
 nnoremap <leader>g :GundoToggle<CR>
 
