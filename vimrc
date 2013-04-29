@@ -12,6 +12,7 @@ endif
 
 """"""""""""""System Settings"""""""""""""""""""""
 set nocompatible                                 " be iMproved
+set clipboard=unnamed                            " copy across vim in different terminals
 
 filetype off                                     " required!
 filetype plugin indent on                        " required!
@@ -107,6 +108,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
+Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -115,7 +117,12 @@ python from powerline.bindings.vim import source_plugin; source_plugin()
 let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
-colorscheme BusyBee
+"colorscheme BusyBee
+
+syntax enable                                    " required for solarized
+let g:solarized_termcolors=16                    " suggested 256, doesn't work though
+set background=dark                              " alternatively, light
+colorscheme solarized
 
 """"""""""""""NERDTree"""""""""""""""""""""""""""
 " let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
@@ -246,7 +253,6 @@ nmap <silent> <leader>s :JavaSearch<CR>
 
 nmap <silent> <leader>p :ProjectProblems<CR>
 
-" copy-paste between vim in different terminals copy - "+y, paste - "+gP
 "-------------GUNDO mapping
 nnoremap <leader>g :GundoToggle<CR>
 
