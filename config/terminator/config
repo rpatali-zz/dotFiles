@@ -1,0 +1,21 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    visible_bell = True
+    use_system_font = False
+    scroll_on_output = False
+    icon_bell = False
+    show_titlebar = False
+    font = Ubuntu Mono for Powerline 12
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
