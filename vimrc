@@ -86,6 +86,9 @@ exec 'set rtp+='.vimHome."/local_config/after"
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" initialize powerline for vim only, global package not required
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
@@ -109,12 +112,9 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'Lokaltog/powerline'
 
 Bundle 'git://repo.or.cz/vcscommand'
-
-""""""""""""""POWERLINE(get from git)""""""""""""
-python from powerline.bindings.vim import source_plugin; source_plugin()
-let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
 "colorscheme BusyBee
