@@ -12,7 +12,6 @@ endif
 
 """"""""""""""System Settings"""""""""""""""""""""
 set nocompatible                                 " be iMproved
-set clipboard=unnamed                            " copy across vim in different terminals
 
 filetype off                                     " required!
 filetype plugin indent on                        " required!
@@ -69,6 +68,7 @@ set completeopt=menu                             " insert mode completion, only 
 
 set noshowmode                                   " required by powerline
 set laststatus=2                                 " required by powerline
+set clipboard=unnamed                            " copy across vim in different terminals
 
 """"""""""""""STRIP TRAILING WHITESPACE"""""""""""
 function! StripWhitespace()
@@ -122,7 +122,7 @@ let g:Powerline_cache_file=tmpDir . "/PowerlineCache"
 syntax enable                                    " required for solarized
 let g:solarized_termcolors=16                    " suggested 256, doesn't work though
 set background=dark                              " alternatively, light
-colorscheme solarized
+colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
 
 """"""""""""""NERDTree"""""""""""""""""""""""""""
 " let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
