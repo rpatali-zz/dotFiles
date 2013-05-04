@@ -113,16 +113,19 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/powerline'
+Bundle 'w0ng/vim-hybrid'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
 "colorscheme BusyBee
+let g:hybrid_use_Xresources=1
+colorscheme hybrid
 
-syntax enable                                    " required for solarized
-let g:solarized_termcolors=16                    " suggested 256, doesn't work though
-set background=dark                              " alternatively, light
-colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
+"syntax enable                                    " required for solarized
+"let g:solarized_termcolors=16                    " suggested 256, doesn't work though
+"set background=dark                              " alternatively, light
+"colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
 
 """"""""""""""NERDTree"""""""""""""""""""""""""""
 " let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
