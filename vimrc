@@ -108,17 +108,16 @@ Bundle 'vim-scripts/cscope.vim'
 Bundle 'majutsushi/tagbar'
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'Lokaltog/powerline'
+" Bundle 'Lokaltog/powerline'
+Bundle 'klen/python-mode'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
 "colorscheme BusyBee
-
 
 syntax enable                                    " required for solarized
 let g:solarized_termcolors=16                    " suggested 256, doesn't work though
@@ -239,7 +238,14 @@ nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 " change nerdtree directory to directory containing current file Ctr-d goto dir
 nnoremap <silent> <C-d> :NERDTree %:h<CR>
 
-"-------------ECLIM mapping
+"-------------PYTHON MODE
+" Disable default python folding
+let g:pymode_folding = 0
+
+" Key for set/unset breakpoint
+let g:pymode_breakpoint_key = 'B'
+
+"------------ ECLIM mapping
 nnoremap <silent> <leader>h :JavaHierarchy<CR>
 
 nnoremap <silent> <leader>d :JavaDocPreview<CR>
