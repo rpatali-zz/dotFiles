@@ -8,6 +8,10 @@ elseif hostname == "kryptonite"
    " home vbox
    let vimHome="/home/patali/.vim"
    let tmpDir="/home/patali/.tmpvim"
+elseif hostname == "Macintosh.local"
+   " home mac
+   let vimHome="/Users/patali/.vim"
+   let tmpDir="/Users/patali/.tmpvim"
 endif
 
 """"""""""""""System Settings"""""""""""""""""""""
