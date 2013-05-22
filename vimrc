@@ -101,6 +101,10 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'BusyBee'
 Bundle 'ervandew/supertab'
+" Although YCM does everything that supertab does, YCM does not provide
+" autocomplete in plain text, markdown, etc. YCM will require vim to be
+" compiled from sources.
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rosenfeld/conque-term'
 Bundle 'wincent/Command-T'
