@@ -248,7 +248,7 @@ noremap <leader>ss :call StripWhitespace()<CR>
 
 "-------------NERDTree mapping
 " NERDTree Ctrl-n for nerdtree
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " change nerdtree directory to directory containing current file Ctr-d goto dir
 nnoremap <silent> <C-d> :NERDTree %:h<CR>
