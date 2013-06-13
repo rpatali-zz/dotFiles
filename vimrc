@@ -121,6 +121,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'altercation/vim-colors-solarized'
 " Bundle 'Lokaltog/powerline'
 Bundle 'klen/python-mode'
+Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -235,6 +236,10 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+" map in command mode to go back to beginning of line.
+" matches normal shell mapping, like emacs.
+cmap <c-a> <c-b>
 
 "-------------REMOVE TRAILING WHITE SPACES
 noremap <leader>ss :call StripWhitespace()<CR>
