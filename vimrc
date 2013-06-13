@@ -123,6 +123,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'klen/python-mode'
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'maciakl/vim-neatstatus'
+
 Bundle 'git://repo.or.cz/vcscommand'
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
