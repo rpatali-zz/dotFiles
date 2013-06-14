@@ -1,0 +1,8 @@
+:RefactorRedo	refactoring.txt	/*:RefactorRedo*
+:RefactorUndo	refactoring.txt	/*:RefactorUndo*
+:RefactorUndoPeek	refactoring.txt	/*:RefactorUndoPeek*
+g:EclimRefactorDiffOrientation	refactoring.txt	/*g:EclimRefactorDiffOrientation*
+vim-code_completion	code_completion.txt	/*vim-code_completion*
+vim-index	index.txt	/*vim-index*
+vim-refactoring	refactoring.txt	/*vim-refactoring*
+vim-settings	settings.txt	/*vim-settings*
