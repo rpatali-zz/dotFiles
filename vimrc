@@ -2,16 +2,19 @@
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "rohitp"
    " ll ubuntu
-   let vimHome="/usr/local/home/.vim"
-   let tmpDir="/usr/local/home/.tmpvim"
+   let home ="/usr/local/home/"
+   let vimHome=home . ".vim"
+   let tmpDir=home . ".tmpvim"
 elseif hostname == "kryptonite"
    " home vbox
-   let vimHome="/home/patali/.vim"
-   let tmpDir="/home/patali/.tmpvim"
+   let home="/home/patali/"
+   let vimHome=home . ".vim"
+   let tmpDir=home . ".tmpvim"
 elseif hostname == "Macintosh.local"
    " home mac
-   let vimHome="/Users/patali/.vim"
-   let tmpDir="/Users/patali/.tmpvim"
+   let home="/Users/patali/"
+   let vimHome =home. ".vim"
+   let tmpDir =home. ".tmpvim"
 endif
 
 """"""""""""""System Settings"""""""""""""""""""""
