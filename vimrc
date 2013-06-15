@@ -173,18 +173,18 @@ au BufNewFile,BufRead *.gradle set filetype=groovy
 let g:tagbar_autofocus=1
 
 """"""""""""""ECLIM"""""""""""""""""""""""""""""""
-let g:EclimProjectKeepLocalHistory=1             " keep local history
+"let g:EclimProjectKeepLocalHistory=1             " keep local history
 
-let g:EclimLoggingDisabled=1                     " disable logging import when log is typed
+"let g:EclimLoggingDisabled=1                     " disable logging import when log is typed
 
-let g:EclimJavaImportPackageSeparationLevel=2    " sort imports together when first two pacakges match
+"let g:EclimJavaImportPackageSeparationLevel=2    " sort imports together when first two pacakges match
 
-let g:EclimJavaSearchSingleResult='edit'         " java search will open the file in the same window
+"let g:EclimJavaSearchSingleResult='edit'         " java search will open the file in the same window
 
-"if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
-if 1
-    let g:EclimTaglistEnabled=0                  " disable eclim taglist
-endif
+""if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
+"if 1
+    "let g:EclimTaglistEnabled=0                  " disable eclim taglist
+"endif
 
 """"""""""""""Easy Motion""""""""""""""""""""""""
 "let g:EasyMotion_keys = '1234567890'
@@ -243,6 +243,8 @@ map <right> <nop>
 " matches normal shell mapping, like emacs.
 cmap <c-a> <c-b>
 
+
+nnoremap <C-c> :close<CR>
 "-------------REMOVE TRAILING WHITE SPACES
 noremap <leader>ss :call StripWhitespace()<CR>
 
@@ -261,19 +263,19 @@ let g:pymode_folding = 0
 let g:pymode_breakpoint_key = 'B'
 
 "------------ ECLIM mapping
-nnoremap <silent> <leader>h :JavaHierarchy<CR>
+"nnoremap <silent> <leader>h :JavaHierarchy<CR>
 
-nnoremap <silent> <leader>d :JavaDocPreview<CR>
+"nnoremap <silent> <leader>d :JavaDocPreview<CR>
 
-nmap <silent> <leader>m :JavaImport<CR>
+"nmap <silent> <leader>m :JavaImport<CR>
 
-nmap <silent> <leader>o :JavaImportOrganize<CR>
+"nmap <silent> <leader>o :JavaImportOrganize<CR>
 
-nmap <silent> <leader>c :JavaCorrect<CR>
+"nmap <silent> <leader>c :JavaCorrect<CR>
 
-nmap <silent> <leader>s :JavaSearch<CR>
+"nmap <silent> <leader>s :JavaSearch<CR>
 
-nmap <silent> <leader>p :ProjectProblems<CR>
+"nmap <silent> <leader>p :ProjectProblems<CR>
 
 "-------------GUNDO mapping
 nnoremap <leader>g :GundoToggle<CR>
