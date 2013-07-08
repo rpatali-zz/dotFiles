@@ -128,6 +128,8 @@ Bundle 'bling/vim-airline'
 Bundle 'klen/python-mode'
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'vim-scripts/PairTools'
+
 Bundle 'git://repo.or.cz/vcscommand'
 
 """"""""""""""COLOR""""""""""""""""""""""""""""""
