@@ -19,7 +19,6 @@ endif
 
 """"""""""""""System Settings"""""""""""""""""""""
 set nocompatible                                 " be iMproved
-
 filetype off                                     " required!
 filetype plugin indent on                        " required!
 syntax on                                        " syntax highlighting
@@ -94,7 +93,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " initialize powerline for vim only, global package not required
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " let Vundle manage Vundle
 " required!
@@ -122,11 +121,12 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'sjl/gundo.vim'
 Bundle 'altercation/vim-colors-solarized'
+" powerline is aweseome but i see weird bugs, specifically, throws a
+" stacktrace everytime i open vim, making it useless.
 " Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 Bundle 'klen/python-mode'
 Bundle 'terryma/vim-multiple-cursors'
-
-Bundle 'maciakl/vim-neatstatus'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -149,6 +149,11 @@ let NERDTreeIgnore=['\.pyc$', '\~$']             " ignore files
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " let NERDTreeShowHidden=1                       " show hidden files
+
+""""""""""""""AIRLINE"""""""""""""""""""""""""""""
+let g:airline_powerline_fonts=1
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 
 """"""""""""""SUPERTAB""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
