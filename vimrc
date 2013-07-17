@@ -227,7 +227,7 @@ endfunction
 let mapleader=";"                                " specialized leader key
 
 " use ';' instead of ':' for command mode
-"noremap ; :
+noremap ; :
 
 map! <leader><leader> <Esc>
 map <leader><leader> <Esc>
