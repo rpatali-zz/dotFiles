@@ -30,7 +30,7 @@ set mouse=a                                      " allow mouse control
 " Setup backup location and enable
 let &backupdir=tmpDir . "/backup"
 let &directory=tmpDir . "/swap"
-let &undodir=tmpDir. "/undo"
+let &undodir=tmpDir . "/undo"
 
 set backup
 set undolevels=1000
@@ -127,8 +127,11 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 Bundle 'klen/python-mode'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'jiangmiao/auto-pairs'
 
-Bundle 'vim-scripts/PairTools'
+" vim-notes requires vim-misc
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-notes'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -275,6 +278,9 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 
 " change nerdtree directory to directory containing current file Ctr-d goto dir
 nnoremap <silent> <C-d> :NERDTree %:h<CR>
+
+"-------------VIM NOTES
+let g:notes_directories = [tmpDir . "/notes"]
 
 "-------------PYTHON MODE
 " Disable default python folding
