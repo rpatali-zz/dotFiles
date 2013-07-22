@@ -98,40 +98,51 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
+
 Bundle 'BusyBee'
-Bundle 'ervandew/supertab'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bling/vim-airline'
+
 " Although YCM does everything that supertab does, YCM does not provide
 " autocomplete in plain text, markdown, etc. YCM will require vim to be
 " compiled from sources.
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rosenfeld/conque-term'
-Bundle 'wincent/Command-T'
-Bundle 'msanders/snipmate.vim'
-Bundle 'sorin-ionescu/python.vim'
-" cscope requires cscope pkg
-Bundle 'vim-scripts/cscope.vim'
-" tagbar requires exuberant-ctags pkg
-Bundle 'majutsushi/tagbar'
-" ack requires Ack-grep pkg
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'sjl/gundo.vim'
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'ervandew/supertab'
+
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'klen/python-mode'
+
 " powerline is aweseome but i see weird bugs, specifically, throws a
 " stacktrace everytime i open vim, making it useless.
 " Bundle 'Lokaltog/powerline'
-Bundle 'bling/vim-airline'
-Bundle 'klen/python-mode'
+
+" tagbar requires exuberant-ctags pkg
+Bundle 'majutsushi/tagbar'
+
+" ack requires Ack-grep pkg
+Bundle 'mileszs/ack.vim'
+
+Bundle 'msanders/snipmate.vim'
+Bundle 'rosenfeld/conque-term'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
+Bundle 'sorin-ionescu/python.vim'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'jiangmiao/auto-pairs'
+Bundle 'tpope/vim-fugitive'
+
+" cscope requires cscope pkg
+Bundle 'vim-scripts/cscope.vim'
+
+Bundle 'wincent/Command-T'
 
 " vim-notes requires vim-misc
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
+
+Bundle 'xolox/vim-session'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -219,12 +230,19 @@ let g:gundo_right = 1
 let g:gundo_close_on_revert = 1
 
 """"""""""""""MAPPINGS""""""""""""""""""""""""""""
+" Make the current buffer at least 100 cols wide and distribute
+" equally across others. Press esc then tabs to cycle through.
+" Adjust `100` based on your taste.
+:set winwidth=80
+:nmap <Tab> <c-w><c-w><c-w>=
+
+" LL stuff, don't bother copying this part, 
+" you are missing markdown2html script.
 function! Markdownify()
 " markdown current file to html
     let l:urlSpacesRemoved = substitute(expand("%:p"), " ", "\\\\ ", "g")
     execute '!markdown2html -i ' . l:urlSpacesRemoved . ' -g'
 endfunction
-
 
 " actually use the default ctrl-[, that is more meaningful.
 let mapleader=";"                                " specialized leader key
@@ -281,6 +299,11 @@ nnoremap <silent> <C-d> :NERDTree %:h<CR>
 
 "-------------VIM NOTES
 let g:notes_directories = [tmpDir . "/notes"]
+
+"-------------VIM SESSION
+let g:session_autosave = 'No'
+let g:session_autoload = 'No'
+let g:session_directory = tmpDir . "/session"
 
 "-------------PYTHON MODE
 " Disable default python folding
