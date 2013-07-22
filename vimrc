@@ -155,24 +155,6 @@ let g:solarized_termcolors=16                    " suggested 256, doesn't work t
 set background=dark                              " alternatively, light
 colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
 
-""""""""""""""NERDTree""""""""""""""""""""""""""""
-" let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
-
-"autocmd vimenter * if !argc()|NERDTree|endif    " Opens nerdtree if no file is specified for vim
-
-let NERDTreeIgnore=['\.pyc$', '\~$']             " ignore files
-
-" close vim if only window open is nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" let NERDTreeShowHidden=1                       " show hidden files
-
-" NERDTree Ctrl-n for nerdtree
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-
-" change nerdtree directory to directory containing current file Ctr-d goto dir
-nnoremap <silent> <C-d> :NERDTree %:h<CR>
-
 """"""""""""""NETRW"""""""""""""""""""""""""""""""
 let g:netrw_liststyle = 3
 let g:netrw_list_hide = ".git,.svn"
@@ -298,6 +280,25 @@ cmap <c-a> <c-b>
 
 
 nnoremap <C-c> :close<CR>
+""""""""""""""NERDTree""""""""""""""""""""""""""""
+" let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
+
+"autocmd vimenter * if !argc()|NERDTree|endif    " Opens nerdtree if no file is specified for vim
+
+let NERDTreeIgnore=['\.pyc$', '\~$']             " ignore files
+
+" close vim if only window open is nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" let NERDTreeShowHidden=1                       " show hidden files
+
+" These bindings should be declared after defining what is leader.
+" NERDTree Ctrl-n for nerdtree
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+
+" change nerdtree directory to directory containing current file Ctr-d goto dir
+nnoremap <silent> <C-d> :NERDTree %:h<CR>
+
 """"""""""""""REMOVE TRAILING WHITE SPACES""""""""
 noremap <leader>ss :call StripWhitespace()<CR>
 
