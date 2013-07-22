@@ -85,7 +85,7 @@ function! StripWhitespace()
    call setreg('/', old_query)
 endfunction
 
-"""""""""""""""PLUGINS""""""""""""""""""""""""""""
+""""""""""""""PLUGINS"""""""""""""""""""""""""""""
 " add local, non git, changes.
 exec 'set rtp+='.vimHome."/local_config/after"
 
@@ -136,6 +136,7 @@ Bundle 'tpope/vim-fugitive'
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
 
+Bundle 'vim-scripts/netrw.vim'
 Bundle 'wincent/Command-T'
 
 " vim-notes requires vim-misc
@@ -146,7 +147,7 @@ Bundle 'xolox/vim-session'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
-""""""""""""""COLOR""""""""""""""""""""""""""""""
+""""""""""""""COLOR"""""""""""""""""""""""""""""""
 "colorscheme BusyBee
 
 syntax enable                                    " required for solarized
@@ -154,7 +155,7 @@ let g:solarized_termcolors=16                    " suggested 256, doesn't work t
 set background=dark                              " alternatively, light
 colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
 
-""""""""""""""NERDTree"""""""""""""""""""""""""""
+""""""""""""""NERDTree""""""""""""""""""""""""""""
 " let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
 
 "autocmd vimenter * if !argc()|NERDTree|endif    " Opens nerdtree if no file is specified for vim
@@ -165,6 +166,16 @@ let NERDTreeIgnore=['\.pyc$', '\~$']             " ignore files
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " let NERDTreeShowHidden=1                       " show hidden files
+
+" NERDTree Ctrl-n for nerdtree
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+
+" change nerdtree directory to directory containing current file Ctr-d goto dir
+nnoremap <silent> <C-d> :NERDTree %:h<CR>
+
+""""""""""""""NETRW"""""""""""""""""""""""""""""""
+let g:netrw_liststyle = 3
+let g:netrw_list_hide = ".git,.svn"
 
 """"""""""""""AIRLINE"""""""""""""""""""""""""""""
 let g:airline_powerline_fonts=1
@@ -220,10 +231,10 @@ let g:tagbar_autofocus=1
     "let g:EclimTaglistEnabled=0                  " disable eclim taglist
 "endif
 
-""""""""""""""Easy Motion""""""""""""""""""""""""
+""""""""""""""Easy Motion"""""""""""""""""""""""""
 "let g:EasyMotion_keys = '1234567890'
 
-""""""""""""""GUNDO""""""""""""""""""""""""""""""
+""""""""""""""GUNDO"""""""""""""""""""""""""""""""
 let g:gundo_width = 60
 let g:gundo_preview_height = 30
 let g:gundo_right = 1
@@ -236,7 +247,7 @@ let g:gundo_close_on_revert = 1
 :set winwidth=80
 :nmap <Tab> <c-w><c-w><c-w>=
 
-" LL stuff, don't bother copying this part, 
+" LL stuff, don't bother copying this part,
 " you are missing markdown2html script.
 function! Markdownify()
 " markdown current file to html
@@ -287,32 +298,25 @@ cmap <c-a> <c-b>
 
 
 nnoremap <C-c> :close<CR>
-"-------------REMOVE TRAILING WHITE SPACES
+""""""""""""""REMOVE TRAILING WHITE SPACES""""""""
 noremap <leader>ss :call StripWhitespace()<CR>
 
-"-------------NERDTree mapping
-" NERDTree Ctrl-n for nerdtree
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-
-" change nerdtree directory to directory containing current file Ctr-d goto dir
-nnoremap <silent> <C-d> :NERDTree %:h<CR>
-
-"-------------VIM NOTES
+""""""""""""""VIM NOTES"""""""""""""""""""""""""""
 let g:notes_directories = [tmpDir . "/notes"]
 
-"-------------VIM SESSION
+"""""""""""""""VIM SESSION""""""""""""""""""""""""
 let g:session_autosave = 'No'
 let g:session_autoload = 'No'
 let g:session_directory = tmpDir . "/session"
 
-"-------------PYTHON MODE
+""""""""""""""PYTHON MODE"""""""""""""""""""""""""
 " Disable default python folding
 let g:pymode_folding = 0
 
 " Key for set/unset breakpoint
 let g:pymode_breakpoint_key = 'B'
 
-"------------ ECLIM mapping
+""""""""""""""ECLIM mapping"""""""""""""""""""""""
 "nnoremap <silent> <leader>h :JavaHierarchy<CR>
 
 "nnoremap <silent> <leader>d :JavaDocPreview<CR>
@@ -327,8 +331,8 @@ let g:pymode_breakpoint_key = 'B'
 
 "nmap <silent> <leader>p :ProjectProblems<CR>
 
-"-------------GUNDO mapping
+""""""""""""""GUNDO mapping"""""""""""""""""""""""
 nnoremap <leader>g :GundoToggle<CR>
 
-"-------------Open file in current buffer in a split screen and scroll bind on
+""""""""""""""Open file in current buffer in a split screen and scroll bind on
 noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=160<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
