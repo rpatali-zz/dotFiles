@@ -335,5 +335,47 @@ let g:pymode_breakpoint_key = 'B'
 """"""""""""""GUNDO mapping"""""""""""""""""""""""
 nnoremap <leader>g :GundoToggle<CR>
 
+""""""""""""""CONQUE-TERM"""""""""""""""""""""""""
+" Toggle ConqueTerm window.
+" Eric Siegel is the original author of this function: https://github.com/esiegel/dotvim
+
+function! s:ToggleConqueTerm()
+   " There is a bug in conque_term#get_instance() when there isn't an instance
+   " so we will use the global list of terminals instead.
+   if !exists("g:ConqueTerm_Terminals") || len(g:ConqueTerm_Terminals) == 0
+      "call conque_term#open("bash", ['vsplit'])
+      " Doesn't work very well with oh-my-zsh.
+      ConqueTermVSplit bash
+      return
+   endif
+
+   " Current buffer information
+   let current_buffer_nr = bufnr("")
+
+   " conque term information
+   let term_info   = conque_term#get_instance()
+   let buffer_name = term_info['buffer_name']
+   let buffer_nr   = bufnr(buffer_name)
+   let buffer_win  = bufwinnr(buffer_nr)
+
+   if buffer_win == -1
+      " open window
+      execute 'vs ' . buffer_name
+   else
+      " close conque window
+      if current_buffer_nr != buffer_nr
+         execute buffer_win . "wincmd w"
+         wincmd c
+         execute bufwinnr(current_buffer_nr) . "wincmd w"
+      else
+         wincmd c
+      endif
+   endif
+endfunction
+
+let g:ConqueTerm_ReadUnfocused = 1
+
+nnoremap <Leader>z :call <SID>ToggleConqueTerm()<CR>
+
 """"""""""""""Open file in current buffer in a split screen and scroll bind on
 noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=160<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
