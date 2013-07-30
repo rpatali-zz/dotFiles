@@ -224,10 +224,10 @@ let g:gundo_close_on_revert = 1
 
 """"""""""""""MAPPINGS""""""""""""""""""""""""""""
 " Make the current buffer at least 100 cols wide and distribute
-" equally across others. Press esc then tabs to cycle through.
+" equally across others. Press esc then tab switch to cycle through.
 " Adjust `100` based on your taste.
 :set winwidth=80
-:nmap <Tab> <c-w><c-w><c-w>=
+nnoremap <C-w><C-w> <C-w><C-w><C-w>=
 
 " LL stuff, don't bother copying this part,
 " you are missing markdown2html script.
