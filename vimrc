@@ -124,7 +124,6 @@ Bundle 'majutsushi/tagbar'
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
 
-Bundle 'msanders/snipmate.vim'
 Bundle 'rosenfeld/conque-term'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
@@ -139,6 +138,7 @@ Bundle 'vim-scripts/cscope.vim'
 
 Bundle 'vim-scripts/netrw.vim'
 Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 
 " vim-notes requires vim-misc
 Bundle 'xolox/vim-misc'
@@ -335,6 +335,26 @@ let g:pymode_breakpoint_key = 'B'
 
 """"""""""""""GUNDO mapping"""""""""""""""""""""""
 nnoremap <leader>g :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""Ctrlp""""""""""""""""
+" Searches for nearest ancestor with projext.xml .git .hg .svn .bzr _darcs
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_root_markers = ['project.xml']
+
+" have match window at bottom and display results top to bottom
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:40'
+
+" default normal map to open file search
+"let g:ctrlp_map = '<leader>f'
+
+" ctrlp enabled extensions
+let g:ctrlp_extensions = ['buffertag',
+                         \'funky',
+                         \'quickfix',
+                         \'tag']
+
+" map to open MRU mode
+nnoremap <leader>p :CtrlPBuffer<CR>
 
 """"""""""""""CONQUE-TERM"""""""""""""""""""""""""
 " Toggle ConqueTerm window.
