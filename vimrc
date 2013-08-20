@@ -26,6 +26,7 @@ syntax on                                        " syntax highlighting
 set t_Co=256
 set encoding=utf-8                               " Necessary to show unicode glyphs
 set mouse=a                                      " allow mouse control
+set so=5                                         " Keep cursor away from the edge of the screen
 
 " Setup backup location and enable
 let &backupdir=tmpDir . "/backup"
