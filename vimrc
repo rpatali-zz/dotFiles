@@ -137,7 +137,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/cscope.vim'
 
 Bundle 'vim-scripts/netrw.vim'
-Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
 
 " vim-notes requires vim-misc
@@ -353,8 +352,10 @@ let g:ctrlp_extensions = ['buffertag',
                          \'quickfix',
                          \'tag']
 
+" used to Command-T mappings
+nnoremap <leader>t :CtrlP<CR>
 " map to open MRU mode
-nnoremap <leader>p :CtrlPBuffer<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
 
 """"""""""""""CONQUE-TERM"""""""""""""""""""""""""
 " Toggle ConqueTerm window.
