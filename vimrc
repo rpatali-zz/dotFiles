@@ -132,6 +132,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'sorin-ionescu/python.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
@@ -167,7 +168,7 @@ let g:airline_right_sep = '◀'
 let g:airline_right_alt_sep = '◀'
 let g:airline_linecolumn_prefix = '¶ '
 let g:airline_paste_symbol = 'ρ'
-let g:airline_fugitive_prefix = '⎇ '
+let g:airline_branch_prefix = '⎇ '
 let g:airline_readonly_symbol = 'RO'
 let g:airline_linecolumn_prefix = '¶ '
 " replace the fugitive indicator with the current working directory, followed by the filename.
@@ -352,8 +353,6 @@ let g:ctrlp_extensions = ['buffertag',
                          \'quickfix',
                          \'tag']
 
-" used to Command-T mappings
-nnoremap <leader>t :CtrlP<CR>
 " map to open MRU mode
 nnoremap <leader>b :CtrlPBuffer<CR>
 
