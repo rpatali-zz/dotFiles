@@ -104,7 +104,8 @@ Bundle 'BusyBee'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
+
+Bundle 'itchyny/lightline.vim'
 
 " Although YCM does everything that supertab does, YCM does not provide
 " autocomplete in plain text, markdown, etc. YCM will require vim to be
@@ -131,6 +132,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'sorin-ionescu/python.vim'
 Bundle 'terryma/vim-multiple-cursors'
+
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 
@@ -160,20 +162,121 @@ colorscheme solarized                            " in the past, it has required 
 let g:netrw_liststyle = 3
 let g:netrw_list_hide = ".git,.svn"
 
-""""""""""""""AIRLINE"""""""""""""""""""""""""""""
-let g:airline_powerline_fonts=1
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '◀'
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_paste_symbol = 'ρ'
-let g:airline_branch_prefix = '⎇ '
-let g:airline_readonly_symbol = 'RO'
-let g:airline_linecolumn_prefix = '¶ '
-" replace the fugitive indicator with the current working directory, followed by the filename.
-let g:airline_section_b = '%{getcwd()}'
-let g:airline_section_c = '%t'
+""""""""""""""LIGHTLINE"""""""""""""""""""""""""""
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'right': [[ 'lineinfo', 'syntastic' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype']]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'ctrlpmark': 'CtrlPMark',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! MyModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help' && &readonly ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+  let fname = expand('%:t')
+  return fname == 'ControlP' ? g:lightline.ctrlp_item :
+        \ fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ '__Gundo\|NERD_tree' ? '' :
+        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = ''  " edit here for cool mark
+      let _ = fugitive#head()
+      return strlen(_) ? mark._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+
+function! CtrlPMark()
+  if expand('%:t') =~ 'ControlP'
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return g:lightline.ctrlp_prev . ' ' . g:lightline.subseparator.left . ' ' .
+        \ g:lightline.ctrlp_item . ' ' . g:lightline.subseparator.left . ' ' .
+        \ g:lightline.ctrlp_next . ' ' . g:lightline.subseparator.left . ' ' .
+        \ g:lightline.ctrlp_marked
+  else
+    return ''
+  endif
+endfunction
+
+let g:ctrlp_status_func = {
+  \ 'main': 'CtrlPStatusFunc_1',
+  \ 'prog': 'CtrlPStatusFunc_2',
+  \ }
+
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+  let g:lightline.ctrlp_regex = a:regex
+  let g:lightline.ctrlp_prev = a:prev
+  let g:lightline.ctrlp_item = a:item
+  let g:lightline.ctrlp_next = a:next
+  let g:lightline.ctrlp_marked = a:marked
+  return lightline#statusline(0)
+endfunction
+
+function! CtrlPStatusFunc_2(str)
+  return lightline#statusline(0)
+endfunction
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+  return lightline#statusline(0)
+endfunction
 
 """"""""""""""SUPERTAB""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
