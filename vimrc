@@ -102,7 +102,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'BusyBee'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Valloric/YouCompleteMe'
+
 Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'itchyny/lightline.vim'
@@ -111,8 +111,9 @@ Bundle 'itchyny/lightline.vim'
 " autocomplete in plain text, markdown, etc. YCM will require vim to be
 " compiled from sources.
 Bundle 'ervandew/supertab'
-
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'jiangmiao/auto-pairs'
+
 Bundle 'klen/python-mode'
 
 " powerline is aweseome but i see weird bugs, specifically, throws a
@@ -126,11 +127,16 @@ Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 
 Bundle 'rosenfeld/conque-term'
+
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
+
 Bundle 'scrooloose/syntastic'
+
 Bundle 'sjl/gundo.vim'
+
 Bundle 'sorin-ionescu/python.vim'
+
 Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'tpope/vim-fugitive'
@@ -154,8 +160,8 @@ Bundle 'git://repo.or.cz/vcscommand'
 "colorscheme BusyBee
 
 syntax enable                                    " required for solarized
-let g:solarized_termcolors=16                    " suggested 256, doesn't work though
 set background=dark                              " alternatively, light
+let g:solarized_termcolors=16                    " suggested 256, doesn't work though
 colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
 
 """"""""""""""NETRW"""""""""""""""""""""""""""""""
@@ -317,9 +323,6 @@ let g:tagbar_autofocus=1
     "let g:EclimTaglistEnabled=0                  " disable eclim taglist
 "endif
 
-""""""""""""""Easy Motion"""""""""""""""""""""""""
-"let g:EasyMotion_keys = '1234567890'
-
 """"""""""""""GUNDO"""""""""""""""""""""""""""""""
 let g:gundo_width = 60
 let g:gundo_preview_height = 30
@@ -331,7 +334,6 @@ let g:gundo_close_on_revert = 1
 " equally across others. Press esc then tab switch to cycle through.
 " Adjust `100` based on your taste.
 :set winwidth=80
-nnoremap <C-w><C-w> <C-w><C-w><C-w>=
 
 " LL stuff, don't bother copying this part,
 " you are missing markdown2html script.
