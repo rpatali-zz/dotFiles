@@ -120,9 +120,6 @@ Bundle 'klen/python-mode'
 " stacktrace everytime i open vim, making it useless.
 " Bundle 'Lokaltog/powerline'
 
-" tagbar requires exuberant-ctags pkg
-Bundle 'majutsushi/tagbar'
-
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
 
@@ -146,7 +143,10 @@ Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/cscope.vim'
 
 Bundle 'vim-scripts/netrw.vim'
+
 Bundle 'kien/ctrlp.vim'
+" requires Ctrlp
+Bundle 'tacahiroy/ctrlp-funky'
 
 " vim-notes requires vim-misc
 Bundle 'xolox/vim-misc'
@@ -306,23 +306,6 @@ let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
 """"""""""""""GRADLE""""""""""""""""""""""""""""""
 au BufNewFile,BufRead *.gradle set filetype=groovy
 
-""""""""""""""TAGBAR""""""""""""""""""""""""""""""
-let g:tagbar_autofocus=1
-
-""""""""""""""ECLIM"""""""""""""""""""""""""""""""
-"let g:EclimProjectKeepLocalHistory=1             " keep local history
-
-"let g:EclimLoggingDisabled=1                     " disable logging import when log is typed
-
-"let g:EclimJavaImportPackageSeparationLevel=2    " sort imports together when first two pacakges match
-
-"let g:EclimJavaSearchSingleResult='edit'         " java search will open the file in the same window
-
-""if has("PingEclim") "PingEclim isn't loaded yet, so this always fails
-"if 1
-    "let g:EclimTaglistEnabled=0                  " disable eclim taglist
-"endif
-
 """"""""""""""GUNDO"""""""""""""""""""""""""""""""
 let g:gundo_width = 60
 let g:gundo_preview_height = 30
@@ -423,21 +406,6 @@ let g:pymode_folding = 0
 " Key for set/unset breakpoint
 let g:pymode_breakpoint_key = 'B'
 
-""""""""""""""ECLIM mapping"""""""""""""""""""""""
-"nnoremap <silent> <leader>h :JavaHierarchy<CR>
-
-"nnoremap <silent> <leader>d :JavaDocPreview<CR>
-
-"nmap <silent> <leader>m :JavaImport<CR>
-
-"nmap <silent> <leader>o :JavaImportOrganize<CR>
-
-"nmap <silent> <leader>c :JavaCorrect<CR>
-
-"nmap <silent> <leader>s :JavaSearch<CR>
-
-"nmap <silent> <leader>p :ProjectProblems<CR>
-
 """"""""""""""GUNDO mapping"""""""""""""""""""""""
 nnoremap <leader>g :GundoToggle<CR>
 
@@ -459,7 +427,12 @@ let g:ctrlp_extensions = ['buffertag',
                          \'tag']
 
 " map to open MRU mode
-nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <C-p>b :CtrlPBuffer<CR>
+
+" map CtrlPFunky
+nnoremap <C-p>t :CtrlPFunky<CR>
+" narrow the search with word under cursor
+nnoremap <C-p>T :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 """"""""""""""CONQUE-TERM"""""""""""""""""""""""""
 " Toggle ConqueTerm window.
