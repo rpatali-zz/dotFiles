@@ -101,7 +101,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'BusyBee'
-Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'altercation/vim-colors-solarized'
 
@@ -133,6 +132,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 
 Bundle 'sorin-ionescu/python.vim'
+Bundle 'vim-scripts/camelcasemotion'
+Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'terryma/vim-multiple-cursors'
 
@@ -144,6 +145,8 @@ Bundle 'vim-scripts/cscope.vim'
 
 Bundle 'vim-scripts/netrw.vim'
 
+Bundle 'vim-scripts/bufkill.vim'
+
 Bundle 'kien/ctrlp.vim'
 " requires Ctrlp
 Bundle 'tacahiroy/ctrlp-funky'
@@ -153,6 +156,8 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
 
 Bundle 'xolox/vim-session'
+
+Bundle 'mhinz/vim-startify'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -167,6 +172,18 @@ colorscheme solarized                            " in the past, it has required 
 """"""""""""""NETRW"""""""""""""""""""""""""""""""
 let g:netrw_liststyle = 3
 let g:netrw_list_hide = ".git,.svn"
+
+""""""""""""""Startify""""""""""""""""""""""""""""
+let g:startify_bookmarks = ['~/.vimrc', 
+         \ '~/code/sparkle',
+         \ '~/code/sparkle_docs',
+         \ '~/code/sprint_sms_gateway',
+         \ '~/code/sprint_sms',
+         \ '~/code/elmer',
+         \ '~/code/verizon_vmp_gateway',
+         \ '~/code/verizon_vmp']
+let g:startify_files_number = 20
+let g:startify_restore_position = 1
 
 """"""""""""""LIGHTLINE"""""""""""""""""""""""""""
 let g:lightline = {
@@ -417,17 +434,24 @@ let g:ctrlp_root_markers = ['project.xml']
 " have match window at bottom and display results top to bottom
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:40'
 
-" default normal map to open file search
-"let g:ctrlp_map = '<leader>f'
-
 " ctrlp enabled extensions
 let g:ctrlp_extensions = ['buffertag',
                          \'funky',
                          \'quickfix',
                          \'tag']
 
-" map to open MRU mode
+" open window in current buffer, override conqueterm (or any other plugin
+" window).
+let g:ctrlp_reuse_window = '.*'
+
+" map to open buffer mode
 nnoremap <C-p>b :CtrlPBuffer<CR>
+
+" map to open mru mode
+nnoremap <C-p>m :CtrlPMRUFiles<CR>
+
+" Ctrlp command mode
+nnoremap <C-p>c :CtrlP 
 
 " map CtrlPFunky
 nnoremap <C-p>t :CtrlPFunky<CR>
