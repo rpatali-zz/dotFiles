@@ -132,7 +132,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 
 Bundle 'sorin-ionescu/python.vim'
-Bundle 'vim-scripts/camelcasemotion'
 Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'terryma/vim-multiple-cursors'
@@ -462,7 +461,7 @@ nnoremap <C-p>T :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " Toggle ConqueTerm window.
 " Eric Siegel is the original author of this function: https://github.com/esiegel/dotvim
 
-function! s:ToggleConqueTerm()
+function! s:ToggleConqueTerm(flag)
    " There is a bug in conque_term#get_instance() when there isn't an instance
    " so we will use the global list of terminals instead.
    if !exists("g:ConqueTerm_Terminals") || len(g:ConqueTerm_Terminals) == 0
@@ -483,7 +482,11 @@ function! s:ToggleConqueTerm()
 
    if buffer_win == -1
       " open window
-      execute 'vs ' . buffer_name
+      if a:flag == 1
+         execute 'vs ' . buffer_name
+      else
+         execute 'sp ' . buffer_name
+      endif
    else
       " close conque window
       if current_buffer_nr != buffer_nr
@@ -498,7 +501,8 @@ endfunction
 
 let g:ConqueTerm_ReadUnfocused = 1
 
-nnoremap <Leader>z :call <SID>ToggleConqueTerm()<CR>
+nnoremap <Leader>v :call <SID>ToggleConqueTerm(1)<CR>
+nnoremap <Leader>V :call <SID>ToggleConqueTerm(-1)<CR>
 
 """"""""""""""Open file in current buffer in a split screen and scroll bind on
 noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=160<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
