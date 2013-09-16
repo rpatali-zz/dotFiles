@@ -443,6 +443,9 @@ let g:ctrlp_extensions = ['buffertag',
 " window).
 let g:ctrlp_reuse_window = '.*'
 
+" feed word under cursor to ctrlp
+nmap <C-p>w :CtrlP<CR><C-\>w
+
 " map to open buffer mode
 nnoremap <C-p>b :CtrlPBuffer<CR>
 
