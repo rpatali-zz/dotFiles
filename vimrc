@@ -10,7 +10,7 @@ elseif hostname == "kryptonite"
    let home="/home/patali/"
    let vimHome=home . ".vim"
    let tmpDir=home . ".tmpvim"
-elseif hostname == "Macintosh-2.local"
+elseif hostname == "patali"
    " home mac
    let home="/Users/patali/"
    let vimHome =home. ".vim"
