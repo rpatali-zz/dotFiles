@@ -112,6 +112,8 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'ervandew/supertab'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'vim-scripts/javacomplete'
+Bundle 'honza/vim-snippets'
 
 " compiling vim with lua support was pain, some pointers here:
 " lua-5.1 and supporting packages were installed using dpkg
@@ -550,10 +552,10 @@ let g:neocomplete#enable_cursor_hold_i = 1
 "let g:neocomplete#enable_auto_select = 1
 
 " Shell like behavior(not recommended).
-set completeopt+=longest
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#disable_auto_complete = 1
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -561,6 +563,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -594,10 +597,10 @@ if has('conceal')
 endif
 
 " Enable snipMate compatibility feature.
-"let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
-"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 """"""""""""""CONQUE-TERM"""""""""""""""""""""""""
 " Toggle ConqueTerm window.
