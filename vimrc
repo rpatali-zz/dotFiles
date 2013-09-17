@@ -644,7 +644,7 @@ endfunction
 let g:ConqueTerm_ReadUnfocused = 1
 
 nnoremap <Leader>v :call <SID>ToggleConqueTerm(1)<CR>
-nnoremap <Leader>V :call <SID>ToggleConqueTerm(-1)<CR>
+nnoremap <Leader>s :call <SID>ToggleConqueTerm(-1)<CR>
 
 """"""""""""""Open file in current buffer in a split screen and scroll bind on
 noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=160<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
