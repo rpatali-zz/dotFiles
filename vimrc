@@ -101,7 +101,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'BusyBee'
-
 Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'itchyny/lightline.vim'
@@ -145,6 +144,8 @@ Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/neosnippet'
 
 Bundle 'klen/python-mode'
+Bundle 'sorin-ionescu/python.vim'
+Bundle 'scrooloose/syntastic'
 
 " powerline is aweseome but i see weird bugs, specifically, throws a
 " stacktrace everytime i open vim, making it useless.
@@ -158,24 +159,22 @@ Bundle 'rosenfeld/conque-term'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 
-Bundle 'scrooloose/syntastic'
 
+" cscope requires cscope pkg
+Bundle 'vim-scripts/cscope.vim'
 Bundle 'sjl/gundo.vim'
 
-Bundle 'sorin-ionescu/python.vim'
 Bundle 'Lokaltog/vim-easymotion'
-
 Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 
-" cscope requires cscope pkg
-Bundle 'vim-scripts/cscope.vim'
 
 Bundle 'vim-scripts/netrw.vim'
 
 Bundle 'vim-scripts/bufkill.vim'
+Bundle 'vim-scripts/ZoomWin'
 
 Bundle 'kien/ctrlp.vim'
 " requires Ctrlp
@@ -491,6 +490,11 @@ nnoremap <C-p>t :CtrlPFunky<CR>
 " narrow the search with word under cursor
 nnoremap <C-p>T :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
+"""""""""""""""""""""""""""""YCM""""""""""""""""""
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 'close'
+
 """""""""""""""""""""""""""""NeoComplete""""""""""
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -575,7 +579,7 @@ endif
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 """""""""""""""""""""""""""""NeoSnippet"""""""""""
 " Plugin key-mappings.
