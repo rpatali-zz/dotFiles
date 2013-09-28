@@ -49,6 +49,7 @@ set autoindent                                   " matches previous indent level
 set smartindent                                  " intelligently guesses indent (code level)
 set ignorecase                                   " ignorecase when searching
 set smartcase                                    " case only important if use caps
+set splitright                                   " split window and open on new one on right
 
 set softtabstop=3                                " interpret tab as an indent command instead of an insert-a-tab command
 set shiftwidth=3                                 " set the mod-N indentation used when you hit the tab key
@@ -85,8 +86,6 @@ noremap ; :
 
 map! <leader><leader> <Esc>
 map <leader><leader> <Esc>
-
-nnoremap <leader><CR> :TagbarToggle<CR>
 
 " change to next buffer
 noremap <silent> <C-h> :bp<CR>
@@ -163,6 +162,20 @@ Bundle 'vim-scripts/ZoomWin'
 Bundle 'vim-scripts/bufkill.vim'
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
+
+""""""""""""""Move""""""""""""""""""""""""""""""""
+
+Bundle 'qstrahl/vim-matchmaker'
+
+   " enable matchmaker at startup
+   let g:matchmaker_enable_startup = 1
+
+""""""""""""""Move""""""""""""""""""""""""""""""""
+
+Bundle 'matze/vim-move'
+
+   " visually move stuff around using <C-j>/<C-k>
+   let g:move_key_modifier = 'C'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
 
@@ -308,6 +321,7 @@ Bundle 'kien/ctrlp.vim'
 
    " ctrlp enabled extensions
    let g:ctrlp_extensions = ['buffertag',
+                            \'Startify',
                             \'funky',
                             \'quickfix',
                             \'tag']
@@ -326,7 +340,7 @@ Bundle 'kien/ctrlp.vim'
    nnoremap <C-p>m :CtrlPMRUFiles<CR>
 
    " Ctrlp command mode
-   nnoremap <C-p>c :CtrlP
+   nnoremap <C-p>c :CtrlP 
 
 
 " requires Ctrlp
@@ -349,6 +363,11 @@ Bundle 'ervandew/supertab'
 
    set completeopt=longest,menu,preview             " with completions not autofinishing first match
 
+""""""""""""""JavaComplete""""""""""""""""""""""""
+
+Bundle 'vim-scripts/javacomplete'
+   autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
 """"""""""""""YCM"""""""""""""""""""""""""""""""""
 
 Bundle 'Valloric/YouCompleteMe'
@@ -356,11 +375,6 @@ Bundle 'Valloric/YouCompleteMe'
    let g:ycm_collect_identifiers_from_tags_files = 1
    let g:ycm_autoclose_preview_window_after_completion = 1
    let g:ycm_autoclose_preview_window_after_insertion = 'close'
-
-""""""""""""""JavaComplete""""""""""""""""""""""""
-
-Bundle 'vim-scripts/javacomplete'
-   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
