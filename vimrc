@@ -55,7 +55,6 @@ set softtabstop=3                                " interpret tab as an indent co
 set shiftwidth=3                                 " set the mod-N indentation used when you hit the tab key
 set tabstop=3 ts=3                               " cause the TAB file-character to be displayed as mod-N (emacs = tab-width)
 set expandtab                                    " cause TAB characters to not be used in the file (indent-tabs-mode)
-set winwidth=80
 set so=5                                         " Keep cursor away from the edge of the screen
 set backspace=indent,eol,start                   " allowing backspace to work after indent -> see :help i_backspacing
 
@@ -154,7 +153,9 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'sorin-ionescu/python.vim'
 
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'terryma/vim-expand-region'
 
+Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 
@@ -163,7 +164,24 @@ Bundle 'vim-scripts/bufkill.vim'
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
 
-""""""""""""""Move""""""""""""""""""""""""""""""""
+
+""""""""""""""VimPanel""""""""""""""""""""""""""""
+
+Bundle 'mihaifm/vimpanel'
+
+   let g:VimpanelStorage = tmpDir . "/vimpanel"
+
+""""""""""""""Eighties""""""""""""""""""""""""""""
+
+" Set min window width to 80
+Bundle 'justincampbell/vim-eighties'
+
+   "let g:eighties_enabled = 1
+   "let g:eighties_minimum_width = 80 
+   "let g:eighties_extra_width = 0 " Increase this if you want some extra room
+   "let g:eighties_compute = 1 " Disable this if you just want the minimum + extra
+
+""""""""""""""MatchMaker""""""""""""""""""""""""""
 
 Bundle 'qstrahl/vim-matchmaker'
 
@@ -369,12 +387,13 @@ Bundle 'vim-scripts/javacomplete'
    autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""YCM"""""""""""""""""""""""""""""""""
+" YCM messing with java completion, trying out if neocompletion works for in
+" other file types.
+"Bundle 'Valloric/YouCompleteMe'
 
-Bundle 'Valloric/YouCompleteMe'
-
-   let g:ycm_collect_identifiers_from_tags_files = 1
-   let g:ycm_autoclose_preview_window_after_completion = 1
-   let g:ycm_autoclose_preview_window_after_insertion = 'close'
+   "let g:ycm_collect_identifiers_from_tags_files = 1
+   "let g:ycm_autoclose_preview_window_after_completion = 1
+   "let g:ycm_autoclose_preview_window_after_insertion = 'close'
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
@@ -406,10 +425,13 @@ Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'Shougo/neocomplete.vim'
 
+   let g:neocomplete#enable_cursor_hold_i = 1
    " Disable AutoComplPop.
    let g:acp_enableAtStartup = 0
    " Use neocomplete.
    let g:neocomplete#enable_at_startup = 1
+   let g:neocomplete#enable_prefetch = 1
+   let g:neocomplete#data_directory = tmpDir . "/neocomplete"
    " Use smartcase.
    let g:neocomplete#enable_smart_case = 1
    " Set minimum syntax keyword length.
@@ -418,9 +440,7 @@ Bundle 'Shougo/neocomplete.vim'
 
    " Define dictionary.
    let g:neocomplete#sources#dictionary#dictionaries = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ 'default' : ''
             \ }
 
    " Define keyword.
@@ -452,25 +472,6 @@ Bundle 'Shougo/neocomplete.vim'
    " Close popup by <Space>.
    inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
-   " For cursor moving in insert mode(Not recommended)
-   "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-   "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-   "inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-   "inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-   " Or set this.
-   let g:neocomplete#enable_cursor_hold_i = 1
-   " Or set this.
-   "let g:neocomplete#enable_insert_char_pre = 1
-
-   " AutoComplPop like behavior.
-   "let g:neocomplete#enable_auto_select = 1
-
-   " Shell like behavior(not recommended).
-   "set completeopt+=longest
-   "let g:neocomplete#enable_auto_select = 1
-   "let g:neocomplete#disable_auto_complete = 1
-   "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
    " Enable omni completion.
    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -482,13 +483,6 @@ Bundle 'Shougo/neocomplete.vim'
    if !exists('g:neocomplete#sources#omni#input_patterns')
      let g:neocomplete#sources#omni#input_patterns = {}
    endif
-   "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-   "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-   "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-   " For perlomni.vim setting.
-   " https://github.com/c9s/perlomni.vim
-   "let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 """"""""""""""NeoSnippet""""""""""""""""""""""""""
 
