@@ -1,4 +1,5 @@
 """"""""""""""System resource loc"""""""""""""""""
+
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "rohitp"
    " ll ubuntu
@@ -23,6 +24,7 @@ let &directory=tmpDir . "/swap"
 let &undodir=tmpDir . "/undo"
 
 """"""""""""""Global Settings"""""""""""""""""""""
+
 set nocompatible                                 " be iMproved
 
 set t_Co=256
@@ -77,6 +79,7 @@ set noshowmode                                   " required by fancy status line
 set laststatus=2                                 " required by fancy status lines
 
 """"""""""""""Mappings""""""""""""""""""""""""""""
+
 " actually use the default ctrl-[, that is more meaningful.
 let mapleader=";"                                " specialized leader key
 
@@ -206,9 +209,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'itchyny/lightline.vim'
 
    let g:lightline = {
-         \ 'colorscheme': 'solarized',
+         \ 'colorscheme': 'jellybeans',
          \ 'active': {
-         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
          \   'right': [[ 'lineinfo', 'syntastic' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype']]
          \ },
          \ 'component_function': {
@@ -218,29 +221,24 @@ Bundle 'itchyny/lightline.vim'
          \   'filetype': 'MyFiletype',
          \   'fileencoding': 'MyFileencoding',
          \   'mode': 'MyMode',
-         \   'syntastic': 'SyntasticStatuslineFlag',
-         \   'ctrlpmark': 'CtrlPMark',
+         \   'syntastic': 'SyntasticStatuslineFlag'
          \ },
-         \ 'separator': { 'left': '⮀', 'right': '⮂' },
-         \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+         \ 'separator': { 'left': '▶', 'right': '◀ ' },
+         \ 'subseparator': { 'left': '❯', 'right': '❮' }
          \ }
 
    function! MyModified()
-     return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+     return &ft =~ 'help' ? '' : &modified ? '✚' : &modifiable ? '' : '-'
    endfunction
 
    function! MyReadonly()
-     return &ft !~? 'help' && &readonly ? '⭤' : ''
+     return &ft !~? 'help' && &readonly ? '✹' : ''
    endfunction
 
    function! MyFilename()
      let fname = expand('%:t')
      return fname == 'ControlP' ? g:lightline.ctrlp_item :
-           \ fname == '__Tagbar__' ? g:lightline.fname :
            \ fname =~ '__Gundo\|NERD_tree' ? '' :
-           \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-           \ &ft == 'unite' ? unite#get_status_string() :
-           \ &ft == 'vimshell' ? vimshell#get_status_string() :
            \ ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
            \ ('' != fname ? fname : '[No Name]') .
            \ ('' != MyModified() ? ' ' . MyModified() : '')
@@ -248,7 +246,7 @@ Bundle 'itchyny/lightline.vim'
 
    function! MyFugitive()
      try
-       if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+       if expand('%:t') !~? 'Gundo\|NERD' && exists('*fugitive#head')
          let mark = ''  " edit here for cool mark
          let _ = fugitive#head()
          return strlen(_) ? mark._ : ''
@@ -272,15 +270,11 @@ Bundle 'itchyny/lightline.vim'
 
    function! MyMode()
      let fname = expand('%:t')
-     return fname == '__Tagbar__' ? 'Tagbar' :
-           \ fname == 'ControlP' ? 'CtrlP' :
-           \ fname == '__Gundo__' ? 'Gundo' :
-           \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-           \ fname =~ 'NERD_tree' ? 'NERDTree' :
-           \ &ft == 'unite' ? 'Unite' :
-           \ &ft == 'vimfiler' ? 'VimFiler' :
-           \ &ft == 'vimshell' ? 'VimShell' :
-           \ winwidth('.') > 60 ? lightline#mode() : ''
+     return fname == 'ControlP' ? 'CtrlP' :
+          \ fname == '__Gundo__' ? 'Gundo' :
+          \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+          \ fname =~ 'NERD_tree' ? 'NERDTree' :
+          \ winwidth('.') > 60 ? lightline#mode() : ''
    endfunction
 
    function! CtrlPMark()
@@ -310,13 +304,6 @@ Bundle 'itchyny/lightline.vim'
    endfunction
 
    function! CtrlPStatusFunc_2(str)
-     return lightline#statusline(0)
-   endfunction
-
-   let g:tagbar_status_func = 'TagbarStatusFunc'
-
-   function! TagbarStatusFunc(current, sort, fname, ...) abort
-       let g:lightline.fname = a:fname
      return lightline#statusline(0)
    endfunction
 
@@ -381,6 +368,7 @@ Bundle 'vim-scripts/javacomplete'
    autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""YCM"""""""""""""""""""""""""""""""""
+
 " YCM screws up javacomplete, NeoComplete currently works better.
 "Bundle 'Valloric/YouCompleteMe'
 
