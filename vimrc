@@ -164,6 +164,9 @@ Bundle 'vim-scripts/bufkill.vim'
 " cscope requires cscope pkg
 Bundle 'vim-scripts/cscope.vim'
 
+" context aware pasting, remaps p and P
+Bundle 'sickill/vim-pasta'
+
 
 """"""""""""""VimPanel""""""""""""""""""""""""""""
 
@@ -189,7 +192,7 @@ Bundle 'matze/vim-move'
 """"""""""""""Color"""""""""""""""""""""""""""""""
 
 Bundle 'BusyBee'
-   " colorscheme BusyBee
+   "colorscheme BusyBee
 
 Bundle 'altercation/vim-colors-solarized'
 
@@ -378,8 +381,7 @@ Bundle 'vim-scripts/javacomplete'
    autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""YCM"""""""""""""""""""""""""""""""""
-" YCM messing with java completion, trying out if neocompletion works for in
-" other file types.
+" YCM screws up javacomplete, NeoComplete currently works better.
 "Bundle 'Valloric/YouCompleteMe'
 
    "let g:ycm_collect_identifiers_from_tags_files = 1
@@ -479,33 +481,21 @@ Bundle 'Shougo/neocomplete.vim'
 
 Bundle 'Shougo/neosnippet'
 
-   " Plugin key-mappings.
-   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-   xmap <C-k>     <Plug>(neosnippet_expand_target)
+  " Plugin key-mappings.
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
-   " SuperTab like snippets behavior.
-   imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-   \ "\<Plug>(neosnippet_expand_or_jump)"
-   \: pumvisible() ? "\<C-n>" : "\<TAB>"
-   smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-   \ "\<Plug>(neosnippet_expand_or_jump)"
-   \: "\<TAB>"
-
+  " SuperTab like snippets behavior.
+  imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+ 
    " For snippet_complete marker.
    if has('conceal')
      set conceallevel=2 concealcursor=i
    endif
 
-
-Bundle 'honza/vim-snippets'
-
-   " Enable snipMate compatibility feature.
-   let g:neosnippet#enable_snipmate_compatibility = 1
-   " Tell Neosnippet about the other snippets
-   let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
 """"""""""""""Syntastic"""""""""""""""""""""""""""
+
 Bundle 'scrooloose/syntastic'
 
    let g:syntastic_mode_map = { 'mode': 'active',
@@ -627,7 +617,7 @@ Bundle 'xolox/vim-notes'
 
    let g:notes_directories = [tmpDir . "/notes"]
    " vim-notes requires vim-misc
-   
+
 """""""""""""""Vim Session""""""""""""""""""""""""
 
 Bundle 'xolox/vim-session'
