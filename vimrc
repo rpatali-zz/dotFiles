@@ -164,8 +164,6 @@ Bundle 'tpope/vim-surround'
 
 Bundle 'vim-scripts/ZoomWin'
 Bundle 'vim-scripts/bufkill.vim'
-" cscope requires cscope pkg
-Bundle 'vim-scripts/cscope.vim'
 
 " context aware pasting, remaps p and P
 Bundle 'sickill/vim-pasta'
@@ -223,7 +221,7 @@ Bundle 'itchyny/lightline.vim'
          \   'mode': 'MyMode',
          \   'syntastic': 'SyntasticStatuslineFlag'
          \ },
-         \ 'separator': { 'left': '▶', 'right': '◀ ' },
+         \ 'separator': { 'left': '▶', 'right': '◀' },
          \ 'subseparator': { 'left': '❯', 'right': '❮' }
          \ }
 
@@ -349,6 +347,9 @@ Bundle 'tacahiroy/ctrlp-funky'
    nnoremap <C-p>t :CtrlPFunky<CR>
    " narrow the search with word under cursor
    nnoremap <C-p>T :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+Bundle 'ivalkeen/vim-ctrlp-tjump'
+   nnoremap <C-p>e :CtrlPtjump<CR>
 
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
@@ -606,6 +607,20 @@ Bundle 'xolox/vim-notes'
    let g:notes_directories = [tmpDir . "/notes"]
    " vim-notes requires vim-misc
 
+""""""""""""""Vim Notes"""""""""""""""""""""""""""
+
+" Requires xolox/vim-misc
+Bundle 'xolox/vim-easytags'
+
+   " Currently disabled, use tags by filetype for better perf
+   let g:easytags_file = tmpDir . "/easytags/tags"
+   let g:easytags_by_filetype = tmpDir . "/easytags"
+   " first look for local tags then global
+   :set tags=./.tags;,~/.tmpvim/easytags
+
+   let g:easytags_always_enabled = 1
+   let g:easytags_include_members = 1
+   
 """""""""""""""Vim Session""""""""""""""""""""""""
 
 Bundle 'xolox/vim-session'
