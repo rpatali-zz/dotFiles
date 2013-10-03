@@ -109,12 +109,6 @@ cmap w!! %!sudo tee > /dev/null %
 " removes highlighting from search after space
 noremap <silent> <Space> :noh<Bar>echo<CR>
 
-" force myself yo use hjkl
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
 " map in command mode to go back to beginning of line.
 " matches normal shell mapping, like emacs.
 cmap <c-a> <c-b>
@@ -167,7 +161,6 @@ Bundle 'vim-scripts/bufkill.vim'
 
 " context aware pasting, remaps p and P
 Bundle 'sickill/vim-pasta'
-
 
 """"""""""""""VimPanel""""""""""""""""""""""""""""
 
@@ -612,14 +605,18 @@ Bundle 'xolox/vim-notes'
 " Requires xolox/vim-misc
 Bundle 'xolox/vim-easytags'
 
+   " disable highlighting in java files, its slow
+   :autocmd FileType java let b:easytags_auto_highlight = 0
+
    " Currently disabled, use tags by filetype for better perf
    let g:easytags_file = tmpDir . "/easytags/tags"
    let g:easytags_by_filetype = tmpDir . "/easytags"
    " first look for local tags then global
    :set tags=./.tags;,~/.tmpvim/easytags
 
-   let g:easytags_always_enabled = 1
    let g:easytags_include_members = 1
+   " easy tags update only on save event
+   "let g:easytags_events = ['BufWritePost']
    
 """""""""""""""Vim Session""""""""""""""""""""""""
 
@@ -638,6 +635,11 @@ Bundle 'klen/python-mode'
 
    " Key for set/unset breakpoint
    let g:pymode_breakpoint_key = 'B'
+
+""""""""""""""Unstack"""""""""""""""""""""""""""""
+
+Bundle 'mattboehm/vim-unstack'
+   let g:unstack_mapkey = '<leader>us'
 
 """"""""""""""Strip trailing whitespace"""""""""""
 
