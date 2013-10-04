@@ -191,8 +191,9 @@ Bundle 'BusyBee'
 Bundle 'altercation/vim-colors-solarized'
 
    syntax enable                                    " required for solarized
-   set background=dark                              " alternatively, light
+   set background=light                             " alternatively, light
    let g:solarized_termcolors=16                    " suggested 256, doesn't work though
+   let g:solarized_contrast="high"
    colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
 
 """"""""""""""Lightline"""""""""""""""""""""""""""
@@ -200,7 +201,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'itchyny/lightline.vim'
 
    let g:lightline = {
-         \ 'colorscheme': 'jellybeans',
+         \ 'colorscheme': 'solarized',
          \ 'active': {
          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
          \   'right': [[ 'lineinfo', 'syntastic' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype']]
@@ -343,6 +344,9 @@ Bundle 'tacahiroy/ctrlp-funky'
 
 Bundle 'ivalkeen/vim-ctrlp-tjump'
    nnoremap <C-p>e :CtrlPtjump<CR>
+
+Bundle 'mattn/ctrlp-register'
+   nnoremap <C-p>r :CtrlPRegister<CR>
 
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
