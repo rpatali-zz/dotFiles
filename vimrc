@@ -116,7 +116,7 @@ cmap <c-a> <c-b>
 nnoremap <C-c> :close<CR>
 
 " Open file in current buffer in a split screen and scroll bind on
-noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=160<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=240<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
 
 """"""""""""""Gradle""""""""""""""""""""""""""""""
 
@@ -141,6 +141,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'git://repo.or.cz/vcscommand'
 
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'tpope/vim-repeat'
 
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
@@ -156,18 +157,11 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 
-Bundle 'vim-scripts/ZoomWin'
-Bundle 'vim-scripts/bufkill.vim'
+Bundle 'ZoomWin'
+Bundle 'bufkill.vim'
 
 " context aware pasting, remaps p and P
 Bundle 'sickill/vim-pasta'
-
-""""""""""""""VimPanel""""""""""""""""""""""""""""
-
-Bundle 'mihaifm/vimpanel'
-
-   let g:VimpanelStorage = tmpDir . "/vimpanel"
-   let g:VimpanelWinSize = 30
 
 """"""""""""""MatchMaker""""""""""""""""""""""""""
 
@@ -604,24 +598,6 @@ Bundle 'xolox/vim-notes'
    let g:notes_directories = [tmpDir . "/notes"]
    " vim-notes requires vim-misc
 
-""""""""""""""Vim Notes"""""""""""""""""""""""""""
-
-" Requires xolox/vim-misc
-Bundle 'xolox/vim-easytags'
-
-   " disable highlighting in java files, its slow
-   :autocmd FileType java let b:easytags_auto_highlight = 0
-
-   " Currently disabled, use tags by filetype for better perf
-   let g:easytags_file = tmpDir . "/easytags/tags"
-   let g:easytags_by_filetype = tmpDir . "/easytags"
-   " first look for local tags then global
-   :set tags=./.tags;,~/.tmpvim/easytags
-
-   let g:easytags_include_members = 1
-   " easy tags update only on save event
-   "let g:easytags_events = ['BufWritePost']
-   
 """""""""""""""Vim Session""""""""""""""""""""""""
 
 Bundle 'xolox/vim-session'
@@ -630,15 +606,19 @@ Bundle 'xolox/vim-session'
    let g:session_autoload = 'No'
    let g:session_directory = tmpDir . "/session"
 
-""""""""""""""Python Mode"""""""""""""""""""""""""
+""""""""""""""Python Jedi"""""""""""""""""""""""""
 
-Bundle 'klen/python-mode'
+Bundle 'davidhalter/jedi-vim'
 
-   " Disable default python folding
-   let g:pymode_folding = 0
-
-   " Key for set/unset breakpoint
-   let g:pymode_breakpoint_key = 'B'
+   let g:jedi#use_tabs_not_buffers = 0
+   let g:jedi#use_splits_not_buffers = "bottom"
+   let g:jedi#goto_assignments_command = "<leader>jg"
+   let g:jedi#goto_definitions_command = "<leader>jd"
+   let g:jedi#documentation_command = "K"
+   let g:jedi#usages_command = "<leader>jn"
+   let g:jedi#completions_command = "<C-Space>"
+   let g:jedi#rename_command = "<leader>jr"
+   let g:jedi#show_call_signatures = "1"
 
 """"""""""""""Unstack"""""""""""""""""""""""""""""
 
