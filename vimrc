@@ -78,8 +78,6 @@ set completeopt=menu                             " insert mode completion, only 
 set noshowmode                                   " required by fancy status lines
 set laststatus=2                                 " required by fancy status lines
 
-set tags=./.tags,~/.tmpvim/tags;                 " tags file; first search local then in standard location
-
 """"""""""""""Mappings""""""""""""""""""""""""""""
 
 " actually use the default ctrl-[, that is more meaningful.
@@ -355,6 +353,25 @@ Bundle 'ervandew/supertab'
    let g:SuperTabClosePreviewOnPopupClose = 1       " close the scratch window on code completion popup close
 
    set completeopt=longest,menu,preview             " with completions not autofinishing first match
+
+""""""""""""""Vim EasyTags""""""""""""""""""""""""
+
+" Requires xolox/vim-misc
+Bundle 'xolox/vim-easytags'
+
+   " disable highlighting in java files, its slow
+   :autocmd FileType java let b:easytags_auto_highlight = 0
+
+   " Currently disabled, use tags by filetype for better perf
+   let g:easytags_file = tmpDir . "/easytags/tags"
+   let g:easytags_by_filetype = tmpDir . "/easytags"
+   " first look for local tags then global
+   :set tags=./.tags;,~/.tmpvim/easytags
+
+   let g:easytags_include_members = 1
+   " easy tags update only on save event
+   "let g:easytags_events = ['BufWritePost']
+      
 
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
