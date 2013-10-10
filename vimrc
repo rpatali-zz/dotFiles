@@ -78,6 +78,8 @@ set completeopt=menu                             " insert mode completion, only 
 set noshowmode                                   " required by fancy status lines
 set laststatus=2                                 " required by fancy status lines
 
+set tags=./.tags,~/.tmpvim/tags;                 " tags file; first search local then in standard location
+
 """"""""""""""Mappings""""""""""""""""""""""""""""
 
 " actually use the default ctrl-[, that is more meaningful.
