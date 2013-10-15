@@ -60,6 +60,8 @@ set expandtab                                    " cause TAB characters to not b
 set so=5                                         " Keep cursor away from the edge of the screen
 set backspace=indent,eol,start                   " allowing backspace to work after indent -> see :help i_backspacing
 
+set cursorline
+set cursorcolumn
 set nowrap
 set ruler                                        " shows status of cursor position
 set hidden                                       " hides buffers instead of closing them
@@ -115,6 +117,9 @@ cmap <c-a> <c-b>
 
 nnoremap <C-c> :close<CR>
 
+" run last created/run macro
+nnoremap Q @@
+
 " Open file in current buffer in a split screen and scroll bind on
 noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=240<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
 
@@ -141,7 +146,6 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'git://repo.or.cz/vcscommand'
 
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'tpope/vim-repeat'
 
 " ack requires Ack-grep pkg
 Bundle 'mileszs/ack.vim'
@@ -155,20 +159,12 @@ Bundle 'terryma/vim-expand-region'
 
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
+
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
 
 Bundle 'ZoomWin'
 Bundle 'bufkill.vim'
-
-" context aware pasting, remaps p and P
-Bundle 'sickill/vim-pasta'
-
-""""""""""""""MatchMaker""""""""""""""""""""""""""
-
-Bundle 'qstrahl/vim-matchmaker'
-
-   " enable matchmaker at startup
-   let g:matchmaker_enable_startup = 1
 
 """"""""""""""Move""""""""""""""""""""""""""""""""
 
@@ -178,9 +174,6 @@ Bundle 'matze/vim-move'
    let g:move_key_modifier = 'C'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
-
-Bundle 'BusyBee'
-   "colorscheme BusyBee
 
 Bundle 'altercation/vim-colors-solarized'
 
@@ -344,15 +337,19 @@ Bundle 'mattn/ctrlp-register'
 
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
-" Although YCM does everything that supertab does, YCM does not provide
-" autocomplete in plain text, markdown, etc. YCM will require vim to be
-" compiled from sources.
 Bundle 'ervandew/supertab'
 
    let g:SuperTabDefaultCompletionType = "context"
    let g:SuperTabClosePreviewOnPopupClose = 1       " close the scratch window on code completion popup close
 
    set completeopt=longest,menu,preview             " with completions not autofinishing first match
+
+""""""""""""""IndentLine""""""""""""""""""""""""""
+
+Bundle 'Yggdroot/indentLine'
+
+   let g:indentLine_char = '┆'
+   let g:indentLine_indentLevel = 4
 
 """"""""""""""Vim EasyTags""""""""""""""""""""""""
 
@@ -369,23 +366,11 @@ Bundle 'xolox/vim-easytags'
    :set tags=./.tags;,~/.tmpvim/easytags
 
    let g:easytags_include_members = 1
-   " easy tags update only on save event
-   "let g:easytags_events = ['BufWritePost']
-      
 
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
 Bundle 'vim-scripts/javacomplete'
    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-""""""""""""""YCM"""""""""""""""""""""""""""""""""
-
-" YCM screws up javacomplete, NeoComplete currently works better.
-"Bundle 'Valloric/YouCompleteMe'
-
-   "let g:ycm_collect_identifiers_from_tags_files = 1
-   "let g:ycm_autoclose_preview_window_after_completion = 1
-   "let g:ycm_autoclose_preview_window_after_insertion = 'close'
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
@@ -576,24 +561,6 @@ Bundle 'scrooloose/nerdtree'
    " change nerdtree directory to directory containing current file Ctr-d goto dir
    nnoremap <silent> <C-d> :NERDTree %:h<CR>
 
-""""""""""""""Netrw"""""""""""""""""""""""""""""""
-
-Bundle 'vim-scripts/netrw.vim'
-
-   let g:netrw_liststyle = 3
-   let g:netrw_list_hide = ".git,.svn"
-
-""""""""""""""Gundo"""""""""""""""""""""""""""""""
-
-Bundle 'sjl/gundo.vim'
-
-   let g:gundo_width = 60
-   let g:gundo_preview_height = 30
-   let g:gundo_right = 1
-   let g:gundo_close_on_revert = 1
-
-   nnoremap <leader>g :GundoToggle<CR>
-
 """"""""""""""Startify""""""""""""""""""""""""""""
 
 Bundle 'mhinz/vim-startify'
@@ -616,14 +583,6 @@ Bundle 'xolox/vim-notes'
 
    let g:notes_directories = [tmpDir . "/notes"]
    " vim-notes requires vim-misc
-
-"""""""""""""""Vim Session""""""""""""""""""""""""
-
-Bundle 'xolox/vim-session'
-
-   let g:session_autosave = 'No'
-   let g:session_autoload = 'No'
-   let g:session_directory = tmpDir . "/session"
 
 """"""""""""""Python Jedi"""""""""""""""""""""""""
 
