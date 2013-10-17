@@ -91,19 +91,21 @@ noremap ; :
 map! <leader><leader> <Esc>
 map <leader><leader> <Esc>
 
+" easier navigation between split windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 " change to next buffer
-noremap <silent> <C-h> :bp<CR>
+"noremap <silent> <C-h> :bp<CR>
 " change to previou buffer
-noremap <silent> <C-l> :bn<CR>
+"noremap <silent> <C-l> :bn<CR>
 
 " D deletes till end
 " C changes till end
 " Y should yank till end
 " By default it yanks whole line
 nnoremap Y y$
-
-" break line and move stuff on the right of cursor to next line
-:nnoremap <NL> i<CR><ESC>
 
 " Trick if forgot to sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -117,7 +119,7 @@ cmap <c-a> <c-b>
 
 nnoremap <C-c> :close<CR>
 
-" run last created/run macro
+" run last created/run macro, stored in `q`
 nnoremap Q @@
 
 " Open file in current buffer in a split screen and scroll bind on
@@ -165,13 +167,6 @@ Bundle 'tpope/vim-repeat'
 
 Bundle 'ZoomWin'
 Bundle 'bufkill.vim'
-
-""""""""""""""Move""""""""""""""""""""""""""""""""
-
-Bundle 'matze/vim-move'
-
-   " visually move stuff around using <C-j>/<C-k>
-   let g:move_key_modifier = 'C'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
 
