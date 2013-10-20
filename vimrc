@@ -172,11 +172,13 @@ Bundle 'bufkill.vim'
 
 Bundle 'altercation/vim-colors-solarized'
 
-   syntax enable                                    " required for solarized
-   set background=light                             " alternatively, light
-   let g:solarized_termcolors=16                    " suggested 256, doesn't work though
-   let g:solarized_contrast="high"
    colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
+
+   if strftime("%H") >= 5 && strftime("%H") <= 18
+      set background=light
+   else
+      set background=dark
+   endif
 
 """"""""""""""Lightline"""""""""""""""""""""""""""
 
@@ -197,8 +199,8 @@ Bundle 'itchyny/lightline.vim'
          \   'mode': 'MyMode',
          \   'syntastic': 'SyntasticStatuslineFlag'
          \ },
-         \ 'separator': { 'left': '▶', 'right': '◀' },
-         \ 'subseparator': { 'left': '❯', 'right': '❮' }
+         \ 'separator': { 'left': "\u2b80", 'right': "\u2b82"},
+         \ 'subseparator': { 'left':  "\u2b81", 'right': "\u2b83"}
          \ }
 
    function! MyModified()
@@ -351,14 +353,16 @@ Bundle 'Yggdroot/indentLine'
 " Requires xolox/vim-misc
 Bundle 'xolox/vim-easytags'
 
-   " disable highlighting in java files, its slow
-   :autocmd FileType java let b:easytags_auto_highlight = 0
+   " disable highlighting, its slow
+   let g:easytags_auto_highlight = 0
+   let g:easytags_events = ['BufWritePost']
 
    " Currently disabled, use tags by filetype for better perf
    let g:easytags_file = tmpDir . "/easytags/tags"
    let g:easytags_by_filetype = tmpDir . "/easytags"
    " first look for local tags then global
-   :set tags=./.tags;,~/.tmpvim/easytags
+   let g:easytags_dynamic_files = 2
+   set tags=./.tags;,~/.tmpvim/easytags
 
    let g:easytags_include_members = 1
 
