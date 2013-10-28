@@ -172,7 +172,8 @@ Bundle 'bufkill.vim'
 
 Bundle 'altercation/vim-colors-solarized'
 
-   colorscheme solarized                            " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
+   " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
+   colorscheme solarized
 
    if strftime("%H") >= 5 && strftime("%H") <= 18
       set background=light
@@ -315,7 +316,7 @@ Bundle 'kien/ctrlp.vim'
    nnoremap <C-p>m :CtrlPMRUFiles<CR>
 
    " Ctrlp command mode
-   nnoremap <C-p>c :CtrlP 
+   nnoremap <C-p>c :CtrlP
 
 
 " requires Ctrlp
@@ -471,7 +472,7 @@ Bundle 'Shougo/neosnippet'
   " SuperTab like snippets behavior.
   imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
- 
+
    " For snippet_complete marker.
    if has('conceal')
      set conceallevel=2 concealcursor=i

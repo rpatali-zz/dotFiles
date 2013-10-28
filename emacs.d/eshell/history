@@ -1,0 +1,47 @@
+ls
+cd /
+ls /
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+i;; solarized installed using marmalade
+clear
+clear
+cd ~
+pwd
+clear
+ls
+ls
+clear
+ls
+cd eshell/
+ls
+cd ..
+ls
+cd auto-save-list/
+ls
+cd ..
+cd elpa/
+ls
+cd archives/
+ls
+cd ..
+cd color-theme-solarized-20120301/
+ls
+clear
+exit
+pwd
+cd ~
+brew search aga
+brew search ag
+homebrew
+brew
+brew cleanup
+brew --version
