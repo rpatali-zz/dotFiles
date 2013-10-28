@@ -175,7 +175,7 @@ Bundle 'altercation/vim-colors-solarized'
    " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
    colorscheme solarized
 
-   if strftime("%H") >= 5 && strftime("%H") <= 18
+   if strftime("%H") >= 5 && strftime("%H") <= 17
       set background=light
    else
       set background=dark
@@ -491,6 +491,8 @@ Bundle 'scrooloose/syntastic'
    " E272 - multiple spaces before keyword.  Nice to lineup import.
    " W404 - import *, unable to detected undefined names.
    " W801 - redefinition of unused import, try/except import fails.
+   let g:syntastic_error_symbol='✗'
+   let g:syntastic_warning_symbol='⚠'
    let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
 
 """"""""""""""Conque-Term"""""""""""""""""""""""""
