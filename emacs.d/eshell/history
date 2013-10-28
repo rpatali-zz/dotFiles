@@ -45,3 +45,12 @@ homebrew
 brew
 brew cleanup
 brew --version
+cd /var/tmp/rohit.patali/
+ls
+cd build/
+ls
+cd sprint_sms_gateway/
+;s
+ls
+cd 1.1/
+ls
