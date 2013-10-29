@@ -91,3 +91,26 @@
 ;; bind helm to C-c h 
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
+
+;; install flycheck using packages
+(require 'flycheck)
+;; enable flycheck in all buffers where applicable
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+;; install expand-region using packages
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
+;; install multiple-cursor using packages
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
+;; install autopairs using packages
+(require 'autopair)
+(autopair-global-mode)

@@ -1,1 +1,1 @@
-("~/git/dotFiles/")
+("~/git/dotFiles/" "~/git/dotFiles/emacs.d/elpa/jedi-20130714.1415/" "~/code/sprint_sms/" "~/code/amqpfwd/")

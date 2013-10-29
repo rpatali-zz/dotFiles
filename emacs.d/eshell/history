@@ -54,3 +54,31 @@ cd sprint_sms_gateway/
 ls
 cd 1.1/
 ls
+git statu
+git status
+git branch -a
+clear
+git status
+cd ~/.emacs.d/
+ls
+cd elpa/jedi-0.1.2/
+ls
+make requirements 
+cd /opt/wm/apache-tomcat-5.5.28/webapps/
+;s
+ls
+cd sprint-sms-gateway/
+ls
+cd WEB-INF/
+;s
+ls
+cd lib/
+ls
+cd ../classes/
+ls
+cd ..
+ls
+iWelcome to the Emacs shell
+less sprint-sms-gateway.xml 
+ls
+ssh root@sparkle-dev-admin
