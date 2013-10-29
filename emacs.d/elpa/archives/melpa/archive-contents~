@@ -8,7 +8,7 @@
 	     (2 2 3)))
 	   "Ruby from Emacs [github]" tar])
  (zoom-frm .
-	   [(20130930 215)
+	   [(20131028 2103)
 	    ((frame-fns
 	      (0))
 	     (frame-cmds
@@ -384,7 +384,7 @@
 		     [(20130720 1549)
 		      nil "Ukrainian holidays for Emacs calendar. [github]" single])
  (ujelly-theme .
-	       [(20131023 124)
+	       [(20131028 1523)
 		nil "Ujelly theme for GNU Emacs 24 (deftheme) [github]" single])
  (ucs-utils .
 	    [(20131022 1150)
@@ -1344,6 +1344,9 @@
  (projmake-mode .
 		[(20130614 1235)
 		 nil "Project oriented automatic builder and error highlighter, flymake for projects [github]" tar])
+ (projector .
+	    [(20131028 2100)
+	     nil "Lightweight library for managing project/repository-aware shell and command buffers [github]" single])
  (projectile .
 	     [(20131018 1037)
 	      ((s
@@ -1403,6 +1406,9 @@
 	     ((cl-lib
 	       (0 2)))
 	     "Rewrite of Powerline [github]" tar])
+ (pov-mode .
+	   [(20120825 1616)
+	    nil "Major mode for editing POV-Ray scene files. [git]" tar])
  (pos-tip .
 	  [(20121128 2315)
 	   nil "Show tooltip at point [github]" single])
@@ -2338,7 +2344,7 @@
 			       [(20130730 1032)
 				nil "Advice for magit-log-edit-commit [github]" single])
  (magit .
-	[(20131026 1235)
+	[(20131028 2340)
 	 ((cl-lib
 	   (0 3))
 	  (git-commit-mode
@@ -2893,7 +2899,7 @@
 	     [(20130921 1436)
 	      nil "Extensions to `icomplete.el'. [wiki]" single])
  (icicles .
-	  [(20131027 2047)
+	  [(20131028 1816)
 	   nil "Minibuffer input completion and cycling. [wiki]" tar])
  (ibuffer-vc .
 	     [(20130924 1408)
@@ -3032,7 +3038,7 @@
 		 (1 0)))
 	       "Color theme selection with helm interface [github]" single])
  (helm-swoop .
-	     [(20131028 1126)
+	     [(20131029 238)
 	      ((helm
 		(1 0))
 	       (emacs
@@ -3269,7 +3275,7 @@
 	       (0 3 0)))
 	     "Guide the following key bindings automatically and dynamically [github]" single])
  (gruber-darker-theme .
-		      [(20131028 2351)
+		      [(20131029 2)
 		       nil "Gruber Darker color theme for Emacs 24. [github]" single])
  (groovy-mode .
 	      [(20130506 1025)
@@ -3348,11 +3354,14 @@
 		   ((oauth2
 		     (0 7)))
 		   "Support for Google Contacts in Emacs [git]" tar])
+ (google-c-style .
+		 [(20130412 1615)
+		  nil "Google's C/C++ style for c-mode [svn]" single])
  (golden-ratio .
 	       [(20130921 1044)
 		nil "Automatic resizing of Emacs windows to the golden ratio [github]" single])
  (god-mode .
-	   [(20130921 1502)
+	   [(20131028 2207)
 	    nil "God-like command entering minor mode [github]" single])
  (go-snippets .
 	      [(20130821 844)
@@ -3598,7 +3607,7 @@
 		   (24 1)))
 		 "Restore Emacs frame [github]" single])
  (frame-fns .
-	    [(20130723 2318)
+	    [(20131028 2235)
 	     nil "Non-interactive frame and window functions. [wiki]" single])
  (frame-cmds .
 	     [(20130921 1622)
@@ -4260,8 +4269,10 @@
 	       [(20120427 123)
 		nil "Parse depend libraries of elisp file. [wiki]" single])
  (elhome .
-	 [(20131018 1641)
-	  nil "A framework for a \"home\" Emacs configuration [github]" tar])
+	 [(20131029 150)
+	  ((initsplit
+	    (20120630)))
+	  "A framework for a \"home\" Emacs configuration [github]" tar])
  (elfeed-web .
 	     [(20130908 1734)
 	      ((simple-httpd
@@ -4295,7 +4306,7 @@
 		 [(20091023 1909)
 		  nil "fuzzy symbol completion. [wiki]" single])
  (el-spice .
-	   [(20131027 2052)
+	   [(20131028 43)
 	    ((thingatpt+
 	      (0)))
 	    "Extra spice for emacs lisp programming [github]" tar])
@@ -4895,7 +4906,7 @@
 		     (9)))
 		   "decompilation extension for cider [github]" single])
  (cider .
-	[(20131028 1724)
+	[(20131028 1812)
 	 ((clojure-mode
 	   (2 0 0))
 	  (cl-lib
@@ -4903,8 +4914,8 @@
 	  (dash
 	   (2 1 0))
 	  (pkg-info
-	   (0 1)))
-	 "Clojure Integrated Development Environment and REPL [github]" tar])
+	   (0 3)))
+	 "Clojure IDE and REPL [github]" tar])
  (chm-view .
 	   [(20110616 1719)
 	    nil "View CHM file. [wiki]" single])
@@ -5411,15 +5422,9 @@
 	     (request
 	      (0 2 0)))
 	    "Open and evaluate 4clojure.com questions [github]" single])
- (google-c-style .
-		 [(20130412 1615)
-		  nil "Google's C/C++ style for c-mode [svn]" single])
  (evil .
        [(20131023 2315)
 	((undo-tree
 	  (0 6 3)))
-	"Extensible Vi layer for Emacs. [git]" tar])
- (pov-mode .
-	   [(20120825 1616)
-	    nil "Major mode for editing POV-Ray scene files. [git]" tar]))
+	"Extensible Vi layer for Emacs. [git]" tar]))
 
