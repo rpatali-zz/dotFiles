@@ -60,8 +60,6 @@ set expandtab                                    " cause TAB characters to not b
 set so=5                                         " Keep cursor away from the edge of the screen
 set backspace=indent,eol,start                   " allowing backspace to work after indent -> see :help i_backspacing
 
-set cursorline
-set cursorcolumn
 set nowrap
 set ruler                                        " shows status of cursor position
 set hidden                                       " hides buffers instead of closing them
@@ -316,7 +314,7 @@ Bundle 'kien/ctrlp.vim'
    nnoremap <C-p>m :CtrlPMRUFiles<CR>
 
    " Ctrlp command mode
-   nnoremap <C-p>c :CtrlP
+   nnoremap <C-p>c :CtrlP 
 
 
 " requires Ctrlp
@@ -330,9 +328,6 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
    nnoremap <C-p>e :CtrlPtjump<CR>
 
-Bundle 'mattn/ctrlp-register'
-   nnoremap <C-p>r :CtrlPRegister<CR>
-
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
 Bundle 'ervandew/supertab'
@@ -341,13 +336,6 @@ Bundle 'ervandew/supertab'
    let g:SuperTabClosePreviewOnPopupClose = 1       " close the scratch window on code completion popup close
 
    set completeopt=longest,menu,preview             " with completions not autofinishing first match
-
-""""""""""""""IndentLine""""""""""""""""""""""""""
-
-Bundle 'Yggdroot/indentLine'
-
-   let g:indentLine_char = '┆'
-   let g:indentLine_indentLevel = 4
 
 """"""""""""""Vim EasyTags""""""""""""""""""""""""
 
@@ -370,7 +358,6 @@ Bundle 'xolox/vim-easytags'
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
 Bundle 'vim-scripts/javacomplete'
-   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
@@ -455,6 +442,7 @@ Bundle 'Shougo/neocomplete.vim'
    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
    " Enable heavy omni completion.
    if !exists('g:neocomplete#sources#omni#input_patterns')

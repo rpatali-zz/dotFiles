@@ -136,7 +136,7 @@
 	      [(20130224 114)
 	       nil "Move left/right/up/down through your windows. [github]" single])
  (window-end-visible .
-		     [(20131021 953)
+		     [(20131029 1215)
 		      nil "Find the last visible point in a window [github]" single])
  (window+ .
 	  [(20130724 15)
@@ -851,7 +851,7 @@
 	   [(20130312 1839)
 	    nil "Support sequential operation which omitted prefix keys. [github]" single])
  (smartparens .
-	      [(20131028 1900)
+	      [(20131029 1458)
 	       ((cl-lib
 		 (0 1))
 		(dash
@@ -1283,7 +1283,7 @@
 	  [(20121017 157)
 	   nil "No description available. [github]" single])
  (quickrun .
-	   [(20131010 1314)
+	   [(20131029 1521)
 	    nil "Run commands quickly [github]" single])
  (quickref .
 	   [(20130113 1700)
@@ -1348,7 +1348,7 @@
 	    [(20131028 2100)
 	     nil "Lightweight library for managing project/repository-aware shell and command buffers [github]" single])
  (projectile .
-	     [(20131018 1037)
+	     [(20131029 1130)
 	      ((s
 		(1 6 0))
 	       (dash
@@ -1493,7 +1493,7 @@
 	   [(20120128 1601)
 	    nil "thin wrapper for Pianobar, a Pandora Radio client [github]" single])
  (php-mode .
-	   [(20130920 1850)
+	   [(20131029 1345)
 	    nil "Major mode for editing PHP code [github]" single])
  (php-eldoc .
 	    [(20130328 1526)
@@ -1528,7 +1528,7 @@
 	     [(20131025 1327)
 	      nil "another incremental search command, compatible with \"multiple-cursors\" [github]" tar])
  (phi-rectangle .
-		[(20131028 1326)
+		[(20131029 1306)
 		 nil "another rectangle-mark command (rewrite of rect-mark) [github]" single])
  (ph .
      [(20130312 2037)
@@ -2145,7 +2145,7 @@
 	    (0 2 4)))
 	  "mocking framework for emacs [github]" single])
  (mo-vi-ment-mode .
-		  [(20131023 1944)
+		  [(20131029 1203)
 		   nil "Provide vi-like cursor movement that's easy on the fingers [github]" single])
  (mo-git-blame .
 	       [(20131002 1223)
@@ -2171,7 +2171,7 @@
 	  [(20110427 1123)
 	   nil "Minimap sidebar for Emacs [git]" single])
  (minimal-session-saver .
-			[(20131021 1202)
+			[(20131029 1211)
 			 nil "Very lean session saver [github]" single])
  (minibuffer-cua .
 		 [(20130906 2034)
@@ -2317,7 +2317,7 @@
 		       (1 3 0)))
 		     "Push remote support for Magit. [github]" tar])
  (magit-log-edit .
-		 [(20131020 1605)
+		 [(20131029 1426)
 		  ((cl-lib
 		    (0 3))
 		   (magit
@@ -2344,7 +2344,7 @@
 			       [(20130730 1032)
 				nil "Advice for magit-log-edit-commit [github]" single])
  (magit .
-	[(20131028 2340)
+	[(20131029 1426)
 	 ((cl-lib
 	   (0 3))
 	  (git-commit-mode
@@ -3038,7 +3038,7 @@
 		 (1 0)))
 	       "Color theme selection with helm interface [github]" single])
  (helm-swoop .
-	     [(20131029 238)
+	     [(20131030 157)
 	      ((helm
 		(1 0))
 	       (emacs
@@ -3372,16 +3372,14 @@
 	  [(20120914 2148)
 	   nil "Paste to play.golang.org [github]" single])
  (go-mode .
-	  [(20131022 1235)
+	  [(20131029 1114)
 	   nil "Major mode for the Go programming language [hg]" tar])
  (go-errcheck .
 	      [(20130308 1757)
 	       nil "errcheck integration for go-mode [github]" single])
  (go-eldoc .
-	   [(20131016 1)
+	   [(20131029 1013)
 	    ((go-mode
-	      (0))
-	     (go-autocomplete
 	      (0)))
 	    "eldoc for go-mode [github]" single])
  (go-direx .
@@ -3458,7 +3456,7 @@
 	   [(20130130 2150)
 	    nil "Context-aware git commands such as branch handling [wiki]" single])
  (git-commit-mode .
-		  [(20131013 555)
+		  [(20131029 1425)
 		   nil "Major mode for editing git commit messages [github]" single])
  (git-blame .
 	    [(20110509 1226)
@@ -3894,7 +3892,7 @@
 	  [(20120211 1557)
 	   nil "Fast navigation and editing routines. [github]" single])
  (fasm-mode .
-	    [(20131020 1559)
+	    [(20131029 1411)
 	     nil "Fasm major mode [github]" single])
  (fasd .
        [(20130831 1903)
@@ -4005,6 +4003,11 @@
 			  ((evil
 			    (0)))
 			  "evil textobjects based on indentation [github]" single])
+ (evil .
+       [(20131023 2315)
+	((undo-tree
+	  (0 6 3)))
+	"Extensible Vi layer for Emacs. [git]" tar])
  (ethan-wspace .
 	       [(20130518 1144)
 		nil "whitespace customizations for emacs [github]" single])
@@ -4064,7 +4067,7 @@
 	  [(20091203 1913)
 	   nil "emacs window session manager [github]" single])
  (es-lib .
-	 [(20131028 940)
+	 [(20131029 807)
 	  ((cl-lib
 	    (0 3)))
 	  "A collection of emacs utilities [github]" tar])
@@ -4088,7 +4091,7 @@
 	 [(20131025 906)
 	  nil "Erlang major mode [github]" tar])
  (ergoemacs-mode .
-		 [(20131026 2312)
+		 [(20131029 930)
 		  nil "Emacs mode based on common modern software interface and ergonomics. [github]" tar])
  (erefactor .
 	    [(20130521 1838)
@@ -4397,7 +4400,7 @@
        [(20131015 1929)
 	nil "a BibTeX database manager [github]" tar])
  (easy-kill .
-	    [(20131028 1456)
+	    [(20131029 1534)
 	     ((emacs
 	       (24)))
 	     "kill things easily [github]" single])
@@ -4658,7 +4661,7 @@
 		     (24)))
 		   "Collection of useful combinators for Emacs Lisp [github]" single])
  (dash-at-point .
-		[(20131027 2313)
+		[(20131028 1417)
 		 nil "Search the word at point with Dash [github]" single])
  (dash .
        [(20130911 1307)
@@ -4906,7 +4909,7 @@
 		     (9)))
 		   "decompilation extension for cider [github]" single])
  (cider .
-	[(20131028 1812)
+	[(20131029 1619)
 	 ((clojure-mode
 	   (2 0 0))
 	  (cl-lib
@@ -4915,7 +4918,7 @@
 	   (2 1 0))
 	  (pkg-info
 	   (0 3)))
-	 "Clojure IDE and REPL [github]" tar])
+	 "Clojure Integrated Development Environment and REPL [github]" tar])
  (chm-view .
 	   [(20110616 1719)
 	    nil "View CHM file. [wiki]" single])
@@ -5160,7 +5163,7 @@
 	       [(20130824 1206)
 		nil "Auto install elisp file [wiki]" single])
  (auto-indent-mode .
-		   [(20131026 2338)
+		   [(20131028 2328)
 		    nil "Auto indent Minor mode [github]" tar])
  (auto-dim-other-buffers .
 			 [(20130429 2026)
@@ -5262,7 +5265,7 @@
 	   [(20130606 946)
 	    nil "open anything / QuickSilver-like candidate-selection framework [git]" tar])
  (anti-zenburn-theme .
-		     [(20131014 2305)
+		     [(20131028 2348)
 		      nil "Low-contrast Zenburn-inverted theme [github]" single])
  (ansi .
        [(20130827 1653)
@@ -5421,10 +5424,5 @@
 	      (1 2))
 	     (request
 	      (0 2 0)))
-	    "Open and evaluate 4clojure.com questions [github]" single])
- (evil .
-       [(20131023 2315)
-	((undo-tree
-	  (0 6 3)))
-	"Extensible Vi layer for Emacs. [git]" tar]))
+	    "Open and evaluate 4clojure.com questions [github]" single]))
 

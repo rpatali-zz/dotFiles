@@ -171,13 +171,11 @@
 ; }
 
 
-(require 'jtags) ; {
+(require 'ctags) ; {
 
-    (autoload 'jtags-mode "jtags" "Toggle jtags mode." t)
-    (add-hook 'java-mode-hook 'jtags-mode)
-
-    (setq tags-table-list '("~/code/java"))
-    (setq tags-revert-without-query 't)
+    (setq tags-revert-without-query t)
+    (global-set-key (kbd "C-.") 'ctags-create-or-update-tags-table)
+    (global-set-key (kbd "M-.")  'ctags-search)
 
 ; }
 
