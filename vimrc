@@ -328,6 +328,16 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'ivalkeen/vim-ctrlp-tjump'
    nnoremap <C-p>e :CtrlPtjump<CR>
 
+
+""""""""""""""Rainbow""""""""""""""""""""""""""""
+
+Bundle 'kien/rainbow_parentheses.vim'
+
+   au VimEnter * RainbowParenthesesToggle
+   au Syntax * RainbowParenthesesLoadRound
+   au Syntax * RainbowParenthesesLoadSquare
+   au Syntax * RainbowParenthesesLoadBraces
+
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
 Bundle 'ervandew/supertab'
@@ -339,21 +349,24 @@ Bundle 'ervandew/supertab'
 
 """"""""""""""Vim EasyTags""""""""""""""""""""""""
 
-" Requires xolox/vim-misc
-Bundle 'xolox/vim-easytags'
+" easytags causes problems on mac, disabling it until i figure it out.
+if hostname != "patali"
+   " Requires xolox/vim-misc
+   Bundle 'xolox/vim-easytags'
 
-   " disable highlighting, its slow
-   let g:easytags_auto_highlight = 0
-   let g:easytags_events = ['BufWritePost']
+      " disable highlighting, its slow
+      let g:easytags_auto_highlight = 0
+      let g:easytags_events = ['BufWritePost']
 
-   " Currently disabled, use tags by filetype for better perf
-   let g:easytags_file = tmpDir . "/easytags/tags"
-   let g:easytags_by_filetype = tmpDir . "/easytags"
-   " first look for local tags then global
-   let g:easytags_dynamic_files = 2
-   set tags=./.tags;,~/.tmpvim/easytags
+      " Currently disabled, use tags by filetype for better perf
+      let g:easytags_file = tmpDir . "/easytags/tags"
+      let g:easytags_by_filetype = tmpDir . "/easytags"
+      " first look for local tags then global
+      let g:easytags_dynamic_files = 2
+      set tags=./.tags;,~/.tmpvim/easytags
 
-   let g:easytags_include_members = 1
+      let g:easytags_include_members = 1
+endif
 
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
@@ -569,10 +582,10 @@ Bundle 'mhinz/vim-startify'
 """"""""""""""Vim Notes"""""""""""""""""""""""""""
 
 Bundle 'xolox/vim-misc'
+" vim-notes requires vim-misc
 Bundle 'xolox/vim-notes'
 
    let g:notes_directories = [tmpDir . "/notes"]
-   " vim-notes requires vim-misc
 
 """"""""""""""Python Jedi"""""""""""""""""""""""""
 
@@ -591,19 +604,14 @@ Bundle 'davidhalter/jedi-vim'
 """"""""""""""Unstack"""""""""""""""""""""""""""""
 
 Bundle 'mattboehm/vim-unstack'
+
    let g:unstack_mapkey = '<leader>us'
 
-""""""""""""""Strip trailing whitespace"""""""""""
+""""""""""""""Vim-trailing-whitespace"""""""""""""
 
-noremap <leader>ss :call StripWhitespace()<CR>
+Bundle 'bronson/vim-trailing-whitespace'
 
-   function! StripWhitespace()
-      let save_cursor = getpos(".")
-      let old_query = getreg('/')
-      :%s/\s\+$//e
-      call setpos('.', save_cursor)
-      call setreg('/', old_query)
-   endfunction
+   noremap <leader>ss :FixWhitespace<CR>
 
 """"""""""""""Markdownify"""""""""""""""""""""""""
 
