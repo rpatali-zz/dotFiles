@@ -39,7 +39,7 @@
 
 # Examples of commands:
 
-#"xbindkeys_show" 
+#"xbindkeys_show"
   #control+shift + q
 
 # set directly keycode (here control + f with my keyboard)
@@ -69,7 +69,7 @@
 # End of xbindkeys configuration #
 ##################################
 
-# keybinds for play/pause spotify
+# keybindings for play/pause spotify
 "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 XF86AudioPlay
 "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
@@ -79,12 +79,72 @@ XF86AudioPrev
 "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 XF86AudioNext
 
-# keybinds for volume control
-"amixer set Master 2%+"
-XF86AudioRaiseVolume
+# keybindgs for volume control
+"amixer set Master 2+"
+Mod2 + XF86AudioRaiseVolume
 
-"amixer set Master 2%-"
-XF86AudioLowerVolume
+"amixer set Master 2-"
+Mod2 + XF86AudioLowerVolume
 
 "amixer set Master 0"
-XF86AudioMute
+Mod2 + XF86AudioMute
+
+#https://gist.github.com/x6j8x/6989809
+###########################
+# xbindkeys configuration #
+###########################
+#
+# xbindkeysrc for sizeup.sh
+#
+#Dock Left
+"~/sizeup.sh l"
+    m:0x5c + c:113
+    Control+Alt+Mod2+Mod4 + Left
+
+#Dock Right
+"~/sizeup.sh r"
+    m:0x5c + c:114
+    Control+Alt+Mod2+Mod4 + Right
+
+#Maximize
+"~/sizeup.sh m"
+    m:0x5c + c:58
+    Control+Alt+Mod2+Mod4 + m
+
+#Center
+"~/sizeup.sh c"
+    m:0x5c + c:54
+    Control+Alt+Mod2+Mod4 + c
+
+#Upper
+"~/sizeup.sh u"
+    m:0x5c + c:111
+    Control+Alt+Mod2+Mod4 + Up
+
+#Lower
+"~/sizeup.sh d"
+    m:0x5c + c:116
+    Control+Alt+Mod2+Mod4 + Down
+
+#Upper-Left
+"~/sizeup.sh ul"
+    m:0x55 + c:113
+    Control+Shift+Mod2+Mod4 + Left
+
+#Upper-Right
+"~/sizeup.sh ur"
+    m:0x55 + c:111
+    Control+Shift+Mod2+Mod4 + Up
+
+#Lower-Right
+"~/sizeup.sh dr"
+    m:0x55 + c:114
+    Control+Shift+Mod2+Mod4 + Right
+
+#Lower-Left
+"~/sizeup.sh dl"
+    m:0x55 + c:116
+    Control+Shift+Mod2+Mod4 + Down
+
+#
+# End of xbindkeys configuration

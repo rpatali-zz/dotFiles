@@ -46,6 +46,7 @@ set cino+=(0                                     " When in unclosed parens, ie a
 set backup
 set undolevels=1000
 set undoreload=1000
+set history=1000
 
 set autoindent                                   " matches previous indent level,
 set smartindent                                  " intelligently guesses indent (code level)
@@ -157,7 +158,8 @@ Bundle 'sorin-ionescu/python.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'terryma/vim-expand-region'
 
-Bundle 'airblade/vim-gitgutter'
+" causes weird characters to show up.
+"Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'tpope/vim-surround'
@@ -173,11 +175,7 @@ Bundle 'altercation/vim-colors-solarized'
    " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
    colorscheme solarized
 
-   if strftime("%H") >= 5 && strftime("%H") <= 17
       set background=light
-   else
-      set background=dark
-   endif
 
 """"""""""""""Lightline"""""""""""""""""""""""""""
 
@@ -359,11 +357,11 @@ if hostname != "patali"
       let g:easytags_events = ['BufWritePost']
 
       " Currently disabled, use tags by filetype for better perf
-      let g:easytags_file = tmpDir . "/easytags/tags"
+      "let g:easytags_file = tmpDir . "/easytags/tags"
       let g:easytags_by_filetype = tmpDir . "/easytags"
       " first look for local tags then global
       let g:easytags_dynamic_files = 2
-      set tags=./.tags;,~/.tmpvim/easytags
+      :set tags=./.tags;,~/.tmpvim/easytags
 
       let g:easytags_include_members = 1
 endif
@@ -612,6 +610,17 @@ Bundle 'mattboehm/vim-unstack'
 Bundle 'bronson/vim-trailing-whitespace'
 
    noremap <leader>ss :FixWhitespace<CR>
+
+""""""""""""""Eighties""""""""""""""""""""""""""""
+
+Bundle 'justincampbell/vim-eighties'
+
+""""""""""""""Yankring""""""""""""""""""""""""""""
+
+Bundle 'YankRing.vim'
+
+   let g:yankring_replace_n_pkey = "yp"
+   let g:yankring_replace_n_nkey = "yn"
 
 """"""""""""""Markdownify"""""""""""""""""""""""""
 
