@@ -170,115 +170,21 @@ Bundle 'bufkill.vim'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
 
+Bundle 'chriskempson/vim-tomorrow-theme'
+
+   colo Tomorrow
+
 Bundle 'altercation/vim-colors-solarized'
 
    " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
-   colorscheme solarized
+   "colorscheme solarized
 
-      set background=light
+      "set background=light
 
-""""""""""""""Lightline"""""""""""""""""""""""""""
+""""""""""""""Powerline"""""""""""""""""""""""""""
 
-Bundle 'itchyny/lightline.vim'
-
-   let g:lightline = {
-         \ 'colorscheme': 'solarized',
-         \ 'active': {
-         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-         \   'right': [[ 'lineinfo', 'syntastic' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype']]
-         \ },
-         \ 'component_function': {
-         \   'fugitive': 'MyFugitive',
-         \   'filename': 'MyFilename',
-         \   'fileformat': 'MyFileformat',
-         \   'filetype': 'MyFiletype',
-         \   'fileencoding': 'MyFileencoding',
-         \   'mode': 'MyMode',
-         \   'syntastic': 'SyntasticStatuslineFlag'
-         \ },
-         \ 'separator': { 'left': "\u2b80", 'right': "\u2b82"},
-         \ 'subseparator': { 'left':  "\u2b81", 'right': "\u2b83"}
-         \ }
-
-   function! MyModified()
-     return &ft =~ 'help' ? '' : &modified ? '✚' : &modifiable ? '' : '-'
-   endfunction
-
-   function! MyReadonly()
-     return &ft !~? 'help' && &readonly ? '✹' : ''
-   endfunction
-
-   function! MyFilename()
-     let fname = expand('%:t')
-     return fname == 'ControlP' ? g:lightline.ctrlp_item :
-           \ fname =~ '__Gundo\|NERD_tree' ? '' :
-           \ ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-           \ ('' != fname ? fname : '[No Name]') .
-           \ ('' != MyModified() ? ' ' . MyModified() : '')
-   endfunction
-
-   function! MyFugitive()
-     try
-       if expand('%:t') !~? 'Gundo\|NERD' && exists('*fugitive#head')
-         let mark = ''  " edit here for cool mark
-         let _ = fugitive#head()
-         return strlen(_) ? mark._ : ''
-       endif
-     catch
-     endtry
-     return ''
-   endfunction
-
-   function! MyFileformat()
-     return winwidth('.') > 70 ? &fileformat : ''
-   endfunction
-
-   function! MyFiletype()
-     return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-   endfunction
-
-   function! MyFileencoding()
-     return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-   endfunction
-
-   function! MyMode()
-     let fname = expand('%:t')
-     return fname == 'ControlP' ? 'CtrlP' :
-          \ fname == '__Gundo__' ? 'Gundo' :
-          \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-          \ fname =~ 'NERD_tree' ? 'NERDTree' :
-          \ winwidth('.') > 60 ? lightline#mode() : ''
-   endfunction
-
-   function! CtrlPMark()
-     if expand('%:t') =~ 'ControlP'
-       call lightline#link('iR'[g:lightline.ctrlp_regex])
-       return g:lightline.ctrlp_prev . ' ' . g:lightline.subseparator.left . ' ' .
-           \ g:lightline.ctrlp_item . ' ' . g:lightline.subseparator.left . ' ' .
-           \ g:lightline.ctrlp_next . ' ' . g:lightline.subseparator.left . ' ' .
-           \ g:lightline.ctrlp_marked
-     else
-       return ''
-     endif
-   endfunction
-
-   let g:ctrlp_status_func = {
-     \ 'main': 'CtrlPStatusFunc_1',
-     \ 'prog': 'CtrlPStatusFunc_2',
-     \ }
-
-   function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-     let g:lightline.ctrlp_regex = a:regex
-     let g:lightline.ctrlp_prev = a:prev
-     let g:lightline.ctrlp_item = a:item
-     let g:lightline.ctrlp_next = a:next
-     let g:lightline.ctrlp_marked = a:marked
-     return lightline#statusline(0)
-   endfunction
-
-   function! CtrlPStatusFunc_2(str)
-     return lightline#statusline(0)
-   endfunction
+Bundle 'Lokaltog/powerline'
+   set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 """"""""""""""Ctrlp"""""""""""""""""""""""""""""""
 
@@ -325,7 +231,6 @@ Bundle 'tacahiroy/ctrlp-funky'
 
 Bundle 'ivalkeen/vim-ctrlp-tjump'
    nnoremap <C-p>e :CtrlPtjump<CR>
-
 
 """"""""""""""Rainbow""""""""""""""""""""""""""""
 
