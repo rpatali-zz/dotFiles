@@ -1,7 +1,7 @@
 """"""""""""""System resource loc"""""""""""""""""
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "rohitp"
+if hostname == "rohit-desktop"
    " ll ubuntu
    let home ="/usr/local/home/"
    let vimHome=home . ".vim"
@@ -179,7 +179,7 @@ Bundle 'altercation/vim-colors-solarized'
    " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
    "colorscheme solarized
 
-      "set background=light
+      "set background=dark
 
 """"""""""""""Powerline"""""""""""""""""""""""""""
 
@@ -234,12 +234,9 @@ Bundle 'ivalkeen/vim-ctrlp-tjump'
 
 """"""""""""""Rainbow""""""""""""""""""""""""""""
 
-Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'luochen1990/rainbow'
 
-   au VimEnter * RainbowParenthesesToggle
-   au Syntax * RainbowParenthesesLoadRound
-   au Syntax * RainbowParenthesesLoadSquare
-   au Syntax * RainbowParenthesesLoadBraces
+   let g:rainbow_active = 1
 
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
@@ -273,7 +270,9 @@ endif
 
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
-Bundle 'vim-scripts/javacomplete'
+Bundle 'javacomplete'
+
+   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
@@ -358,7 +357,6 @@ Bundle 'Shougo/neocomplete.vim'
    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
    " Enable heavy omni completion.
    if !exists('g:neocomplete#sources#omni#input_patterns')
