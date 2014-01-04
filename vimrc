@@ -6,14 +6,14 @@ if hostname == "rohit-desktop"
    let home ="/usr/local/home/"
    let vimHome=home . ".vim"
    let tmpDir=home . ".tmpvim"
-elseif hostname == "kryptonite"
+elseif hostname == "code"
    " home vbox
-   let home="/home/patali/"
+   let home="/home/vagrant/"
    let vimHome=home . ".vim"
    let tmpDir=home . ".tmpvim"
-elseif hostname == "patali"
+elseif hostname == "pata"
    " home mac
-   let home="/Users/patali/"
+   let home="/Users/pata/"
    let vimHome =home. ".vim"
    let tmpDir =home. ".tmpvim"
 endif
@@ -85,7 +85,7 @@ set laststatus=2                                 " required by fancy status line
 let mapleader=";"                                " specialized leader key
 
 " use ';' instead of ':' for command mode
-noremap ; :
+nnoremap ; :
 
 map! <leader><leader> <Esc>
 map <leader><leader> <Esc>
@@ -158,8 +158,6 @@ Bundle 'sorin-ionescu/python.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'terryma/vim-expand-region'
 
-" causes weird characters to show up.
-"Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'tpope/vim-surround'
@@ -169,9 +167,7 @@ Bundle 'ZoomWin'
 Bundle 'bufkill.vim'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
-
 Bundle 'chriskempson/vim-tomorrow-theme'
-
    colo Tomorrow
 
 Bundle 'altercation/vim-colors-solarized'
@@ -249,10 +245,8 @@ Bundle 'ervandew/supertab'
 
 """"""""""""""Vim EasyTags""""""""""""""""""""""""
 
-" easytags causes problems on mac, disabling it until i figure it out.
-if hostname != "patali"
-   " Requires xolox/vim-misc
-   Bundle 'xolox/vim-easytags'
+" Requires xolox/vim-misc
+Bundle 'xolox/vim-easytags'
 
       " disable highlighting, its slow
       let g:easytags_auto_highlight = 0
@@ -266,7 +260,6 @@ if hostname != "patali"
       :set tags=./.tags;,~/.tmpvim/easytags
 
       let g:easytags_include_members = 1
-endif
 
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
@@ -534,3 +527,20 @@ function! Markdownify()
     let l:urlSpacesRemoved = substitute(expand("%:p"), " ", "\\\\ ", "g")
     execute '!markdown2html -i ' . l:urlSpacesRemoved . ' -g'
 endfunction
+
+
+""""""""""""""Vim-trailing-whitespace"""""""""""""
+
+Bundle 'bronson/vim-trailing-whitespace'
+
+   noremap <leader>ss :FixWhitespace<CR>
+
+""""""""""""""Eighties"""""""""""""""""""""""""""
+
+Bundle 'justincampbell/vim-eighties'
+
+""""""""""""""Yankring"""""""""""""""""""""""""""
+
+Bundle 'YankRing.vim'
+   let g:yankring_replace_n_pkey = "yp"
+   let g:yankring_replace_n_nkey = "yn"
