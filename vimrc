@@ -170,14 +170,14 @@ Bundle 'bufkill.vim'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
 
-Bundle 'chriskempson/vim-tomorrow-theme'
+"Bundle 'chriskempson/vim-tomorrow-theme'
 
-   colo Tomorrow
+   "colo Tomorrow
 
 Bundle 'altercation/vim-colors-solarized'
 
    " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
-   "colorscheme solarized
+   colorscheme solarized
 
       "set background=dark
 
@@ -370,6 +370,7 @@ Bundle 'Shougo/neosnippet'
   " Plugin key-mappings.
   imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
 
   " SuperTab like snippets behavior.
   imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
