@@ -148,9 +148,6 @@ Bundle 'git://repo.or.cz/vcscommand'
 
 Bundle 'jiangmiao/auto-pairs'
 
-" ack requires Ack-grep pkg
-Bundle 'mileszs/ack.vim'
-
 Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'sorin-ionescu/python.vim'
@@ -178,6 +175,12 @@ Bundle 'altercation/vim-colors-solarized'
    colorscheme solarized
 
       "set background=dark
+
+""""""""""""""Ack-grep""""""""""""""""""""""""""""
+
+" ack requires Ack-grep pkg
+Bundle 'mileszs/ack.vim'
+   let g:ackprg = 'ag --nogroup --nocolor --column'
 
 """"""""""""""Powerline"""""""""""""""""""""""""""
 
@@ -217,6 +220,36 @@ Bundle 'kien/ctrlp.vim'
 
    " Ctrlp command mode
    nnoremap <C-p>c :CtrlP 
+
+   " To improve |CtrlP| experience it is strongly recommended to install |AG|
+   " https://github.com/ggreer/the_silver_searcher
+   " and then use following |CtrlP| settings in your .vimrc:
+
+   " Set delay to prevent extra search
+   let g:ctrlp_lazy_update = 350
+
+   " Do not clear filenames cache, to improve CtrlP startup
+   " You can manualy clear it by <F5>
+   let g:ctrlp_clear_cache_on_exit = 0
+
+   " Set no file limit, we are building a big project
+   let g:ctrlp_max_files = 0
+
+   " If ag is available use it as filename list generator instead of 'find'
+   if executable("ag")
+       set grepprg=ag\ --nogroup\ --nocolor
+       let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+   endif
+
+
+" Default ctrlp matcher is slow.
+Bundle 'FelikZ/ctrlp-py-matcher'
+   " PyMatcher for CtrlP
+    if !has('python')
+        echo 'In order to use pymatcher plugin, you need +python compiled vim'
+    else
+        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+    endif
 
 
 " requires Ctrlp
