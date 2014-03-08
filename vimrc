@@ -283,6 +283,9 @@ Bundle 'ervandew/supertab'
 " Requires xolox/vim-misc
 Bundle 'xolox/vim-easytags'
 
+   " generate java-ctags with command:
+   " ctags-exuberant --fields=+l --recurse=yes --sort=yes --java-kinds=+p -f .tags --languages=java
+
       " disable highlighting, its slow
       let g:easytags_auto_highlight = 0
       let g:easytags_events = ['BufWritePost']
