@@ -6,16 +6,21 @@ if hostname == "rohit-desktop"
    let home ="/usr/local/home/"
    let vimHome=home . ".vim"
    let tmpDir=home . ".tmpvim"
-elseif hostname == "code"
+elseif hostname == "code-vm"
    " home vbox
    let home="/home/vagrant/"
    let vimHome=home . ".vim"
-   let tmpDir=home . ".tmpvim"
+   let tmpDir=home . ".vim"
 elseif hostname == "pata"
    " home mac
    let home="/Users/pata/"
    let vimHome =home. ".vim"
    let tmpDir =home. ".tmpvim"
+elseif hostname == "rohit-osx2.local"
+   " home mac
+   let home="/Users/rohit.patali/"
+   let vimHome =home. ".vim"
+   let tmpDir =home. ".vim"
 endif
 
 " Setup backup location and enable
