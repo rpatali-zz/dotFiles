@@ -531,10 +531,10 @@ Bundle 'davidhalter/jedi-vim'
 
    let g:jedi#use_tabs_not_buffers = 0
    let g:jedi#use_splits_not_buffers = "bottom"
-   let g:jedi#goto_assignments_command = "<leader>jg"
+   let g:jedi#goto_assignments_command = "<leader>ja"
    let g:jedi#goto_definitions_command = "<leader>jd"
    let g:jedi#documentation_command = "K"
-   let g:jedi#usages_command = "<leader>jn"
+   let g:jedi#usages_command = "<leader>ju"
    let g:jedi#completions_command = "<C-Space>"
    let g:jedi#rename_command = "<leader>jr"
    let g:jedi#show_call_signatures = "1"
