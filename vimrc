@@ -16,8 +16,8 @@ elseif hostname == "pata"
    let home="/Users/pata/"
    let vimHome =home. ".vim"
    let tmpDir =home. ".tmpvim"
-elseif hostname == "rohit-osx2.local"
-   " home mac
+else
+   " office mac, hostname changes automatically
    let home="/Users/rohit.patali/"
    let vimHome =home. ".vim"
    let tmpDir =home. ".vim"
@@ -245,17 +245,6 @@ Bundle 'kien/ctrlp.vim'
        set grepprg=ag\ --nogroup\ --nocolor
        let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
    endif
-
-
-" Default ctrlp matcher is slow.
-Bundle 'FelikZ/ctrlp-py-matcher'
-   " PyMatcher for CtrlP
-    if !has('python')
-        echo 'In order to use pymatcher plugin, you need +python compiled vim'
-    else
-        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-    endif
-
 
 " requires Ctrlp
 Bundle 'tacahiroy/ctrlp-funky'
