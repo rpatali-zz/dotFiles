@@ -36,10 +36,9 @@ set t_Co=256
 set encoding=utf-8                               " Necessary to show unicode glyphs
 
 set autoread                                     " auto reload files that are changed outside of vim
-"set clipboard=unnamed                            " copy across vim in different terminals
+"set clipboard=unnamed                           " copy across vim in different terminals
 
-autocmd VimEnter * set vb t_vb=                  " removes annoying beeps when bad command
-set vb t_vb=
+set vb t_vb=                                     " removes annoying beeps when bad command
 
 syntax on                                        " syntax highlighting
 filetype off                                     " required!
@@ -149,9 +148,23 @@ Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
 
+Bundle 'Lokaltog/powerline'
+   set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
 Bundle 'git://repo.or.cz/vcscommand'
 
+Bundle 'justincampbell/vim-eighties'
+
+Bundle 'bronson/vim-trailing-whitespace'
+   noremap <leader>ss :FixWhitespace<CR>
+
+Bundle 'mattboehm/vim-unstack'
+   let g:unstack_mapkey = '<leader>us'
+
 Bundle 'jiangmiao/auto-pairs'
+
+" ag requires the_silver_searcher pkg
+Bundle 'rking/ag.vim'
 
 Bundle 'scrooloose/nerdcommenter'
 
@@ -165,14 +178,11 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
+Bundle 'javacomplete'
 Bundle 'ZoomWin'
 Bundle 'bufkill.vim'
 
 """"""""""""""Color"""""""""""""""""""""""""""""""
-
-"Bundle 'chriskempson/vim-tomorrow-theme'
-
-   "colo Tomorrow
 
 Bundle 'altercation/vim-colors-solarized'
 
@@ -180,17 +190,6 @@ Bundle 'altercation/vim-colors-solarized'
    colorscheme solarized
 
       "set background=dark
-
-""""""""""""""Ack-grep""""""""""""""""""""""""""""
-
-" ack requires Ack-grep pkg
-Bundle 'mileszs/ack.vim'
-   let g:ackprg = 'ag --nogroup --nocolor --column'
-
-""""""""""""""Powerline"""""""""""""""""""""""""""
-
-Bundle 'Lokaltog/powerline'
-   set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 """"""""""""""Ctrlp"""""""""""""""""""""""""""""""
 
@@ -225,6 +224,15 @@ Bundle 'kien/ctrlp.vim'
 
    " Ctrlp command mode
    nnoremap <C-p>c :CtrlP 
+
+   Bundle 'FelikZ/ctrlp-py-matcher'
+   " PyMatcher for CtrlP
+   if !has('python')
+      echo 'In order to use pymatcher plugin, you need +python
+      compiled vim'
+   else
+      let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
+   endif
 
    " To improve |CtrlP| experience it is strongly recommended to install |AG|
    " https://github.com/ggreer/the_silver_searcher
@@ -295,9 +303,7 @@ Bundle 'xolox/vim-easytags'
 
 """"""""""""""JavaComplete""""""""""""""""""""""""
 
-Bundle 'javacomplete'
 
-   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
@@ -382,6 +388,7 @@ Bundle 'Shougo/neocomplete.vim'
    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+   autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
    " Enable heavy omni completion.
    if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -528,22 +535,6 @@ Bundle 'davidhalter/jedi-vim'
    let g:jedi#rename_command = "<leader>jr"
    let g:jedi#show_call_signatures = "1"
 
-""""""""""""""Unstack"""""""""""""""""""""""""""""
-
-Bundle 'mattboehm/vim-unstack'
-
-   let g:unstack_mapkey = '<leader>us'
-
-""""""""""""""Vim-trailing-whitespace"""""""""""""
-
-Bundle 'bronson/vim-trailing-whitespace'
-
-   noremap <leader>ss :FixWhitespace<CR>
-
-""""""""""""""Eighties""""""""""""""""""""""""""""
-
-Bundle 'justincampbell/vim-eighties'
-
 """"""""""""""Yankring""""""""""""""""""""""""""""
 
 Bundle 'YankRing.vim'
@@ -560,17 +551,6 @@ function! Markdownify()
     let l:urlSpacesRemoved = substitute(expand("%:p"), " ", "\\\\ ", "g")
     execute '!markdown2html -i ' . l:urlSpacesRemoved . ' -g'
 endfunction
-
-
-""""""""""""""Vim-trailing-whitespace"""""""""""""
-
-Bundle 'bronson/vim-trailing-whitespace'
-
-   noremap <leader>ss :FixWhitespace<CR>
-
-""""""""""""""Eighties"""""""""""""""""""""""""""
-
-Bundle 'justincampbell/vim-eighties'
 
 """"""""""""""Yankring"""""""""""""""""""""""""""
 
