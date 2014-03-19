@@ -146,10 +146,13 @@ Bundle 'gmarik/vundle'
 
 """"""""""""""Packages""""""""""""""""""""""""""""""""
 
-Bundle 'Lokaltog/vim-easymotion'
-
 Bundle 'Lokaltog/powerline'
    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+Bundle 'altercation/vim-colors-solarized'
+   colorscheme solarized
+
+Bundle 'Lokaltog/vim-easymotion'
 
 Bundle 'git://repo.or.cz/vcscommand'
 
@@ -163,6 +166,9 @@ Bundle 'mattboehm/vim-unstack'
 
 Bundle 'jiangmiao/auto-pairs'
 
+Bundle 'luochen1990/rainbow'
+   let g:rainbow_active = 1
+
 " ag requires the_silver_searcher pkg
 Bundle 'rking/ag.vim'
 
@@ -170,26 +176,20 @@ Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'sorin-ionescu/python.vim'
 
+Bundle 't9md/vim-choosewin'
+   nmap  -  <Plug>(choosewin)
+
+Bundle 'christoomey/vim-tmux-navigator'
+
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'terryma/vim-expand-region'
 
 Bundle 'tpope/vim-fugitive'
-
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
 Bundle 'javacomplete'
 Bundle 'ZoomWin'
 Bundle 'bufkill.vim'
-
-""""""""""""""Color"""""""""""""""""""""""""""""""
-
-Bundle 'altercation/vim-colors-solarized'
-
-   " in the past, it has required me to install ghuntley/terminator-solarized to make this colorscheme work for me.
-   colorscheme solarized
-
-      "set background=dark
 
 """"""""""""""Ctrlp"""""""""""""""""""""""""""""""
 
@@ -223,7 +223,7 @@ Bundle 'kien/ctrlp.vim'
    nnoremap <C-p>m :CtrlPMRUFiles<CR>
 
    " Ctrlp command mode
-   nnoremap <C-p>c :CtrlP 
+   nnoremap <C-p>c :CtrlP
 
    Bundle 'FelikZ/ctrlp-py-matcher'
    " PyMatcher for CtrlP
@@ -251,7 +251,7 @@ Bundle 'kien/ctrlp.vim'
    " If ag is available use it as filename list generator instead of 'find'
    if executable("ag")
        set grepprg=ag\ --nogroup\ --nocolor
-       let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+       let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.svn'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
    endif
 
 " requires Ctrlp
@@ -264,12 +264,6 @@ Bundle 'tacahiroy/ctrlp-funky'
 
 Bundle 'ivalkeen/vim-ctrlp-tjump'
    nnoremap <C-p>e :CtrlPtjump<CR>
-
-""""""""""""""Rainbow""""""""""""""""""""""""""""
-
-Bundle 'luochen1990/rainbow'
-
-   let g:rainbow_active = 1
 
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
@@ -300,10 +294,6 @@ Bundle 'xolox/vim-easytags'
       :set tags=./.tags;,~/.tmpvim/easytags
 
       let g:easytags_include_members = 1
-
-""""""""""""""JavaComplete""""""""""""""""""""""""
-
-
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
@@ -430,56 +420,6 @@ Bundle 'scrooloose/syntastic'
    let g:syntastic_warning_symbol='⚠'
    let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
 
-""""""""""""""Conque-Term"""""""""""""""""""""""""
-
-Bundle 'rosenfeld/conque-term'
-
-   " Toggle ConqueTerm window.
-   " Eric Siegel is the original author of this function: https://github.com/esiegel/dotvim
-
-   nnoremap <Leader>v :call <SID>ToggleConqueTerm(1)<CR>
-   nnoremap <Leader>s :call <SID>ToggleConqueTerm(-1)<CR>
-
-   function! s:ToggleConqueTerm(flag)
-      " There is a bug in conque_term#get_instance() when there isn't an instance
-      " so we will use the global list of terminals instead.
-      if !exists("g:ConqueTerm_Terminals") || len(g:ConqueTerm_Terminals) == 0
-         "call conque_term#open("bash", ['vsplit'])
-         " Doesn't work very well with oh-my-zsh.
-         ConqueTermVSplit bash
-         return
-      endif
-
-      " Current buffer information
-      let current_buffer_nr = bufnr("")
-
-      " conque term information
-      let term_info   = conque_term#get_instance()
-      let buffer_name = term_info['buffer_name']
-      let buffer_nr   = bufnr(buffer_name)
-      let buffer_win  = bufwinnr(buffer_nr)
-
-      if buffer_win == -1
-         " open window
-         if a:flag == 1
-            execute 'vs ' . buffer_name
-         else
-            execute 'sp ' . buffer_name
-         endif
-      else
-         " close conque window
-         if current_buffer_nr != buffer_nr
-            execute buffer_win . "wincmd w"
-            wincmd c
-            execute bufwinnr(current_buffer_nr) . "wincmd w"
-         else
-            wincmd c
-         endif
-      endif
-   endfunction
-
-   let g:ConqueTerm_ReadUnfocused = 1
-
 """"""""""""""NERDTree""""""""""""""""""""""""""""
 
 Bundle 'scrooloose/nerdtree'
@@ -551,9 +491,3 @@ function! Markdownify()
     let l:urlSpacesRemoved = substitute(expand("%:p"), " ", "\\\\ ", "g")
     execute '!markdown2html -i ' . l:urlSpacesRemoved . ' -g'
 endfunction
-
-""""""""""""""Yankring"""""""""""""""""""""""""""
-
-Bundle 'YankRing.vim'
-   let g:yankring_replace_n_pkey = "yp"
-   let g:yankring_replace_n_nkey = "yn"
