@@ -223,7 +223,7 @@ Bundle 'kien/ctrlp.vim'
    nnoremap <C-p>m :CtrlPMRUFiles<CR>
 
    " Ctrlp command mode
-   nnoremap <C-p>c :CtrlP
+   nnoremap <C-p>c :CtrlP 
 
    Bundle 'FelikZ/ctrlp-py-matcher'
    " PyMatcher for CtrlP
