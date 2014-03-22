@@ -15,7 +15,7 @@ elseif hostname == "pata"
    " home mac
    let home="/Users/pata/"
    let vimHome =home. ".vim"
-   let tmpDir =home. ".tmpvim"
+   let tmpDir =home. ".vim"
 else
    " office mac, hostname changes automatically
    let home="/Users/rohit.patali/"
