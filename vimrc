@@ -277,6 +277,7 @@ Bundle 'ervandew/supertab'
 """"""""""""""Vim EasyTags""""""""""""""""""""""""
 
 " Requires xolox/vim-misc
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 
    " generate java-ctags with command:
@@ -452,14 +453,6 @@ Bundle 'mhinz/vim-startify'
             \ '~/code/verizon_vmp']
    let g:startify_files_number = 20
    let g:startify_restore_position = 1
-
-""""""""""""""Vim Notes"""""""""""""""""""""""""""
-
-Bundle 'xolox/vim-misc'
-" vim-notes requires vim-misc
-Bundle 'xolox/vim-notes'
-
-   let g:notes_directories = [tmpDir . "/notes"]
 
 """"""""""""""Python Jedi"""""""""""""""""""""""""
 
