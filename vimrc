@@ -91,9 +91,6 @@ let mapleader=";"                                " specialized leader key
 " use ';' instead of ':' for command mode
 nnoremap ; :
 
-map! <leader><leader> <Esc>
-map <leader><leader> <Esc>
-
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
