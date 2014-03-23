@@ -180,6 +180,9 @@ Bundle 'christoomey/vim-tmux-navigator'
 
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'Yggdroot/indentLine'
+   let g:indentLine_char = '┆'
+
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
