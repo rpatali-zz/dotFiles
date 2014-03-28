@@ -254,16 +254,8 @@ Bundle 'kien/ctrlp.vim'
        let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.svn'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
    endif
 
-" requires Ctrlp
-Bundle 'tacahiroy/ctrlp-funky'
-
-   " map CtrlPFunky
-   nnoremap <C-p>t :CtrlPFunky<CR>
-   " narrow the search with word under cursor
-   nnoremap <C-p>T :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
 Bundle 'ivalkeen/vim-ctrlp-tjump'
-   nnoremap <C-p>e :CtrlPtjump<CR>
+   nnoremap <C-p>t :CtrlPtjump<CR>
 
 """"""""""""""Supertab""""""""""""""""""""""""""""
 
