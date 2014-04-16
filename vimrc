@@ -168,6 +168,8 @@ Bundle 'luochen1990/rainbow'
 
 " ag requires the_silver_searcher pkg
 Bundle 'rking/ag.vim'
+   " search for word under cursor using ag.
+   nnoremap S :Ag! -i -a "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 Bundle 'scrooloose/nerdcommenter'
 
