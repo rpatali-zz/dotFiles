@@ -179,12 +179,10 @@ Bundle 'christoomey/vim-tmux-navigator'
 
 Bundle 'terryma/vim-multiple-cursors'
 
-Bundle 'Yggdroot/indentLine'
-   let g:indentLine_char = '┆'
-
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-markdown'
 
 Bundle 'javacomplete'
 Bundle 'ZoomWin'
@@ -447,13 +445,3 @@ Bundle 'YankRing.vim'
 
    let g:yankring_replace_n_pkey = "yp"
    let g:yankring_replace_n_nkey = "yn"
-
-""""""""""""""Markdownify"""""""""""""""""""""""""
-
-" LL stuff, don't bother copying this part,
-" you are missing markdown2html script.
-function! Markdownify()
-" markdown current file to html
-    let l:urlSpacesRemoved = substitute(expand("%:p"), " ", "\\\\ ", "g")
-    execute '!markdown2html -i ' . l:urlSpacesRemoved . ' -g'
-endfunction
