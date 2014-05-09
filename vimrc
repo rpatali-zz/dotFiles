@@ -175,9 +175,6 @@ Bundle 'scrooloose/nerdcommenter'
 
 Bundle 'sorin-ionescu/python.vim'
 
-Bundle 't9md/vim-choosewin'
-   nmap  -  <Plug>(choosewin)
-
 Bundle 'christoomey/vim-tmux-navigator'
 
 Bundle 'terryma/vim-multiple-cursors'
