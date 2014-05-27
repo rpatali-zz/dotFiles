@@ -36,7 +36,7 @@ set t_Co=256
 set encoding=utf-8                               " Necessary to show unicode glyphs
 
 set autoread                                     " auto reload files that are changed outside of vim
-"set clipboard=unnamed                           " copy across vim in different terminals
+"set clipboard+=unnamed                          " copy across vim in different terminals
 
 set vb t_vb=                                     " removes annoying beeps when bad command
 
@@ -88,18 +88,11 @@ set laststatus=2                                 " required by fancy status line
 " actually use the default ctrl-[, that is more meaningful.
 let mapleader=";"                                " specialized leader key
 
-" use ';' instead of ':' for command mode
-nnoremap ; :
-
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-" change to next buffer
-"noremap <silent> <C-h> :bp<CR>
-" change to previou buffer
-"noremap <silent> <C-l> :bn<CR>
 
 " D deletes till end
 " C changes till end
@@ -112,10 +105,6 @@ cmap w!! %!sudo tee > /dev/null %
 
 " removes highlighting from search after space
 noremap <silent> <Space> :noh<Bar>echo<CR>
-
-" map in command mode to go back to beginning of line.
-" matches normal shell mapping, like emacs.
-cmap <c-a> <c-b>
 
 nnoremap <C-c> :close<CR>
 
@@ -183,6 +172,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rsi'
 
 Bundle 'javacomplete'
 Bundle 'ZoomWin'
