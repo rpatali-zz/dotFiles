@@ -40,7 +40,7 @@ set autoread                                     " auto reload files that are ch
 
 set vb t_vb=                                     " removes annoying beeps when bad command
 
-syntax on                                        " syntax highlighting
+syntax enable                                    " syntax highlighting
 filetype off                                     " required!
 filetype plugin indent on                        " required!
 
@@ -85,8 +85,9 @@ set laststatus=2                                 " required by fancy status line
 
 """"""""""""""Mappings""""""""""""""""""""""""""""
 
-" actually use the default ctrl-[, that is more meaningful.
 let mapleader=";"                                " specialized leader key
+
+inoremap <leader><leader> <ESC>
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
@@ -100,16 +101,15 @@ nnoremap <c-l> <c-w>l
 " By default it yanks whole line
 nnoremap Y y$
 
-" Trick if forgot to sudo
-cmap w!! %!sudo tee > /dev/null %
+" Automatically jump to end of text you pasted:
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]`
 
 " removes highlighting from search after space
 noremap <silent> <Space> :noh<Bar>echo<CR>
 
 nnoremap <C-c> :close<CR>
-
-" run last created/run macro, stored in `q`
-nnoremap Q @@
 
 " Open file in current buffer in a split screen and scroll bind on
 noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=240<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
@@ -117,6 +117,13 @@ noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set colu
 """"""""""""""Gradle""""""""""""""""""""""""""""""
 
 au BufNewFile,BufRead *.gradle set filetype=groovy
+
+""""""""""""""fzf""""""""""""""""""""""""""""""""
+
+set rtp+=~/.fzf
+
+   " Each selected item will be opened in a new tab
+   nnoremap <silent> <C-t> :FZF -m +c ~/code/<CR>
 
 """"""""""""""Vundle"""""""""""""""""""""""""""""
 
@@ -137,6 +144,8 @@ Bundle 'Lokaltog/powerline'
 
 Bundle 'altercation/vim-colors-solarized'
    colorscheme solarized
+   let g:solarized_termcolors=256
+   let g:solarized_contrast = "high"
 
 Bundle 'Lokaltog/vim-easymotion'
 
@@ -152,15 +161,19 @@ Bundle 'mattboehm/vim-unstack'
 
 Bundle 'jiangmiao/auto-pairs'
 
-Bundle 'luochen1990/rainbow'
-   let g:rainbow_active = 1
+Bundle 'kien/rainbow_parentheses.vim'
+" Always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " ag requires the_silver_searcher pkg
 Bundle 'rking/ag.vim'
    " search for word under cursor using ag.
    nnoremap S :Ag! -i -a "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'sheerun/vim-polyglot'
 
 Bundle 'sorin-ionescu/python.vim'
 
@@ -168,15 +181,23 @@ Bundle 'christoomey/vim-tmux-navigator'
 
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'scrooloose/nerdcommenter'
+
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-rsi'
+Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-sleuth'
+
+" depends on vim-fugitive.
+Bundle 'idanarye/vim-merginal'
 
 Bundle 'javacomplete'
 Bundle 'ZoomWin'
 Bundle 'bufkill.vim'
+Bundle 'gitignore'
 
 """"""""""""""Ctrlp"""""""""""""""""""""""""""""""
 
@@ -235,6 +256,8 @@ Bundle 'kien/ctrlp.vim'
    " Set no file limit, we are building a big project
    let g:ctrlp_max_files = 0
 
+   let g:ctrlp_use_caching = 0
+
    " If ag is available use it as filename list generator instead of 'find'
    if executable("ag")
        set grepprg=ag\ --nogroup\ --nocolor
@@ -262,18 +285,19 @@ Bundle 'xolox/vim-easytags'
    " generate java-ctags with command:
    " ctags-exuberant --fields=+l --recurse=yes --sort=yes --java-kinds=+p -f .tags --languages=java
 
-      " disable highlighting, its slow
-      let g:easytags_auto_highlight = 0
-      let g:easytags_events = ['BufWritePost']
+   " disable highlighting, its slow
+   let g:easytags_auto_highlight = 0
+   let g:easytags_events = ['BufWritePost']
 
-      " Currently disabled, use tags by filetype for better perf
-      "let g:easytags_file = tmpDir . "/easytags/tags"
-      let g:easytags_by_filetype = tmpDir . "/easytags"
-      " first look for local tags then global
-      let g:easytags_dynamic_files = 2
-      :set tags=./.tags;,~/.tmpvim/easytags
+   " Currently disabled, use tags by filetype for better perf
+   "let g:easytags_file = tmpDir . "/easytags/tags"
+   let g:easytags_by_filetype = tmpDir . "/easytags"
+   " first look for local tags then global
+   let g:easytags_dynamic_files = 2
+   :set tags=./.tags;,~/.vim/easytags
 
-      let g:easytags_include_members = 1
+   let g:easytags_include_members = 1
+   let g:easytags_async = 1
 
 """"""""""""""NeoComplete"""""""""""""""""""""""""
 
