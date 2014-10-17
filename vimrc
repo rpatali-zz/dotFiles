@@ -183,13 +183,14 @@ Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'scrooloose/nerdcommenter'
 
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rsi'
 Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-obsession'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-rsi'
 Bundle 'tpope/vim-sleuth'
+Bundle 'tpope/vim-surround'
 
 " depends on vim-fugitive.
 Bundle 'idanarye/vim-merginal'
@@ -318,7 +319,7 @@ Bundle 'xolox/vim-easytags'
 "            --enable-luainterp=yes --with-lua-prefix=/usr/local --with-luajit \
 "            --enable-fail-if-missing \
 "
-"make VIMRUNTIMEDIR=/usr/share/vim/vim74
+"make VIMRUNTIMEDIR=/usr/local/share/vim/vim74
 "
 "sudo checkinstall
 "
