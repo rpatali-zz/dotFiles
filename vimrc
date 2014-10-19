@@ -234,14 +234,8 @@ Bundle 'kien/ctrlp.vim'
    " Ctrlp command mode
    nnoremap <C-p>c :CtrlP 
 
-   Bundle 'FelikZ/ctrlp-py-matcher'
-   " PyMatcher for CtrlP
-   if !has('python')
-      echo 'In order to use pymatcher plugin, you need +python
-      compiled vim'
-   else
-      let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
-   endif
+   Bundle 'JazzCore/ctrlp-cmatcher'
+      let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
    " To improve |CtrlP| experience it is strongly recommended to install |AG|
    " https://github.com/ggreer/the_silver_searcher
