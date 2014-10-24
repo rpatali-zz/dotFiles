@@ -36,7 +36,7 @@ set t_Co=256
 set encoding=utf-8                               " Necessary to show unicode glyphs
 
 set autoread                                     " auto reload files that are changed outside of vim
-set clipboard+=unnamed                          " copy across vim in different terminals
+set clipboard+=unnamed                           " copy across vim in different terminals
 
 set vb t_vb=                                     " removes annoying beeps when bad command
 
@@ -143,9 +143,9 @@ Bundle 'Lokaltog/powerline'
    set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 Bundle 'altercation/vim-colors-solarized'
-   colorscheme solarized
-   let g:solarized_termcolors=256
+   let g:solarized_visibility = "high"
    let g:solarized_contrast = "high"
+   colorscheme solarized
 
 Bundle 'Lokaltog/vim-easymotion'
 
