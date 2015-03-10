@@ -1,32 +1,7 @@
-""""""""""""""System resource loc"""""""""""""""""
-
-let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "rohit-desktop"
-   " ll ubuntu
-   let home ="/usr/local/home/"
-   let vimHome=home . ".vim"
-   let tmpDir=home . ".tmpvim"
-elseif hostname == "code-vm"
-   " home vbox
-   let home="/home/vagrant/"
-   let vimHome=home . ".vim"
-   let tmpDir=home . ".vim"
-elseif hostname == "pata"
-   " home mac
-   let home="/Users/pata/"
-   let vimHome =home. ".vim"
-   let tmpDir =home. ".vim"
-else
-   " office mac, hostname changes automatically
-   let home="/Users/rohit.patali/"
-   let vimHome =home. ".vim"
-   let tmpDir =home. ".vim"
-endif
-
 " Setup backup location and enable
-let &backupdir=tmpDir . "/backup"
-let &directory=tmpDir . "/swap"
-let &undodir=tmpDir . "/undo"
+let &backupdir="/home/rohit/.vim/backup"
+let &directory="/home/rohit/.vim/swap"
+let &undodir="/home/rohit/.vim/undo"
 
 """"""""""""""Global Settings"""""""""""""""""""""
 
@@ -111,346 +86,57 @@ noremap <silent> <Space> :noh<Bar>echo<CR>
 
 nnoremap <C-c> :close<CR>
 
-" Open file in current buffer in a split screen and scroll bind on
-noremap <silent> <Leader>vs ggzR:<C-u>let @z=&so<CR>:set so=0 noscb<CR>:set columns=240<CR>:bo vs<CR>zRLjzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+""""""""""""""Plugins""""""""""""""""""""""""""""
 
-""""""""""""""Gradle""""""""""""""""""""""""""""""
+" fzf - fuzzy finder for your shell
+set rtp+=/home/rohit/.fzf
+nnoremap <C-t> :FZF<CR>
 
-au BufNewFile,BufRead *.gradle set filetype=groovy
+" set the runtime path to include Vundle and initialize
+set rtp+=/home/rohit/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-""""""""""""""fzf""""""""""""""""""""""""""""""""
-
-set rtp+=~/.fzf
-
-   " Each selected item will be opened in a new tab
-   nnoremap <silent> <C-t> :FZF -m +c ~/code/<CR>
-
-""""""""""""""Vundle"""""""""""""""""""""""""""""
-
-" add local, non git, changes.
-exec 'set rtp+='.vimHome."/local_config/after"
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-""""""""""""""Packages""""""""""""""""""""""""""""""""
-
-Bundle 'Lokaltog/powerline'
-   set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-Bundle 'altercation/vim-colors-solarized'
-   let g:solarized_visibility = "high"
-   let g:solarized_contrast = "high"
-   colorscheme solarized
-
-Bundle 'Lokaltog/vim-easymotion'
-
-Bundle 'git://repo.or.cz/vcscommand'
-
-Bundle 'justincampbell/vim-eighties'
-
-Bundle 'bronson/vim-trailing-whitespace'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bronson/vim-trailing-whitespace'
    noremap <leader>ss :FixWhitespace<CR>
-
-Bundle 'mattboehm/vim-unstack'
-   let g:unstack_mapkey = '<leader>us'
-
-Bundle 'jiangmiao/auto-pairs'
-
-Bundle 'kien/rainbow_parentheses.vim'
-" Always on
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-" ag requires the_silver_searcher pkg
-Bundle 'rking/ag.vim'
-   " search for word under cursor using ag.
-   nnoremap S :Ag! -i -a "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-Bundle 'sheerun/vim-polyglot'
-
-Bundle 'sorin-ionescu/python.vim'
-
-Bundle 'christoomey/vim-tmux-navigator'
-
-Bundle 'terryma/vim-multiple-cursors'
-
-Bundle 'scrooloose/nerdcommenter'
-
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-obsession'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-rsi'
-Bundle 'tpope/vim-sleuth'
-Bundle 'tpope/vim-surround'
-
-" depends on vim-fugitive.
-Bundle 'idanarye/vim-merginal'
-
-Bundle 'javacomplete'
-Bundle 'ZoomWin'
-Bundle 'bufkill.vim'
-Bundle 'gitignore'
-
-""""""""""""""Ctrlp"""""""""""""""""""""""""""""""
-
-Bundle 'kien/ctrlp.vim'
-
-   " Searches for nearest ancestor with projext.xml .git .hg .svn .bzr _darcs
-   let g:ctrlp_working_path_mode = 'r'
-   let g:ctrlp_root_markers = ['project.xml']
-
-   " have match window at bottom and display results top to bottom
-   let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:40'
-
-   " ctrlp enabled extensions
-   let g:ctrlp_extensions = ['buffertag',
-                            \'Startify',
-                            \'funky',
-                            \'quickfix',
-                            \'tag']
-
-   " open window in current buffer, override conqueterm (or any other plugin
-   " window).
-   let g:ctrlp_reuse_window = '.*'
-
-   " feed word under cursor to ctrlp
-   nmap <C-p>w :CtrlP<CR><C-\>w
-
-   " map to open buffer mode
-   nnoremap <C-p>b :CtrlPBuffer<CR>
-
-   " map to open mru mode
-   nnoremap <C-p>m :CtrlPMRUFiles<CR>
-
-   " Ctrlp command mode
-   nnoremap <C-p>c :CtrlP 
-
-   Bundle 'JazzCore/ctrlp-cmatcher'
-      let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
-
-   " To improve |CtrlP| experience it is strongly recommended to install |AG|
-   " https://github.com/ggreer/the_silver_searcher
-   " and then use following |CtrlP| settings in your .vimrc:
-
-   " Set delay to prevent extra search
-   let g:ctrlp_lazy_update = 350
-
-   " Do not clear filenames cache, to improve CtrlP startup
-   " You can manualy clear it by <F5>
-   let g:ctrlp_clear_cache_on_exit = 0
-
-   " Set no file limit, we are building a big project
-   let g:ctrlp_max_files = 0
-
-   let g:ctrlp_use_caching = 0
-
-   " If ag is available use it as filename list generator instead of 'find'
-   if executable("ag")
-       set grepprg=ag\ --nogroup\ --nocolor
-       let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.svn'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
-   endif
-
-Bundle 'ivalkeen/vim-ctrlp-tjump'
-   nnoremap <C-p>t :CtrlPtjump<CR>
-
-""""""""""""""Supertab""""""""""""""""""""""""""""
-
-Bundle 'ervandew/supertab'
-
+Plugin 'altercation/vim-colors-solarized'
+   colorscheme solarized
+   set background = "light"
+Plugin 'ervandew/supertab'
    let g:SuperTabDefaultCompletionType = "context"
-   let g:SuperTabClosePreviewOnPopupClose = 1       " close the scratch window on code completion popup close
-
-   set completeopt=longest,menu,preview             " with completions not autofinishing first match
-
-""""""""""""""Vim EasyTags""""""""""""""""""""""""
-
-" Requires xolox/vim-misc
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
-
-   " generate java-ctags with command:
-   " ctags-exuberant --fields=+l --recurse=yes --sort=yes --java-kinds=+p -f .tags --languages=java
-
-   " disable highlighting, its slow
-   let g:easytags_auto_highlight = 0
-   let g:easytags_events = ['BufWritePost']
-
-   " Currently disabled, use tags by filetype for better perf
-   "let g:easytags_file = tmpDir . "/easytags/tags"
-   let g:easytags_by_filetype = tmpDir . "/easytags"
-   " first look for local tags then global
-   let g:easytags_dynamic_files = 2
-   :set tags=./.tags;,~/.vim/easytags
-
-   let g:easytags_include_members = 1
-   let g:easytags_async = 1
-
-""""""""""""""NeoComplete"""""""""""""""""""""""""
-
-" compiling vim with lua support was pain, some pointers here:
-" lua-5.1 and supporting packages were installed using dpkg
-" https://github.com/Shougo/neocomplete.vim/issues/31
-" https://github.com/vim-jp/issues/issues/348#issuecomment-21705259
-"
-"./configure --with-features=huge \
-"            --enable-rubyinterp \
-"            --enable-pythoninterp \
-"            --with-python-config-dir=/usr/lib/python2.7/config \
-"            --enable-perlinterp \
-"            --enable-gui=gtk2 \
-"            --enable-cscope \
-"            --prefix=/usr \
-"            --enable-perlinterp=yes \
-"            --enable-luainterp=yes --with-lua-prefix=/usr/local --with-luajit \
-"            --enable-fail-if-missing \
-"
-"make VIMRUNTIMEDIR=/usr/local/share/vim/vim74
-"
-"sudo checkinstall
-"
-"sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
-"sudo update-alternatives --set editor /usr/bin/vim
-"sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
-"sudo update-alternatives --set vi /usr/bin/vim
-
-Bundle 'Shougo/neocomplete.vim'
-
-   let g:neocomplete#enable_cursor_hold_i = 1
-   " Disable AutoComplPop.
-   let g:acp_enableAtStartup = 0
-   " Use neocomplete.
-   let g:neocomplete#enable_at_startup = 1
-   let g:neocomplete#enable_prefetch = 1
-   let g:neocomplete#data_directory = tmpDir . "/neocomplete"
-   " Use smartcase.
-   let g:neocomplete#enable_smart_case = 1
-   " Set minimum syntax keyword length.
-   let g:neocomplete#sources#syntax#min_keyword_length = 3
-   let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-   " Define dictionary.
-   let g:neocomplete#sources#dictionary#dictionaries = {
-            \ 'default' : ''
-            \ }
-
-   " Define keyword.
-   if !exists('g:neocomplete#keyword_patterns')
-       let g:neocomplete#keyword_patterns = {}
-   endif
-   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-   " Plugin key-mappings.
-   inoremap <expr><C-g>     neocomplete#undo_completion()
-   inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-   " Recommended key-mappings.
-   " <CR>: close popup and save indent.
-   inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-   function! s:my_cr_function()
-     return neocomplete#smart_close_popup() . "\<CR>"
-     " For no inserting <CR> key.
-     "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-   endfunction
-   " <TAB>: completion.
-   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-   " <C-h>, <BS>: close popup and delete backword char.
-   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-   inoremap <expr><C-y>  neocomplete#close_popup()
-   inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-   " Close popup by <Space>.
-   inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-   " Enable omni completion.
-   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-   autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-   " Enable heavy omni completion.
-   if !exists('g:neocomplete#sources#omni#input_patterns')
-     let g:neocomplete#sources#omni#input_patterns = {}
-   endif
-
-""""""""""""""Syntastic"""""""""""""""""""""""""""
-
-Bundle 'scrooloose/syntastic'
-
-   let g:syntastic_mode_map = { 'mode': 'active',
-                              \ 'active_filetypes': ['python', 'javascript'],
-                              \ 'passive_filetypes': ['java'] }
-
-   " E221 - multiple spaces before operator.  Nice to lineup =.
-   " E241 - multiple spaces after :.  Nice to lineup dicts.
-   " E272 - multiple spaces before keyword.  Nice to lineup import.
-   " W404 - import *, unable to detected undefined names.
-   " W801 - redefinition of unused import, try/except import fails.
-   let g:syntastic_error_symbol='✗'
-   let g:syntastic_warning_symbol='⚠'
-   let g:syntastic_python_flake8_args = "--ignore=E221,E241,E272,W404,W801"
-
-""""""""""""""NERDTree""""""""""""""""""""""""""""
-
-Bundle 'scrooloose/nerdtree'
-
-   " let g:NERDTreeDirArrows=0                      " nerd tree will break because of missing arrow keys with out this
-   "autocmd vimenter * if !argc()|NERDTree|endif    " Opens nerdtree if no file is specified for vim
-   let NERDTreeIgnore=['\.pyc$', '\~$']             " ignore files
-   " close vim if only window open is nerdtree
-   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-   " let NERDTreeShowHidden=1                       " show hidden files
-
-   " These bindings should be declared after defining what is leader.
-   " NERDTree Ctrl-n for nerdtree
-   nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-
-   " change nerdtree directory to directory containing current file Ctr-d goto dir
-   nnoremap <silent> <C-d> :NERDTree %:h<CR>
-
-""""""""""""""Startify""""""""""""""""""""""""""""
-
-Bundle 'mhinz/vim-startify'
-
-   let g:startify_bookmarks = ['~/.vimrc',
-            \ '~/code/sparkle',
-            \ '~/code/sparkle_docs',
-            \ '~/code/sprint_sms_gateway',
-            \ '~/code/sprint_sms',
-            \ '~/code/elmer',
-            \ '~/code/verizon_vmp_gateway',
-            \ '~/code/verizon_vmp']
+   let g:SuperTabClosePreviewOnPopupClose = 1
+Plugin 'idanarye/vim-merginal'                   " requires vim-fugitive
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'kien/rainbow_parentheses.vim'
+   " Always on
+   au VimEnter * RainbowParenthesesToggle
+   au Syntax * RainbowParenthesesLoadRound
+   au Syntax * RainbowParenthesesLoadSquare
+   au Syntax * RainbowParenthesesLoadBraces
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'mhinz/vim-startify'
    let g:startify_files_number = 20
    let g:startify_restore_position = 1
-
-""""""""""""""Python Jedi"""""""""""""""""""""""""
-
-Bundle 'davidhalter/jedi-vim'
-
-   let g:jedi#use_tabs_not_buffers = 0
-   let g:jedi#use_splits_not_buffers = "bottom"
-   let g:jedi#goto_assignments_command = "<leader>ja"
-   let g:jedi#goto_definitions_command = "<leader>jd"
-   let g:jedi#documentation_command = "K"
-   let g:jedi#usages_command = "<leader>ju"
-   let g:jedi#completions_command = "<C-Space>"
-   let g:jedi#rename_command = "<leader>jr"
-   let g:jedi#show_call_signatures = "1"
-
-""""""""""""""Yankring""""""""""""""""""""""""""""
-
-Bundle 'YankRing.vim'
-
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+   let NERDTreeIgnore=['\.pyc$', '\~$']
+   nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
+   nnoremap <silent> <leader>nd :NERDTree %:h<CR>
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+   let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['python'], 'passive_filetypes': ['java'] }
+   let g:syntastic_error_symbol='✗'
+   let g:syntastic_warning_symbol='⚠'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-rsi'
+Plugin 'tpope/vim-surround'
+Plugin 'YankRing.vim'
    let g:yankring_replace_n_pkey = "yp"
    let g:yankring_replace_n_nkey = "yn"
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
