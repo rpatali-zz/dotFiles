@@ -1,7 +1,7 @@
 " Setup backup location and enable
-let &backupdir="/home/rohit/.vim/backup"
-let &directory="/home/rohit/.vim/swap"
-let &undodir="/home/rohit/.vim/undo"
+let &backupdir="/Users/rohit.patali/.vim/backup"
+let &directory="/Users/rohit.patali/.vim/swap"
+let &undodir="/Users/rohit.patali/.vim/undo"
 
 """"""""""""""Global Settings"""""""""""""""""""""
 
@@ -55,8 +55,8 @@ set wildignore+=*.swp,*.pyc,*.class,*.idea*
 
 set completeopt=menu                             " insert mode completion, only show menu
 
-set noshowmode                                   " required by fancy status lines
-set laststatus=2                                 " required by fancy status lines
+set laststatus=2                                 " Always display the statusline in all windows
+set noshowmode                                   " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 """"""""""""""Mappings""""""""""""""""""""""""""""
 
@@ -70,44 +70,34 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" D deletes till end
-" C changes till end
-" Y should yank till end
-" By default it yanks whole line
-nnoremap Y y$
-
-" Automatically jump to end of text you pasted:
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]`
-
 " removes highlighting from search after space
 noremap <silent> <Space> :noh<Bar>echo<CR>
 
 nnoremap <C-c> :close<CR>
+nnoremap <leader>bd :bd<CR>
 
 """"""""""""""Plugins""""""""""""""""""""""""""""
 
 " fzf - fuzzy finder for your shell
-set rtp+=/home/rohit/.fzf
-nnoremap <C-t> :FZF<CR>
+set rtp+=~/.fzf
+nnoremap <silent> <C-t> :FZF -m +c ~/<CR>
 
 " set the runtime path to include Vundle and initialize
-set rtp+=/home/rohit/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'bronson/vim-trailing-whitespace'
-   noremap <leader>ss :FixWhitespace<CR>
 Plugin 'altercation/vim-colors-solarized'
    colorscheme solarized
-   set background = "light"
+Plugin 'bling/vim-airline'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ervandew/supertab'
    let g:SuperTabDefaultCompletionType = "context"
    let g:SuperTabClosePreviewOnPopupClose = 1
-Plugin 'idanarye/vim-merginal'                   " requires vim-fugitive
-Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'idanarye/vim-merginal'
+Plugin 'justincampbell/vim-eighties'
+Plugin 'kien/ctrlp.vim'
 Plugin 'kien/rainbow_parentheses.vim'
    " Always on
    au VimEnter * RainbowParenthesesToggle
@@ -128,6 +118,7 @@ Plugin 'scrooloose/syntastic'
    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['python'], 'passive_filetypes': ['java'] }
    let g:syntastic_error_symbol='✗'
    let g:syntastic_warning_symbol='⚠'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -138,5 +129,5 @@ Plugin 'YankRing.vim'
    let g:yankring_replace_n_nkey = "yn"
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end()                                " required
 
