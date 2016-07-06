@@ -90,6 +90,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
    colorscheme solarized
+Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ervandew/supertab'
@@ -119,11 +120,28 @@ Plugin 'scrooloose/syntastic'
    let g:syntastic_error_symbol='✗'
    let g:syntastic_warning_symbol='⚠'
 Plugin 'Shougo/neocomplete.vim'
+   " Use neocomplete.
+   let g:neocomplete#enable_at_startup = 1
+   " Use smartcase.
+   let g:neocomplete#enable_smart_case = 1
+   autocmd FileType java setlocal omnifunc=javacomplete#Complete
+   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+   " Enable heavy omni completion.
+   if !exists('g:neocomplete#sources#omni#input_patterns')
+     let g:neocomplete#sources#omni#input_patterns = {}
+   endif
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-surround'
+Plugin 'xolox/vim-misc'                          " required by vim-easytags
+Plugin 'xolox/vim-easytags'
+   let g:easytags_async = 1
+   let g:easytags_dynamic_files = 1
+   let g:easytags_include_members = 1
+   let g:easytags_by_filetype = "~/.vim/easytags/"
 Plugin 'YankRing.vim'
    let g:yankring_replace_n_pkey = "yp"
    let g:yankring_replace_n_nkey = "yn"
