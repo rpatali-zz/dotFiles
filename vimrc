@@ -78,10 +78,6 @@ nnoremap <leader>bd :bd<CR>
 
 """"""""""""""Plugins""""""""""""""""""""""""""""
 
-" fzf - fuzzy finder for your shell
-set rtp+=~/.fzf
-nnoremap <silent> <C-t> :FZF -m +c ~/<CR>
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -96,11 +92,22 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ervandew/supertab'
    let g:SuperTabDefaultCompletionType = "context"
    let g:SuperTabClosePreviewOnPopupClose = 1
-Plugin 'idanarye/vim-merginal'
+Plugin 'junegunn/fzf.vim'
+   set rtp+=~/.fzf
+    nmap <c-t> :FZF<CR>
+    nmap <c-r> :History:<CR>
+    nmap <c-a> :Ag<CR>
+    nmap <c-g> :GFiles?<CR>
+    nmap <c-h><c-g> :Commits<CR>
+    nmap <c-h><c-f> :BCommits<CR>
+    nmap <Leader>b :Buffers<CR>
+    nnoremap <silent> <Leader>m :call fzf#run({
+             \  'source':  v:oldfiles,
+             \  'sink':    'e',
+             \  'options': '-m -x +s',
+             \  'down':    '40%'})<CR>
 Plugin 'justincampbell/vim-eighties'
-Plugin 'kien/ctrlp.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-   " Always on
    au VimEnter * RainbowParenthesesToggle
    au Syntax * RainbowParenthesesLoadRound
    au Syntax * RainbowParenthesesLoadSquare
@@ -109,7 +116,6 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mhinz/vim-startify'
    let g:startify_files_number = 20
    let g:startify_restore_position = 1
-Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
    let NERDTreeIgnore=['\.pyc$', '\~$']
    nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
@@ -120,17 +126,11 @@ Plugin 'scrooloose/syntastic'
    let g:syntastic_error_symbol='✗'
    let g:syntastic_warning_symbol='⚠'
 Plugin 'Shougo/neocomplete.vim'
-   " Use neocomplete.
    let g:neocomplete#enable_at_startup = 1
-   " Use smartcase.
    let g:neocomplete#enable_smart_case = 1
    autocmd FileType java setlocal omnifunc=javacomplete#Complete
    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-   " Enable heavy omni completion.
-   if !exists('g:neocomplete#sources#omni#input_patterns')
-     let g:neocomplete#sources#omni#input_patterns = {}
-   endif
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
