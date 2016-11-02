@@ -94,19 +94,17 @@ Plugin 'ervandew/supertab'
    let g:SuperTabClosePreviewOnPopupClose = 1
 Plugin 'junegunn/fzf.vim'
    set rtp+=~/.fzf
-    nmap <c-t> :FZF<CR>
-    nmap <c-r> :History:<CR>
-    nmap <c-a> :Ag<CR>
-    nmap <c-g> :GFiles?<CR>
-    nmap <c-h><c-g> :Commits<CR>
-    nmap <c-h><c-f> :BCommits<CR>
-    nmap <Leader>b :Buffers<CR>
-    nnoremap <silent> <Leader>m :call fzf#run({
-             \  'source':  v:oldfiles,
-             \  'sink':    'e',
-             \  'options': '-m -x +s',
-             \  'down':    '40%'})<CR>
-Plugin 'justincampbell/vim-eighties'
+   nmap <c-t> :FZF<CR>
+   nmap <c-g> :GFiles?<CR>
+   nmap <c-h><c-g> :Commits<CR>
+   nmap <c-h><c-f> :BCommits<CR>
+   nmap <Leader>b :Buffers<CR>
+   nnoremap <silent> <Leader>m :call fzf#run({
+      \  'source'  : v:oldfiles,
+      \  'sink'    : 'e',
+      \  'options' : '-m -x +s',
+      \  'down'    : '40%'}
+      \)<CR>
 Plugin 'kien/rainbow_parentheses.vim'
    au VimEnter * RainbowParenthesesToggle
    au Syntax * RainbowParenthesesLoadRound
@@ -126,7 +124,6 @@ Plugin 'scrooloose/syntastic'
    let g:syntastic_error_symbol='✗'
    let g:syntastic_warning_symbol='⚠'
 Plugin 'Shougo/neocomplete.vim'
-   let g:neocomplete#enable_at_startup = 1
    let g:neocomplete#enable_smart_case = 1
    autocmd FileType java setlocal omnifunc=javacomplete#Complete
    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -137,11 +134,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-surround'
 Plugin 'xolox/vim-misc'                          " required by vim-easytags
-Plugin 'xolox/vim-easytags'
-   let g:easytags_async = 1
-   let g:easytags_dynamic_files = 1
-   let g:easytags_include_members = 1
-   let g:easytags_by_filetype = "~/.vim/easytags/"
 Plugin 'YankRing.vim'
    let g:yankring_replace_n_pkey = "yp"
    let g:yankring_replace_n_nkey = "yn"
