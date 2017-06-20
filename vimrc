@@ -95,7 +95,7 @@ Plugin 'ervandew/supertab'
    let g:SuperTabDefaultCompletionType = "context"
    let g:SuperTabClosePreviewOnPopupClose = 1
 Plugin 'junegunn/fzf.vim'
-   set rtp+=~/.fzf
+   set rtp+=/usr/local/opt/fzf
    nmap <c-t> :FZF<CR>
    nmap <c-g> :GFiles?<CR>
    nmap <c-h><c-g> :Commits<CR>
