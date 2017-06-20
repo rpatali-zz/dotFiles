@@ -85,7 +85,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
-   colorscheme solarized
+   " for whatever reason, setting to solarized doesn't work but this does.
+   " https://superuser.com/questions/311370/solarized-colors-in-vim-dont-seem-to-be-working-for-me
+   colorscheme default
 Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
