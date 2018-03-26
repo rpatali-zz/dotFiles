@@ -13,7 +13,7 @@ brew install luajit
 brew install git
 
 git clone git@github.com:vim/vim.git --recursive -b master
-cd vim
+cd vim || exit
 
 make clean && make distclean
 
@@ -21,7 +21,7 @@ make clean && make distclean
             --with-features=huge \
             --enable-rubyinterp \
             --enable-pythoninterp \
-            --with-python-config-dir=/usr/local/bin/python-2.7-config \
+            --with-python-config-dir=/usr/bin/python-config \
             --enable-perlinterp \
             --enable-gui=gtk2 \
             --enable-cscope \
@@ -29,8 +29,10 @@ make clean && make distclean
             --enable-luainterp=yes \
             --with-lua-prefix=/usr/local \
             --with-luajit \
-            --enable-mouseshape \
-            --enable-fail-if-missing
+            --enable-fail-if-missing \
+            --enable-python3interp \
+            --enable-multibyte \
+            --enable-fontset
 
 make VIMRUNTIMEDIR=/usr/local/share/vim/vim80/
 
