@@ -15,9 +15,9 @@ set clipboard=unnamed                            " copy across vim in different 
 
 set vb t_vb=                                     " removes annoying beeps when bad command
 
-syntax enable                                    " syntax highlighting
 filetype off                                     " required!
 filetype plugin indent on                        " required!
+syntax enable                                    " syntax highlighting
 
 set mouse=a                                      " allow mouse control
 set cino+=(0                                     " When in unclosed parens, ie args, have them line up
